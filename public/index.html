@@ -927,6 +927,29 @@
     font-size: 13px;
     color: var(--green);
   }
+
+  .same-index-alert {
+    background: #FCEAE7;
+    border: 2px solid var(--red);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+  .same-index-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--red);
+    margin-bottom: 6px;
+  }
+  .same-index-line {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--brown);
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+  .same-index-line b { font-family: 'Space Mono', monospace; }
 </style>
 </head>
 <body>
@@ -1209,6 +1232,36 @@ const HOLDINGS = {
 
 function getHoldings(symbol) {
   return HOLDINGS[symbol] || { [symbol]: 100 };
+}
+
+// Funds that track the same underlying index are essentially the same fund in real life,
+// even though our partial top-holdings list only catches a fraction of that overlap.
+// This flags those pairs directly instead of relying on the incomplete holdings math.
+const INDEX_GROUPS = [
+  { id: 'sp500', label: 'the S&P 500', members: ['VOO', 'SPY', 'IVV', 'FXAIX', 'SCHX'] },
+  { id: 'totalmarket', label: 'the total US stock market', members: ['VTI', 'SCHB', 'FZROX', 'FSKAX'] },
+  { id: 'reit', label: 'the real estate sector', members: ['VNQ', 'FREL'] },
+  { id: 'semis', label: 'the semiconductor sector', members: ['SOXX', 'SMH'] },
+  { id: 'largegrowth', label: 'large cap growth stocks', members: ['VUG', 'SCHG'] },
+  { id: 'largevalue', label: 'large cap value stocks', members: ['VTV', 'SCHV'] },
+];
+
+function getIndexGroup(symbol) {
+  return INDEX_GROUPS.find(g => g.members.includes(symbol)) || null;
+}
+
+function findSameIndexPairs(tickers) {
+  const pairs = [];
+  for (let i = 0; i < tickers.length; i++) {
+    for (let j = i + 1; j < tickers.length; j++) {
+      const ga = getIndexGroup(tickers[i]);
+      const gb = getIndexGroup(tickers[j]);
+      if (ga && gb && ga.id === gb.id) {
+        pairs.push({ a: tickers[i], b: tickers[j], label: ga.label });
+      }
+    }
+  }
+  return pairs;
 }
 
 // Caches live lookups so switching platform or re-rendering doesn't re-fetch.
@@ -1726,6 +1779,14 @@ function renderOverlap(totalAllocated) {
     return;
   }
 
+  const samePairs = findSameIndexPairs(portfolioTickers);
+  const sameIndexHtml = samePairs.length ? `
+    <div class="same-index-alert">
+      <div class="same-index-title">These are basically the same fund</div>
+      ${samePairs.map(p => `<div class="same-index-line"><b>${p.a}</b> and <b>${p.b}</b> both track ${p.label}. In real life these overlap close to 100%, our holdings breakdown below only catches a partial picture, so trust this warning over that number for this pair.</div>`).join('')}
+    </div>
+  ` : '';
+
   const exposure = {};
   portfolioTickers.forEach(symbol => {
     const amount = portfolioAmounts[symbol] || 0;
@@ -1746,8 +1807,9 @@ function renderOverlap(totalAllocated) {
   if (overlaps.length === 0) {
     wrap.innerHTML = `
       <div class="overlap-block">
+        ${sameIndexHtml}
         <div class="overlap-headline">Overlap check</div>
-        <div class="overlap-none">No meaningful overlap between your picks, these selections stay fairly distinct from each other.</div>
+        <div class="overlap-none">${samePairs.length ? 'No additional overlap found beyond what\'s flagged above.' : 'No meaningful overlap between your picks, these selections stay fairly distinct from each other.'}</div>
       </div>
     `;
     return;
@@ -1770,8 +1832,9 @@ function renderOverlap(totalAllocated) {
 
   wrap.innerHTML = `
     <div class="overlap-block">
-      <div class="overlap-headline">Overlap check, <b>${totalOverlapPct.toFixed(1)}%</b> of your portfolio is doubled up</div>
-      <div class="overlap-sub">These companies show up in more than one of your picks, so you're paying for the same exposure twice.</div>
+      ${sameIndexHtml}
+      <div class="overlap-headline">Overlap check, <b>${totalOverlapPct.toFixed(1)}%</b> of your portfolio is doubled up${samePairs.length ? ' from what we can see' : ''}</div>
+      <div class="overlap-sub">These companies show up in more than one of your picks, so you're paying for the same exposure twice.${samePairs.length ? ' The real number for the pair flagged above is much higher, see the warning.' : ''}</div>
       ${rows}
     </div>
   `;
