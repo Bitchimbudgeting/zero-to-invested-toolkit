@@ -5,25 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zero to Invested Toolkit</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500;700&family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Oswald:wght@500;700&family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --brown: #4A2E1F;
-    --brown-light: #6B4530;
-    --gold: #C8A96A;
-    --gold-bright: #DDBE7E;
-    --cream: #F5EFE6;
-    --cream-dim: #EAE1D2;
-    --green: #4A7A5D;
-    --red: #B5533C;
-    --ink: #2A1B12;
+    --brown: #1B2A4A;
+    --brown-light: #3E5578;
+    --gold: #E8B84B;
+    --gold-bright: #F0CD7E;
+    --cream: #F7F3E8;
+    --cream-dim: #E3E7ED;
+    --green: #2E7D5B;
+    --green-bright: #6FC9A0;
+    --red: #C24B42;
+    --ink: #22314C;
+    --page-bg: #FFFFFF;
   }
 
   * { box-sizing: border-box; }
 
   body {
     margin: 0;
-    background: var(--cream);
+    background: var(--page-bg);
     color: var(--ink);
     font-family: 'DM Sans', sans-serif;
     padding: 32px 16px 64px;
@@ -44,12 +46,13 @@
   }
 
   h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 44px;
-    letter-spacing: 0.02em;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 38px;
+    letter-spacing: -0.01em;
     color: var(--brown);
-    margin: 0 0 4px;
-    line-height: 1;
+    margin: 0 0 6px;
+    line-height: 1.1;
   }
 
   .sub {
@@ -70,7 +73,7 @@
     margin-bottom: 28px;
     line-height: 1.5;
   }
-  .proto-banner b { color: var(--gold-bright); }
+  .proto-banner b { color: var(--green-bright); }
 
   .search-row {
     display: flex;
@@ -90,8 +93,8 @@
     color: var(--ink);
     outline: none;
   }
-  input[type="text"]:focus { border-color: var(--gold); }
-  input[type="text"]::placeholder { color: #B8A68E; text-transform: none; }
+  input[type="text"]:focus { border-color: var(--green); }
+  input[type="text"]::placeholder { color: #8C97AC; text-transform: none; }
 
   button.go {
     font-family: 'Oswald', sans-serif;
@@ -125,12 +128,36 @@
     border-radius: 20px;
     cursor: pointer;
   }
-  .quick-tickers button:hover { border-color: var(--gold); color: var(--brown); }
+  .quick-tickers button:hover { border-color: var(--green); color: var(--brown); }
+
+  .category-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .category-tabs button {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    background: white;
+    border: 1px solid var(--cream-dim);
+    color: var(--brown-light);
+    padding: 7px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  .category-tabs button.active {
+    background: var(--brown);
+    border-color: var(--brown);
+    color: white;
+  }
 
   .card {
     background: white;
     border-radius: 14px;
     border: 1px solid var(--cream-dim);
+    box-shadow: 0 2px 10px rgba(27, 42, 74, 0.06);
     padding: 24px;
     margin-bottom: 16px;
     display: none;
@@ -153,7 +180,7 @@
   .ticker-name {
     font-family: 'DM Sans', sans-serif;
     font-size: 14px;
-    color: #8A7A68;
+    color: #5C6A85;
     margin-top: 2px;
   }
   .type-pill {
@@ -167,6 +194,79 @@
     color: var(--brown);
   }
   .type-pill.etf { background: #E4EEE7; color: var(--green); }
+  .type-pill.reit { background: #FBF0DA; color: #A6791F; }
+
+  .card-top-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .star-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--cream-dim);
+    padding: 2px;
+  }
+  .star-btn.saved { color: var(--gold); }
+
+  .risk-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 3px 9px;
+    border-radius: 20px;
+    margin-left: 4px;
+  }
+  .risk-badge.low { background: #E4EEE7; color: var(--green); }
+  .risk-badge.medium { background: #FBF0DA; color: #A6791F; }
+  .risk-badge.high { background: #FCEAE7; color: var(--red); }
+  .risk-info { cursor: pointer; opacity: 0.7; }
+
+  .info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--cream-dim);
+    color: var(--brown-light);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    margin-left: 4px;
+    cursor: pointer;
+    vertical-align: middle;
+  }
+
+  .def-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%) translateY(8px);
+    background: var(--brown);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.4;
+    max-width: 90%;
+    width: 420px;
+    text-align: left;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 100;
+  }
+  .def-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .def-toast b { color: var(--gold-bright); }
 
   .price-row {
     display: flex;
@@ -204,7 +304,7 @@
     font-size: 10px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: #9A8770;
+    color: #6E7B96;
     margin-bottom: 4px;
   }
   .stat-value {
@@ -220,7 +320,7 @@
     line-height: 1.5;
     color: var(--brown-light);
     background: #FBF8F2;
-    border-left: 3px solid var(--gold);
+    border-left: 3px solid var(--green);
     padding: 12px 14px;
     border-radius: 4px;
   }
@@ -229,7 +329,7 @@
   .empty-state {
     text-align: center;
     padding: 40px 20px;
-    color: #B0A08B;
+    color: #98A3B8;
     font-family: 'Oswald', sans-serif;
     font-size: 15px;
   }
@@ -268,7 +368,7 @@
     margin-top: 36px;
     font-family: 'Space Mono', monospace;
     font-size: 11px;
-    color: #B0A08B;
+    color: #98A3B8;
     text-align: center;
   }
 
@@ -282,7 +382,7 @@
     font-size: 10px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: #9A8770;
+    color: #6E7B96;
     margin-bottom: 8px;
   }
   .invest-result {
@@ -310,13 +410,14 @@
   .invest-leftover {
     font-family: 'DM Sans', sans-serif;
     font-size: 12px;
-    color: #9A8770;
+    color: #6E7B96;
     width: 100%;
   }
 
   .amount-panel {
     background: white;
     border: 1px solid var(--cream-dim);
+    box-shadow: 0 2px 10px rgba(27, 42, 74, 0.06);
     border-radius: 12px;
     padding: 16px 18px;
     margin-bottom: 16px;
@@ -380,7 +481,7 @@
   .platform-note {
     font-family: 'DM Sans', sans-serif;
     font-size: 12px;
-    color: #9A8770;
+    color: #6E7B96;
     margin-top: 10px;
     line-height: 1.5;
   }
@@ -413,7 +514,7 @@
   .range-current {
     font-family: 'Space Mono', monospace;
     font-size: 11px;
-    color: #9A8770;
+    color: #6E7B96;
     margin-top: 8px;
     text-align: center;
   }
@@ -458,13 +559,14 @@
   .returns-year {
     font-family: 'DM Sans', sans-serif;
     font-size: 10px;
-    color: #9A8770;
+    color: #6E7B96;
     margin-top: 2px;
   }
 
   .portfolio-panel {
     background: white;
     border: 1px solid var(--cream-dim);
+    box-shadow: 0 2px 10px rgba(27, 42, 74, 0.06);
     border-radius: 14px;
     padding: 22px;
     margin-top: 28px;
@@ -491,7 +593,7 @@
     font-size: 12px;
     font-weight: 700;
     background: var(--cream);
-    border: 1px solid var(--gold);
+    border: 1px solid var(--green);
     color: var(--brown);
     padding: 6px 6px 6px 12px;
     border-radius: 20px;
@@ -526,7 +628,7 @@
   .portfolio-price {
     font-family: 'DM Sans', sans-serif;
     font-size: 12px;
-    color: #9A8770;
+    color: #6E7B96;
   }
   .portfolio-dollar {
     display: flex;
@@ -577,7 +679,7 @@
   .portfolio-empty {
     font-family: 'Oswald', sans-serif;
     font-size: 14px;
-    color: #B0A08B;
+    color: #98A3B8;
     padding: 8px 0;
   }
 
@@ -600,7 +702,7 @@
   .overlap-sub {
     font-family: 'DM Sans', sans-serif;
     font-size: 12px;
-    color: #9A8770;
+    color: #6E7B96;
     margin-bottom: 12px;
   }
   .overlap-row {
@@ -620,7 +722,7 @@
   .overlap-sources {
     font-family: 'DM Sans', sans-serif;
     font-size: 11px;
-    color: #9A8770;
+    color: #6E7B96;
   }
   .overlap-pct {
     font-family: 'Space Mono', monospace;
@@ -648,6 +750,12 @@
   <div class="search-row">
     <input type="text" id="tickerInput" placeholder="Type a ticker, ex: VOO" maxlength="6" onkeydown="if(event.key==='Enter')lookup()">
     <button class="go" onclick="lookup()">Look up</button>
+  </div>
+  <div class="category-tabs" id="categoryTabs">
+    <button class="active" data-cat="etf" onclick="setCategory('etf')">ETFs</button>
+    <button data-cat="stock" onclick="setCategory('stock')">Stocks</button>
+    <button data-cat="reit" onclick="setCategory('reit')">REITs</button>
+    <button data-cat="saved" onclick="setCategory('saved')">Saved</button>
   </div>
   <div class="quick-tickers" id="quickTickers"></div>
 
@@ -705,6 +813,8 @@
 
   <footer>Live prices via Twelve Data &middot; Built for Zero to Invested</footer>
 </div>
+
+<div class="def-toast" id="defToast"></div>
 
 <script>
 // Extra stats (sector, expense ratio, 5 year history, teaching notes) for our starter
@@ -905,13 +1015,115 @@ let lastCompareB = null;
 let portfolioTickers = [];
 let portfolioAmounts = {};
 
-const quickWrap = document.getElementById('quickTickers');
-STARTER_TICKERS.forEach(t => {
-  const btn = document.createElement('button');
-  btn.textContent = t;
-  btn.onclick = () => { document.getElementById('tickerInput').value = t; lookup(); };
-  quickWrap.appendChild(btn);
-});
+function getCategory(symbol) {
+  const d = STATIC_SUPPLEMENT[symbol];
+  if (!d) return 'stock';
+  if (d.type === 'etf') return 'etf';
+  if (d.sector === 'Real Estate') return 'reit';
+  return 'stock';
+}
+
+// Plain language definitions for the info icons next to jargon.
+const DEFINITIONS = {
+  expense: "The yearly fee a fund charges to manage your money, taken automatically out of your returns. Lower is better, most good index funds charge under 0.20%.",
+  pe: "P/E ratio compares a company's stock price to how much profit it makes. A higher number usually means the stock is priced for a lot of future growth.",
+  sector: "The industry a company operates in, like Technology or Healthcare. Owning several companies in the same sector means less real diversification than it looks like.",
+  holdings: "How many different companies a fund actually owns. More holdings generally means more built in diversification.",
+  fractional: "Buying a partial share instead of a whole one, so your exact dollar amount gets invested even if it's less than one full share's price.",
+  wholeOnly: "Some brokers only let you buy full shares of certain funds, so any leftover money after buying whole shares sits uninvested until you add more.",
+  risk: "Based on how much this ticker's yearly returns have swung over the last 5 years. Low means steadier, high means bigger ups and downs.",
+};
+
+let defToastTimer;
+function showDef(key) {
+  const toast = document.getElementById('defToast');
+  toast.innerHTML = DEFINITIONS[key] || '';
+  toast.classList.add('show');
+  clearTimeout(defToastTimer);
+  defToastTimer = setTimeout(() => toast.classList.remove('show'), 5000);
+}
+
+// Watchlist, stored in the browser, no account needed.
+function getWatchlist() {
+  try { return JSON.parse(localStorage.getItem('ztiWatchlist') || '[]'); }
+  catch (e) { return []; }
+}
+function isSaved(symbol) {
+  return getWatchlist().includes(symbol);
+}
+function toggleSave(symbol) {
+  let list = getWatchlist();
+  if (list.includes(symbol)) {
+    list = list.filter(s => s !== symbol);
+  } else {
+    list.push(symbol);
+  }
+  localStorage.setItem('ztiWatchlist', JSON.stringify(list));
+
+  document.querySelectorAll(`.star-btn[data-symbol="${symbol}"]`).forEach(btn => {
+    const saved = list.includes(symbol);
+    btn.classList.toggle('saved', saved);
+    btn.textContent = saved ? '\u2605' : '\u2606';
+  });
+
+  if (activeCategory === 'saved') renderQuickTickers();
+}
+
+// Risk badge, based on how much a ticker's yearly returns have swung.
+function riskBadgeHtml(d) {
+  if (!d.returns) return '';
+  const vals = Object.values(d.returns);
+  const mean = vals.reduce((a, b) => a + b, 0) / vals.length;
+  const variance = vals.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / vals.length;
+  const stdev = Math.sqrt(variance);
+  let level, cls;
+  if (stdev < 15) { level = 'Low'; cls = 'low'; }
+  else if (stdev < 35) { level = 'Medium'; cls = 'medium'; }
+  else { level = 'High'; cls = 'high'; }
+  return `<span class="risk-badge ${cls}">${level} risk<span class="risk-info" onclick="showDef('risk')">?</span></span>`;
+}
+
+let activeCategory = 'etf';
+
+function setCategory(cat) {
+  activeCategory = cat;
+  document.querySelectorAll('#categoryTabs button').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.cat === cat);
+  });
+  renderQuickTickers();
+}
+
+function renderQuickTickers() {
+  const quickWrap = document.getElementById('quickTickers');
+  quickWrap.innerHTML = '';
+
+  if (activeCategory === 'saved') {
+    const saved = getWatchlist();
+    if (saved.length === 0) {
+      const msg = document.createElement('div');
+      msg.className = 'portfolio-empty';
+      msg.style.padding = '4px 0';
+      msg.textContent = 'No saved tickers yet, tap the star on any result to save it here.';
+      quickWrap.appendChild(msg);
+      return;
+    }
+    saved.forEach(t => {
+      const btn = document.createElement('button');
+      btn.textContent = t;
+      btn.onclick = () => { document.getElementById('tickerInput').value = t; lookup(); };
+      quickWrap.appendChild(btn);
+    });
+    return;
+  }
+
+  STARTER_TICKERS.filter(t => getCategory(t) === activeCategory).forEach(t => {
+    const btn = document.createElement('button');
+    btn.textContent = t;
+    btn.onclick = () => { document.getElementById('tickerInput').value = t; lookup(); };
+    quickWrap.appendChild(btn);
+  });
+}
+renderQuickTickers();
 
 function setPlatform(p) {
   platform = p;
@@ -1045,21 +1257,22 @@ function returnsRowHtml(d) {
 
 function renderCard(symbol, d) {
   const isEtf = d.type === 'etf';
+  const category = getCategory(symbol);
+  const isReit = category === 'reit';
   const changeClass = d.change >= 0 ? 'up' : 'down';
   const changeSign = d.change >= 0 ? '+' : '';
 
-  let statsHtml = '';
-  if (isEtf) {
-    statsHtml = `
-      <div class="stat"><div class="stat-label">Expense ratio</div><div class="stat-value">${d.expense || 'Not available'}</div></div>
-      <div class="stat"><div class="stat-label">Holdings</div><div class="stat-value">${d.holdings || 'Not available'}</div></div>
+  const pillClass = isEtf ? 'etf' : (isReit ? 'reit' : '');
+  const pillLabel = isEtf ? 'ETF' : (isReit ? 'REIT' : 'Stock');
+  const saved = isSaved(symbol);
+
+  const statsLabelsHtml = isEtf ? `
+      <div class="stat"><div class="stat-label">Expense ratio<span class="info-icon" onclick="showDef('expense')">i</span></div><div class="stat-value">${d.expense || 'Not available'}</div></div>
+      <div class="stat"><div class="stat-label">Holdings<span class="info-icon" onclick="showDef('holdings')">i</span></div><div class="stat-value">${d.holdings || 'Not available'}</div></div>
+    ` : `
+      <div class="stat"><div class="stat-label">Sector<span class="info-icon" onclick="showDef('sector')">i</span></div><div class="stat-value">${d.sector || 'Not available'}</div></div>
+      <div class="stat"><div class="stat-label">P/E ratio<span class="info-icon" onclick="showDef('pe')">i</span></div><div class="stat-value">${d.pe || 'Not available'}</div></div>
     `;
-  } else {
-    statsHtml = `
-      <div class="stat"><div class="stat-label">Sector</div><div class="stat-value">${d.sector || 'Not available'}</div></div>
-      <div class="stat"><div class="stat-label">P/E ratio</div><div class="stat-value">${d.pe || 'Not available'}</div></div>
-    `;
-  }
 
   return `
     <div class="card-top">
@@ -1067,13 +1280,17 @@ function renderCard(symbol, d) {
         <div class="ticker-tag">${symbol}</div>
         <div class="ticker-name">${d.name}</div>
       </div>
-      <div class="type-pill ${isEtf ? 'etf' : ''}">${isEtf ? 'ETF' : 'Stock'}</div>
+      <div class="card-top-right">
+        <div class="type-pill ${pillClass}">${pillLabel}</div>
+        <button class="star-btn ${saved ? 'saved' : ''}" data-symbol="${symbol}" onclick="toggleSave('${symbol}')" aria-label="Save to watchlist">${saved ? '\u2605' : '\u2606'}</button>
+      </div>
     </div>
     <div class="price-row">
       <div class="price">$${d.price.toFixed(2)}</div>
       <div class="change ${changeClass}">${changeSign}${d.change}%</div>
+      ${riskBadgeHtml(d)}
     </div>
-    <div class="stat-grid">${statsHtml}</div>
+    <div class="stat-grid">${statsLabelsHtml}</div>
     ${rangeBarHtml(d)}
     ${returnsRowHtml(d)}
     <div class="selma-note"><b>What you're looking at:</b> ${d.note}</div>
