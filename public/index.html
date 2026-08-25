@@ -335,13 +335,37 @@
   }
 
   .compare-toggle {
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    color: var(--brown-light);
-    text-decoration: underline;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    color: var(--brown);
+    background: white;
+    border: 2px solid var(--brown);
+    border-radius: 8px;
+    padding: 12px 18px;
     cursor: pointer;
-    display: inline-block;
-    margin-bottom: 18px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .compare-toggle:hover { background: var(--cream); }
+
+  .compare-helper {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: #6E7B96;
+    margin-bottom: 12px;
+    display: none;
+  }
+  .compare-helper.show { display: block; }
+
+  .section-helper {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: #6E7B96;
+    margin-bottom: 10px;
   }
 
   .compare-wrap {
@@ -357,12 +381,17 @@
   .compare-grid {
     display: none;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 14px;
   }
   .compare-grid.show { display: grid; }
-  .compare-grid .card { margin-bottom: 0; }
-  .compare-grid .price { font-size: 24px; }
+  .compare-grid .card { margin-bottom: 0; padding: 20px; }
+  .compare-grid .ticker-tag { font-size: 26px; }
+  .compare-grid .price { font-size: 30px; }
   .compare-grid .stat-grid { grid-template-columns: 1fr; }
+
+  @media (max-width: 520px) {
+    .compare-grid { grid-template-columns: 1fr; }
+  }
 
   footer {
     margin-top: 36px;
@@ -370,6 +399,7 @@
     font-size: 11px;
     color: #98A3B8;
     text-align: center;
+    line-height: 1.8;
   }
 
   .invest-block {
@@ -572,6 +602,168 @@
     margin-top: 28px;
   }
 
+  .projection-panel {
+    background: white;
+    border: 1px solid var(--cream-dim);
+    box-shadow: 0 2px 10px rgba(27, 42, 74, 0.06);
+    border-radius: 14px;
+    padding: 22px;
+    margin-top: 28px;
+  }
+  .projection-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .projection-field label {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #9A8770;
+    margin-bottom: 6px;
+  }
+  .projection-field input {
+    width: 100%;
+    font-family: 'Space Mono', monospace;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 10px 12px;
+    border: 2px solid var(--cream-dim);
+    border-radius: 8px;
+    background: var(--cream);
+    color: var(--ink);
+    outline: none;
+    box-sizing: border-box;
+  }
+  .projection-field input:focus { border-color: var(--green); }
+
+  .growth-toggle {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+  .growth-toggle button {
+    flex: 1;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    background: white;
+    border: 2px solid var(--cream-dim);
+    color: var(--brown-light);
+    padding: 9px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .growth-toggle button.active {
+    background: var(--brown);
+    border-color: var(--brown);
+    color: white;
+  }
+
+  .custom-rate-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .custom-rate-row span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: #9A8770;
+  }
+  .custom-rate-wrap {
+    display: flex;
+    align-items: center;
+    background: var(--cream);
+    border: 2px solid var(--cream-dim);
+    border-radius: 8px;
+    padding: 0 10px;
+  }
+  .custom-rate-wrap:focus-within { border-color: var(--green); }
+  .custom-rate-wrap input {
+    border: none;
+    background: transparent;
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 8px 2px;
+    width: 48px;
+    outline: none;
+    color: var(--ink);
+  }
+  .custom-rate-wrap span {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    color: var(--brown-light);
+  }
+
+  .chart-legend {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .chart-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--brown-light);
+  }
+  .chart-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  .chart-tap-hint {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: #9A8770;
+    margin-top: 8px;
+  }
+
+  .projection-result {
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .projection-years {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: #6E7B96;
+    margin-bottom: 10px;
+  }
+  .projection-headline {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--brown);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .projection-headline b {
+    font-family: 'Space Mono', monospace;
+    color: var(--green);
+  }
+  .projection-headline b.short { color: var(--red); }
+  .projection-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--brown-light);
+    line-height: 1.5;
+  }
+  .projection-disclaimer {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: #9A8770;
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+
   button.go.secondary {
     background: white;
     color: var(--brown);
@@ -751,6 +943,7 @@
     <input type="text" id="tickerInput" placeholder="Type a ticker, ex: VOO" maxlength="6" onkeydown="if(event.key==='Enter')lookup()">
     <button class="go" onclick="lookup()">Look up</button>
   </div>
+  <div class="section-helper">Or browse by category below, tap any ticker to look it up.</div>
   <div class="category-tabs" id="categoryTabs">
     <button class="active" data-cat="etf" onclick="setCategory('etf')">ETFs</button>
     <button data-cat="stock" onclick="setCategory('stock')">Stocks</button>
@@ -778,10 +971,11 @@
   <div class="empty-state" id="emptyState">Try VOO, AAPL, QQQ, or SCHD to start.</div>
 
   <div class="compare-toggle" onclick="toggleCompare()" id="compareToggle">+ Compare two tickers side by side</div>
+  <div class="compare-helper" id="compareHelper">Enter two symbols to see them next to each other, useful for checking if two funds are more similar than they look.</div>
 
   <div class="compare-wrap" id="compareWrap">
-    <input type="text" id="compareA" placeholder="Ticker A" maxlength="6">
-    <input type="text" id="compareB" placeholder="Ticker B" maxlength="6">
+    <input type="text" id="compareA" placeholder="First ticker, ex: VOO" maxlength="6">
+    <input type="text" id="compareB" placeholder="Second ticker, ex: QQQ" maxlength="6">
     <button class="go" onclick="doCompare()">Compare</button>
   </div>
 
@@ -811,7 +1005,49 @@
     <div id="portfolioOverlap"></div>
   </div>
 
-  <footer>Live prices via Twelve Data &middot; Built for Zero to Invested</footer>
+  <div class="projection-panel">
+    <div class="amount-panel-title">Where could you land by retirement?</div>
+    <div class="platform-note" style="margin-top:0; margin-bottom:14px;">Fill in your numbers to see a simple projection, and what it would take to close the gap.</div>
+
+    <div class="projection-grid">
+      <div class="projection-field">
+        <label>Your age now</label>
+        <input type="text" id="projAge" value="30" oninput="calculateProjection()">
+      </div>
+      <div class="projection-field">
+        <label>Age you want to retire</label>
+        <input type="text" id="projRetireAge" value="65" oninput="calculateProjection()">
+      </div>
+      <div class="projection-field">
+        <label>Invested right now</label>
+        <input type="text" id="projCurrent" value="1000" oninput="calculateProjection()">
+      </div>
+      <div class="projection-field">
+        <label>Goal to retire with</label>
+        <input type="text" id="projTarget" value="1000000" oninput="calculateProjection()">
+      </div>
+    </div>
+
+    <div class="platform-note" style="margin-bottom:8px;">Assumed average yearly return, 7% is the long term stock market average</div>
+    <div class="growth-toggle" id="growthToggle">
+      <button data-rate="0.05" onclick="setGrowthRate(0.05)">Conservative, 5%</button>
+      <button class="active" data-rate="0.07" onclick="setGrowthRate(0.07)">Moderate, 7%</button>
+      <button data-rate="0.09" onclick="setGrowthRate(0.09)">Aggressive, 9%</button>
+    </div>
+    <div class="custom-rate-row">
+      <span>Or use your own rate</span>
+      <div class="custom-rate-wrap">
+        <input type="text" id="projCustomRate" value="7" oninput="setCustomRate(this.value)">
+        <span>%</span>
+      </div>
+    </div>
+
+    <div class="projection-result" id="projectionResult"></div>
+
+    <div class="projection-disclaimer">This is a simple estimate, not a promise or financial advice. It assumes a steady yearly return, real markets move up and down along the way. The HYSA comparison assumes a fixed 3% rate, which also moves over time in real life. For a plan built around your full financial picture, talk with a licensed financial advisor.</div>
+  </div>
+
+  <footer>For educational purposes only<br>Live prices via Twelve Data &middot; Built for Zero to Invested<br>@SelmaMakesCents</footer>
 </div>
 
 <div class="def-toast" id="defToast"></div>
@@ -1326,7 +1562,9 @@ async function lookup() {
 function toggleCompare() {
   const wrap = document.getElementById('compareWrap');
   const toggle = document.getElementById('compareToggle');
+  const helper = document.getElementById('compareHelper');
   const showing = wrap.classList.toggle('show');
+  helper.classList.toggle('show', showing);
   toggle.textContent = showing ? '- Hide compare' : '+ Compare two tickers side by side';
   if (!showing) {
     document.getElementById('compareGrid').classList.remove('show');
@@ -1540,6 +1778,186 @@ function renderOverlap(totalAllocated) {
 }
 
 renderPortfolio();
+
+let growthRate = 0.07;
+
+function setGrowthRate(rate) {
+  growthRate = rate;
+  document.querySelectorAll('#growthToggle button').forEach(btn => {
+    btn.classList.toggle('active', parseFloat(btn.dataset.rate) === rate);
+  });
+  document.getElementById('projCustomRate').value = (rate * 100).toFixed(0);
+  calculateProjection();
+}
+
+function setCustomRate(val) {
+  const num = parseFloat(val);
+  if (isNaN(num) || num < 0) return;
+  growthRate = num / 100;
+  document.querySelectorAll('#growthToggle button').forEach(btn => btn.classList.remove('active'));
+  calculateProjection();
+}
+
+function buildProjectionChart(age, retireAge, years, current, r, monthlyRate, requiredMonthly, target, gap) {
+  const W = 600, H = 200, padL = 8, padR = 8, padT = 16, padB = 26;
+  const plotW = W - padL - padR, plotH = H - padT - padB;
+  const steps = Math.min(Math.round(years), 60) || 1;
+
+  const HYSA_RATE = 0.03;
+  const hysaMonthlyRate = HYSA_RATE / 12;
+  const monthlyContribution = gap > 0 ? requiredMonthly : 0;
+
+  function valuesAtYear(t) {
+    const monthsElapsed = t * 12;
+    const cVal = current * Math.pow(1 + r, t);
+    let tVal = cVal;
+    if (gap > 0) {
+      const annuityFV = monthlyRate === 0
+        ? requiredMonthly * monthsElapsed
+        : requiredMonthly * ((Math.pow(1 + monthlyRate, monthsElapsed) - 1) / monthlyRate);
+      tVal = cVal + annuityFV;
+    }
+    const hysaBase = current * Math.pow(1 + HYSA_RATE, t);
+    const hysaAnnuity = monthlyContribution === 0 ? 0 : (hysaMonthlyRate === 0
+      ? monthlyContribution * monthsElapsed
+      : monthlyContribution * ((Math.pow(1 + hysaMonthlyRate, monthsElapsed) - 1) / hysaMonthlyRate));
+    const hVal = hysaBase + hysaAnnuity;
+    return { cVal, tVal, hVal };
+  }
+
+  const currentPoints = [], trackPoints = [], hysaPoints = [];
+  let maxVal = target;
+
+  for (let i = 0; i <= steps; i++) {
+    const t = (i / steps) * years;
+    const { cVal, tVal, hVal } = valuesAtYear(t);
+    currentPoints.push(cVal);
+    trackPoints.push(tVal);
+    hysaPoints.push(hVal);
+    maxVal = Math.max(maxVal, tVal, cVal, hVal);
+  }
+
+  const xAt = t => padL + (t / years) * plotW;
+  const yAt = v => padT + plotH - (v / maxVal) * plotH;
+
+  const toPath = points => points.map((v, i) => {
+    const x = xAt((i / steps) * years);
+    const y = yAt(v);
+    return (i === 0 ? 'M' : 'L') + x.toFixed(1) + ',' + y.toFixed(1);
+  }).join(' ');
+
+  const currentPath = toPath(currentPoints);
+  const trackPath = toPath(trackPoints);
+  const hysaPath = toPath(hysaPoints);
+  const targetY = yAt(target);
+  const fmtShort = n => n >= 1000000 ? '$' + (n / 1000000).toFixed(1) + 'M' : '$' + Math.round(n / 1000) + 'K';
+
+  // Tappable markers every 5 years, plus the final year if it doesn't land on a 5 year mark.
+  const markYears = [];
+  for (let y = 0; y <= years; y += 5) markYears.push(y);
+  if (markYears[markYears.length - 1] !== years) markYears.push(years);
+
+  let markersSvg = '';
+  markYears.forEach(t => {
+    const { cVal, tVal, hVal } = valuesAtYear(t);
+    const x = xAt(t).toFixed(1);
+    const atAge = Math.round(age + t);
+    const trackLabel = gap > 0 ? 'Investing plan' : 'Invested';
+    markersSvg += `<circle cx="${x}" cy="${yAt(tVal).toFixed(1)}" r="4" fill="#2E7D5B" stroke="white" stroke-width="1.5" style="cursor:pointer;" onclick="showChartPoint('${trackLabel}', ${atAge}, ${Math.round(tVal)})" />`;
+    markersSvg += `<circle cx="${x}" cy="${yAt(hVal).toFixed(1)}" r="4" fill="#C24B42" stroke="white" stroke-width="1.5" style="cursor:pointer;" onclick="showChartPoint('HYSA, 3%', ${atAge}, ${Math.round(hVal)})" />`;
+  });
+
+  const growingLegend = gap > 0
+    ? `<div class="chart-legend-item"><span class="chart-legend-dot" style="background:#98A3B8;"></span>Growing on its own</div>`
+    : '';
+  const trackLegendLabel = gap > 0 ? 'With the monthly amount invested' : 'Projected growth, invested';
+  const hysaLegendLabel = gap > 0 ? 'Same monthly amount in a HYSA, 3%' : 'Same money in a HYSA, 3%';
+
+  const legendHtml = `<div class="chart-legend">
+        ${growingLegend}
+        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:var(--green);"></span>${trackLegendLabel}</div>
+        <div class="chart-legend-item"><span class="chart-legend-dot" style="background:#C24B42;"></span>${hysaLegendLabel}</div>
+       </div>
+       <div class="chart-tap-hint">Tap a dot on the chart to see the exact number at that age.</div>`;
+
+  return `
+    <svg viewBox="0 0 ${W} ${H}" style="width:100%; height:auto; display:block; margin-top:14px;">
+      <line x1="${padL}" y1="${targetY}" x2="${W - padR}" y2="${targetY}" stroke="#A6791F" stroke-width="1.5" stroke-dasharray="4 4" />
+      <text x="${W - padR}" y="${targetY - 6}" text-anchor="end" font-family="Space Mono, monospace" font-size="11" fill="#A6791F">Goal, ${fmtShort(target)}</text>
+      ${gap > 0 ? `<path d="${currentPath}" fill="none" stroke="#98A3B8" stroke-width="2" />` : ''}
+      <path d="${hysaPath}" fill="none" stroke="#C24B42" stroke-width="2" stroke-dasharray="5 3" />
+      <path d="${trackPath}" fill="none" stroke="#2E7D5B" stroke-width="2.5" />
+      ${markersSvg}
+      <text x="${padL}" y="${H - 6}" font-family="Space Mono, monospace" font-size="11" fill="#6E7B96">Age ${Math.round(age)}</text>
+      <text x="${W - padR}" y="${H - 6}" text-anchor="end" font-family="Space Mono, monospace" font-size="11" fill="#6E7B96">Age ${Math.round(retireAge)}</text>
+    </svg>
+    ${legendHtml}
+  `;
+}
+
+function showChartPoint(seriesLabel, atAge, value) {
+  const toast = document.getElementById('defToast');
+  toast.innerHTML = `<b>${seriesLabel}</b> at age ${atAge}: $${value.toLocaleString()}`;
+  toast.classList.add('show');
+  clearTimeout(defToastTimer);
+  defToastTimer = setTimeout(() => toast.classList.remove('show'), 4000);
+}
+
+function calculateProjection() {
+  const resultEl = document.getElementById('projectionResult');
+
+  const age = parseFloat(document.getElementById('projAge').value);
+  const retireAge = parseFloat(document.getElementById('projRetireAge').value);
+  const current = parseFloat(document.getElementById('projCurrent').value);
+  const target = parseFloat(document.getElementById('projTarget').value);
+
+  if (isNaN(age) || isNaN(retireAge) || isNaN(current) || isNaN(target)) {
+    resultEl.innerHTML = `<div class="projection-sub">Fill in all four fields to see your projection.</div>`;
+    return;
+  }
+
+  const years = retireAge - age;
+  if (years <= 0) {
+    resultEl.innerHTML = `<div class="projection-sub">Retirement age needs to be older than your current age.</div>`;
+    return;
+  }
+
+  const r = growthRate;
+  const months = years * 12;
+  const monthlyRate = r / 12;
+
+  const fvCurrent = current * Math.pow(1 + r, years);
+  const gap = target - fvCurrent;
+
+  let requiredMonthly = 0;
+  if (gap > 0) {
+    requiredMonthly = monthlyRate === 0
+      ? gap / months
+      : gap / ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
+  }
+
+  const fmt = n => '$' + Math.round(n).toLocaleString();
+  const chartHtml = buildProjectionChart(age, retireAge, years, current, r, monthlyRate, requiredMonthly, target, gap);
+
+  if (gap <= 0) {
+    const surplus = Math.abs(gap);
+    resultEl.innerHTML = `
+      <div class="projection-years">${years} years until retirement</div>
+      <div class="projection-headline">If what you've already invested keeps growing untouched, it could reach <b>${fmt(fvCurrent)}</b> by then.</div>
+      <div class="projection-sub">That clears your ${fmt(target)} goal by about ${fmt(surplus)}, based on a ${(r * 100).toFixed(1)}% assumed yearly return. Adding anything more from here just builds extra cushion.</div>
+      ${chartHtml}
+    `;
+  } else {
+    resultEl.innerHTML = `
+      <div class="projection-years">${years} years until retirement</div>
+      <div class="projection-headline">What you've already invested could grow to <b class="short">${fmt(fvCurrent)}</b>, leaving a gap of <b class="short">${fmt(gap)}</b> to reach ${fmt(target)}.</div>
+      <div class="projection-sub">Investing about <b style="color: var(--brown); font-family: 'Space Mono', monospace;">${fmt(requiredMonthly)} a month</b> from now until then, at a ${(r * 100).toFixed(1)}% assumed yearly return, would close that gap.</div>
+      ${chartHtml}
+    `;
+  }
+}
+
+calculateProjection();
 
 </script>
 </body>
