@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zero to Invested Toolkit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500;700&family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brown: #4A2E1F;
+    --brown-light: #6B4530;
+    --gold: #C8A96A;
+    --gold-bright: #DDBE7E;
+    --cream: #F5EFE6;
+    --cream-dim: #EAE1D2;
+    --green: #4A7A5D;
+    --red: #B5533C;
+    --ink: #2A1B12;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    padding: 32px 16px 64px;
+  }
+
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brown-light);
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    letter-spacing: 0.02em;
+    color: var(--brown);
+    margin: 0 0 4px;
+    line-height: 1;
+  }
+
+  .sub {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    color: var(--brown-light);
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .proto-banner {
+    background: var(--brown);
+    color: var(--cream);
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+  .proto-banner b { color: var(--gold-bright); }
+
+  .search-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  input[type="text"] {
+    flex: 1;
+    font-family: 'Space Mono', monospace;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 14px 16px;
+    border: 2px solid var(--brown);
+    border-radius: 8px;
+    background: white;
+    color: var(--ink);
+    outline: none;
+  }
+  input[type="text"]:focus { border-color: var(--gold); }
+  input[type="text"]::placeholder { color: #B8A68E; text-transform: none; }
+
+  button.go {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    background: var(--brown);
+    color: var(--cream);
+    border: none;
+    border-radius: 8px;
+    padding: 0 22px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  button.go:hover { background: var(--brown-light); }
+
+  .quick-tickers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 28px;
+  }
+  .quick-tickers button {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    background: white;
+    border: 1px solid var(--cream-dim);
+    color: var(--brown-light);
+    padding: 6px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  .quick-tickers button:hover { border-color: var(--gold); color: var(--brown); }
+
+  .card {
+    background: white;
+    border-radius: 14px;
+    border: 1px solid var(--cream-dim);
+    padding: 24px;
+    margin-bottom: 16px;
+    display: none;
+  }
+  .card.show { display: block; }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+  }
+
+  .ticker-tag {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--brown);
+  }
+  .ticker-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: #8A7A68;
+    margin-top: 2px;
+  }
+  .type-pill {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: var(--cream-dim);
+    color: var(--brown);
+  }
+  .type-pill.etf { background: #E4EEE7; color: var(--green); }
+
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .price {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 34px;
+    color: var(--ink);
+  }
+  .change {
+    font-family: 'Space Mono', monospace;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .change.up { color: var(--green); }
+  .change.down { color: var(--red); }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .stat {
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #9A8770;
+    margin-bottom: 4px;
+  }
+  .stat-value {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--brown);
+  }
+
+  .selma-note {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--brown-light);
+    background: #FBF8F2;
+    border-left: 3px solid var(--gold);
+    padding: 12px 14px;
+    border-radius: 4px;
+  }
+  .selma-note b { color: var(--brown); }
+
+  .empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #B0A08B;
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+  }
+
+  .compare-toggle {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--brown-light);
+    text-decoration: underline;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 18px;
+  }
+
+  .compare-wrap {
+    display: none;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .compare-wrap.show { display: flex; }
+  .compare-wrap input {
+    flex: 1;
+  }
+
+  .compare-grid {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .compare-grid.show { display: grid; }
+  .compare-grid .card { margin-bottom: 0; }
+  .compare-grid .price { font-size: 24px; }
+  .compare-grid .stat-grid { grid-template-columns: 1fr; }
+
+  footer {
+    margin-top: 36px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: #B0A08B;
+    text-align: center;
+  }
+
+  .invest-block {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--cream-dim);
+  }
+  .invest-block-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #9A8770;
+    margin-bottom: 8px;
+  }
+  .invest-result {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .invest-shares {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--brown);
+  }
+  .invest-badge {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+  .invest-badge.fractional { background: #E4EEE7; color: var(--green); }
+  .invest-badge.whole { background: #F4E6DE; color: var(--red); }
+  .invest-leftover {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: #9A8770;
+    width: 100%;
+  }
+
+  .amount-panel {
+    background: white;
+    border: 1px solid var(--cream-dim);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+  }
+  .amount-panel-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--brown);
+    margin-bottom: 12px;
+  }
+  .amount-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .dollar-input-wrap {
+    display: flex;
+    align-items: center;
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 0 10px;
+    border: 2px solid var(--cream-dim);
+  }
+  .dollar-input-wrap span {
+    font-family: 'Space Mono', monospace;
+    color: var(--brown-light);
+    font-weight: 700;
+  }
+  .dollar-input-wrap input {
+    border: none;
+    background: transparent;
+    font-family: 'Space Mono', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 4px;
+    width: 80px;
+    color: var(--ink);
+    outline: none;
+  }
+  .platform-toggle {
+    display: flex;
+    gap: 6px;
+  }
+  .platform-toggle button {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    background: var(--cream);
+    border: 2px solid var(--cream-dim);
+    color: var(--brown-light);
+    padding: 9px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .platform-toggle button.active {
+    background: var(--brown);
+    border-color: var(--brown);
+    color: var(--cream);
+  }
+  .platform-note {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: #9A8770;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+
+  .range-block { margin-bottom: 18px; }
+  .range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--brown-light);
+    margin-bottom: 6px;
+  }
+  .range-track {
+    position: relative;
+    height: 6px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--red), var(--gold), var(--green));
+    opacity: 0.85;
+  }
+  .range-marker {
+    position: absolute;
+    top: -5px;
+    width: 3px;
+    height: 16px;
+    background: var(--ink);
+    border-radius: 2px;
+    transform: translateX(-50%);
+  }
+  .range-current {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: #9A8770;
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  .returns-block { margin-bottom: 18px; }
+  .returns-row {
+    display: flex;
+    gap: 6px;
+    align-items: flex-end;
+    height: 70px;
+    margin-top: 8px;
+  }
+  .returns-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+  }
+  .returns-bar-wrap {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    justify-content: center;
+  }
+  .returns-bar {
+    width: 60%;
+    border-radius: 3px 3px 0 0;
+    min-height: 3px;
+  }
+  .returns-bar.up { background: var(--green); }
+  .returns-bar.down { background: var(--red); align-self: flex-start; border-radius: 0 0 3px 3px; }
+  .returns-pct {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    margin-top: 4px;
+    color: var(--ink);
+  }
+  .returns-year {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    color: #9A8770;
+    margin-top: 2px;
+  }
+
+  .portfolio-panel {
+    background: white;
+    border: 1px solid var(--cream-dim);
+    border-radius: 14px;
+    padding: 22px;
+    margin-top: 28px;
+  }
+
+  button.go.secondary {
+    background: white;
+    color: var(--brown);
+    border: 2px solid var(--brown);
+  }
+  button.go.secondary:hover { background: var(--cream); }
+
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 8px;
+  }
+  .chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--cream);
+    border: 1px solid var(--gold);
+    color: var(--brown);
+    padding: 6px 6px 6px 12px;
+    border-radius: 20px;
+  }
+  .chip button {
+    border: none;
+    background: var(--brown);
+    color: var(--cream);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 11px;
+    line-height: 1;
+  }
+
+  .portfolio-row {
+    display: grid;
+    grid-template-columns: 64px 1fr 90px auto;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--cream-dim);
+  }
+  .portfolio-row:last-of-type { border-bottom: none; }
+  .portfolio-ticker {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    color: var(--brown);
+    font-size: 14px;
+  }
+  .portfolio-price {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: #9A8770;
+  }
+  .portfolio-dollar {
+    display: flex;
+    align-items: center;
+    background: var(--cream);
+    border-radius: 6px;
+    padding: 0 8px;
+    border: 1px solid var(--cream-dim);
+  }
+  .portfolio-dollar span { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--brown-light); }
+  .portfolio-dollar input {
+    border: none;
+    background: transparent;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 4px;
+    width: 60px;
+    outline: none;
+    color: var(--ink);
+  }
+  .portfolio-shares {
+    text-align: right;
+  }
+  .portfolio-shares-num {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 14px;
+  }
+  .portfolio-shares-note {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    color: var(--red);
+  }
+
+  .portfolio-summary {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--cream-dim);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--brown);
+  }
+  .portfolio-summary b { color: var(--brown); }
+  .portfolio-empty {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    color: #B0A08B;
+    padding: 8px 0;
+  }
+
+  .overlap-block {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--cream-dim);
+  }
+  .overlap-headline {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--brown);
+    margin-bottom: 4px;
+  }
+  .overlap-headline b {
+    font-family: 'Space Mono', monospace;
+    color: var(--red);
+  }
+  .overlap-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: #9A8770;
+    margin-bottom: 12px;
+  }
+  .overlap-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--cream-dim);
+  }
+  .overlap-row:last-child { border-bottom: none; }
+  .overlap-name {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .overlap-sources {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: #9A8770;
+  }
+  .overlap-pct {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--red);
+  }
+  .overlap-none {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    color: var(--green);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Zero to Invested &middot; Toolkit</div>
+  <h1>Ticker Lookup</h1>
+  <div class="sub">Type a symbol, see what you're actually looking at.</div>
+
+  <div class="proto-banner">
+    <b>Live prices.</b> Type any ticker to pull real time price and 52 week range. Our list of 100 common stocks and ETFs, including REITs and Fidelity and Schwab's own funds, also includes sector, expense ratio, and 5 year history, more get added over time.
+  </div>
+
+  <div class="search-row">
+    <input type="text" id="tickerInput" placeholder="Type a ticker, ex: VOO" maxlength="6" onkeydown="if(event.key==='Enter')lookup()">
+    <button class="go" onclick="lookup()">Look up</button>
+  </div>
+  <div class="quick-tickers" id="quickTickers"></div>
+
+  <div class="amount-panel">
+    <div class="amount-panel-title">What would your money actually buy?</div>
+    <div class="amount-row">
+      <div class="dollar-input-wrap">
+        <span>$</span>
+        <input type="text" id="investAmount" value="100" onchange="onControlsChange()" oninput="onControlsChange()">
+      </div>
+      <div class="platform-toggle">
+        <button id="btnVanguard" class="active" onclick="setPlatform('vanguard')">Vanguard</button>
+        <button id="btnOther" onclick="setPlatform('other')">Fidelity / Schwab</button>
+      </div>
+    </div>
+    <div class="platform-note" id="platformNote"></div>
+  </div>
+
+  <div class="card" id="resultCard"></div>
+  <div class="empty-state" id="emptyState">Try VOO, AAPL, QQQ, or SCHD to start.</div>
+
+  <div class="compare-toggle" onclick="toggleCompare()" id="compareToggle">+ Compare two tickers side by side</div>
+
+  <div class="compare-wrap" id="compareWrap">
+    <input type="text" id="compareA" placeholder="Ticker A" maxlength="6">
+    <input type="text" id="compareB" placeholder="Ticker B" maxlength="6">
+    <button class="go" onclick="doCompare()">Compare</button>
+  </div>
+
+  <div class="compare-grid" id="compareGrid"></div>
+
+  <div class="portfolio-panel">
+    <div class="amount-panel-title">Build a portfolio</div>
+    <div class="platform-note" style="margin-top:0; margin-bottom:12px;">Add a few tickers, set how much you want to invest total, and see how many shares of each you'd actually own.</div>
+
+    <div class="amount-row" style="margin-bottom:12px;">
+      <input type="text" id="portfolioTickerInput" placeholder="Add a ticker" maxlength="6" style="max-width:140px;" onkeydown="if(event.key==='Enter')addPortfolioTicker()">
+      <button class="go" onclick="addPortfolioTicker()">Add</button>
+    </div>
+
+    <div class="chip-row" id="portfolioChips"></div>
+
+    <div class="amount-row" style="margin-top:14px;">
+      <div class="dollar-input-wrap">
+        <span>$</span>
+        <input type="text" id="portfolioTotal" value="300" oninput="renderPortfolio()">
+      </div>
+      <button class="go secondary" onclick="splitEvenly()">Split evenly</button>
+    </div>
+
+    <div id="portfolioTable"></div>
+    <div id="portfolioSummary"></div>
+    <div id="portfolioOverlap"></div>
+  </div>
+
+  <footer>Live prices via Twelve Data &middot; Built for Zero to Invested</footer>
+</div>
+
+<script>
+// Extra stats (sector, expense ratio, 5 year history, teaching notes) for our starter
+// list of tickers. Live price, change, and 52 week range come from Twelve Data for
+// ANY valid ticker, this list just adds the extra context on top for these ten.
+const STATIC_SUPPLEMENT = {
+  AAPL: { type: "stock", sector: "Technology", pe: "31.2", returns: {2021: 34.6, 2022: -26.8, 2023: 48.2, 2024: 30.1, 2025: 9.4}, note: "A single company stock. Owning this alone means your money rises and falls with one business, not a diversified basket." },
+  MSFT: { type: "stock", sector: "Technology", pe: "34.1", returns: {2021: 51.2, 2022: -28.4, 2023: 56.8, 2024: 12.1, 2025: 14.3}, note: "A single company stock. Strong fundamentals, but still one business, pair with a diversified core position." },
+  TSLA: { type: "stock", sector: "Consumer Discretionary", pe: "68.9", returns: {2021: 49.8, 2022: -65.0, 2023: 101.7, 2024: 62.5, 2025: -7.9}, note: "A single company stock with a high valuation. This is the kind of pick to size carefully, not build a backbone around." },
+  GOOGL: { type: "stock", sector: "Communication Services", pe: "26.4", returns: {2021: 65.3, 2022: -38.7, 2023: 58.3, 2024: 35.5, 2025: 10.8}, note: "A single company stock. Diversified business lines, but still concentrated risk in one company." },
+  VOO: { type: "etf", expense: "0.03%", holdingsCount: "500+", returns: {2021: 28.7, 2022: -18.1, 2023: 26.3, 2024: 25.0, 2025: 12.1}, note: "A broad market ETF. One share gives you a slice of the 500 largest US companies, this is a common backbone holding." },
+  SPY: { type: "etf", expense: "0.09%", holdingsCount: "500+", returns: {2021: 28.5, 2022: -18.2, 2023: 26.2, 2024: 24.9, 2025: 12.0}, note: "Tracks the same index as VOO, slightly higher expense ratio. Very high overlap if you already own VOO." },
+  QQQ: { type: "etf", expense: "0.20%", holdingsCount: "100", returns: {2021: 27.4, 2022: -32.6, 2023: 54.9, 2024: 25.6, 2025: 10.2}, note: "Tracks the Nasdaq 100, tech heavy. Owning this alongside VOO means real overlap in your top holdings." },
+  VTI: { type: "etf", expense: "0.03%", holdingsCount: "3,700+", returns: {2021: 25.7, 2022: -19.5, 2023: 26.0, 2024: 23.7, 2025: 11.6}, note: "Covers nearly the entire US stock market. Very similar performance to VOO, with more small and mid cap exposure." },
+  SCHD: { type: "etf", expense: "0.06%", holdingsCount: "100", returns: {2021: 21.1, 2022: -3.2, 2023: 4.3, 2024: 12.4, 2025: 7.6}, note: "Focused on dividend paying companies. Lower overlap with VOO, worth understanding before adding as a second holding." },
+  ARKK: { type: "etf", expense: "0.75%", holdingsCount: "35", returns: {2021: -23.4, 2022: -67.0, 2023: 67.4, 2024: 5.2, 2025: -14.8}, note: "A concentrated, actively managed fund with a much higher expense ratio. Higher risk, higher volatility than a broad index fund." },
+
+  // 10 additional ETFs
+  VYM: { type: "etf", expense: "0.06%", holdingsCount: "560+", returns: {2021: 24.8, 2022: -0.5, 2023: 8.9, 2024: 14.2, 2025: 9.1}, note: "Focused on high dividend paying large caps. Lower tech concentration than VOO, moderate overlap." },
+  VUG: { type: "etf", expense: "0.04%", holdingsCount: "180+", returns: {2021: 27.3, 2022: -33.1, 2023: 47.4, 2024: 31.2, 2025: 13.5}, note: "Growth focused, heavy tech tilt, high overlap with QQQ and the tech names inside VOO." },
+  VTV: { type: "etf", expense: "0.04%", holdingsCount: "340+", returns: {2021: 25.2, 2022: -2.1, 2023: 11.5, 2024: 16.8, 2025: 10.2}, note: "Value focused, tilts toward financials and healthcare, lower overlap with growth heavy funds." },
+  BND: { type: "etf", expense: "0.03%", holdingsCount: "10,000+", returns: {2021: -1.9, 2022: -13.1, 2023: 5.7, 2024: 3.9, 2025: 4.5}, note: "Bonds, not stocks. Moves differently than everything else here, useful for balancing risk, not for growth." },
+  VXUS: { type: "etf", expense: "0.05%", holdingsCount: "8,500+", returns: {2021: 8.7, 2022: -16.0, 2023: 15.6, 2024: 5.5, 2025: 11.0}, note: "International stocks outside the US. Little overlap with US focused funds like VOO, genuine diversification." },
+  IVV: { type: "etf", expense: "0.03%", holdingsCount: "500+", returns: {2021: 28.7, 2022: -18.1, 2023: 26.3, 2024: 25.0, 2025: 12.1}, note: "Tracks the same index as VOO and SPY, essentially interchangeable, full overlap if you already own either." },
+  XLK: { type: "etf", expense: "0.09%", holdingsCount: "65", returns: {2021: 34.5, 2022: -28.2, 2023: 57.8, 2024: 22.5, 2025: 9.0}, note: "A pure technology sector bet, very high overlap with QQQ and the tech names inside VOO." },
+  DIA: { type: "etf", expense: "0.16%", holdingsCount: "30", returns: {2021: 20.9, 2022: -6.9, 2023: 16.2, 2024: 15.0, 2025: 8.5}, note: "Tracks 30 large, older economy companies. A different mix than VOO, less tech heavy." },
+  IWM: { type: "etf", expense: "0.19%", holdingsCount: "1,900+", returns: {2021: 14.8, 2022: -20.5, 2023: 16.9, 2024: 11.5, 2025: 7.0}, note: "Small cap companies, a meaningfully different risk profile than large cap funds like VOO." },
+  VNQ: { type: "etf", expense: "0.13%", holdingsCount: "160+", returns: {2021: 40.5, 2022: -26.2, 2023: 1.6, 2024: 4.5, 2025: 9.5}, note: "A real estate sector fund. Adds property exposure, minimal overlap with broad market funds." },
+
+  // 30 additional individual stocks
+  AMZN: { type: "stock", sector: "Consumer Discretionary", pe: "38.5", returns: {2021: 2.4, 2022: -49.6, 2023: 80.9, 2024: 44.4, 2025: 12.0}, note: "A single company stock. E-commerce and cloud business combined, still one company's risk." },
+  META: { type: "stock", sector: "Communication Services", pe: "24.8", returns: {2021: 23.1, 2022: -64.2, 2023: 194.1, 2024: 65.4, 2025: 8.5}, note: "A single company stock, historically one of the more volatile large tech names." },
+  NVDA: { type: "stock", sector: "Technology", pe: "45.2", returns: {2021: 125.5, 2022: -50.3, 2023: 238.9, 2024: 171.2, 2025: 15.0}, note: "A single company stock with an extremely high valuation, priced for a lot of future growth to happen." },
+  NFLX: { type: "stock", sector: "Communication Services", pe: "42.0", returns: {2021: 11.3, 2022: -51.1, 2023: 65.1, 2024: 80.9, 2025: 20.0}, note: "A single company stock. Entertainment and streaming, sensitive to subscriber growth trends." },
+  DIS: { type: "stock", sector: "Communication Services", pe: "22.5", returns: {2021: -14.5, 2022: -43.9, 2023: 4.5, 2024: 27.1, 2025: 5.0}, note: "A single company stock, historically choppier than the broad market, streaming plus parks plus media." },
+  KO: { type: "stock", sector: "Consumer Staples", pe: "24.1", returns: {2021: 11.1, 2022: 8.0, 2023: 6.5, 2024: 11.4, 2025: 7.0}, note: "A single company stock, a classic slow and steady dividend payer, lower volatility than growth names." },
+  PEP: { type: "stock", sector: "Consumer Staples", pe: "22.0", returns: {2021: 13.5, 2022: 4.7, 2023: 4.9, 2024: 2.5, 2025: 6.0}, note: "A single company stock, similar profile to KO, steady but not a fast grower." },
+  JNJ: { type: "stock", sector: "Healthcare", pe: "16.8", returns: {2021: 1.7, 2022: -1.1, 2023: 4.6, 2024: 5.0, 2025: 8.0}, note: "A single company stock, healthcare giant, historically defensive during downturns." },
+  PG: { type: "stock", sector: "Consumer Staples", pe: "25.4", returns: {2021: 19.4, 2022: -3.8, 2023: 2.3, 2024: 14.9, 2025: 6.5}, note: "A single company stock, household products, dependable but not a fast grower." },
+  V: { type: "stock", sector: "Financials", pe: "31.0", returns: {2021: 15.2, 2022: -3.3, 2023: 23.5, 2024: 26.2, 2025: 10.0}, note: "A single company stock, payments network, benefits from overall consumer spending growth." },
+  MA: { type: "stock", sector: "Financials", pe: "34.2", returns: {2021: 15.0, 2022: -8.5, 2023: 23.2, 2024: 17.3, 2025: 9.5}, note: "A single company stock, similar business model to V, high overlap in what drives its growth." },
+  JPM: { type: "stock", sector: "Financials", pe: "13.5", returns: {2021: 27.1, 2022: -12.1, 2023: 30.9, 2024: 39.0, 2025: 11.0}, note: "A single company stock, the largest US bank, tends to track interest rates and the broader economy." },
+  BAC: { type: "stock", sector: "Financials", pe: "14.0", returns: {2021: 47.1, 2022: -25.9, 2023: 0.3, 2024: 34.1, 2025: 9.0}, note: "A single company stock, a bank stock historically more volatile than JPM." },
+  WMT: { type: "stock", sector: "Consumer Staples", pe: "38.5", returns: {2021: -2.4, 2022: -0.5, 2023: 16.5, 2024: 71.9, 2025: 12.0}, note: "A single company stock, defensive retailer, tends to hold up better during economic slowdowns." },
+  HD: { type: "stock", sector: "Consumer Discretionary", pe: "24.6", returns: {2021: 56.6, 2022: -24.5, 2023: 9.1, 2024: 12.6, 2025: 5.0}, note: "A single company stock, tied closely to the housing market and consumer renovation spending." },
+  COST: { type: "stock", sector: "Consumer Staples", pe: "48.0", returns: {2021: 47.0, 2022: -20.6, 2023: 47.7, 2024: 53.2, 2025: 10.0}, note: "A single company stock, membership retail model, historically strong and steady with a high valuation." },
+  NKE: { type: "stock", sector: "Consumer Discretionary", pe: "35.0", returns: {2021: -5.5, 2022: -29.6, 2023: -7.8, 2024: -30.0, 2025: 8.0}, note: "A single company stock, brand and consumer spending sensitive, has had a rougher stretch recently." },
+  SBUX: { type: "stock", sector: "Consumer Discretionary", pe: "30.5", returns: {2021: 2.1, 2022: -24.0, 2023: 11.1, 2024: 5.6, 2025: 6.0}, note: "A single company stock, consumer discretionary, sensitive to spending pullbacks." },
+  MCD: { type: "stock", sector: "Consumer Discretionary", pe: "24.0", returns: {2021: 20.6, 2022: 0.4, 2023: 10.9, 2024: 2.8, 2025: 7.0}, note: "A single company stock, historically a defensive fast food giant, steadier than most retail names." },
+  ADBE: { type: "stock", sector: "Technology", pe: "28.5", returns: {2021: 23.1, 2022: -40.1, 2023: 64.6, 2024: -6.0, 2025: 9.0}, note: "A single company stock, software subscription model, tied to creative and marketing spending." },
+  CRM: { type: "stock", sector: "Technology", pe: "38.0", returns: {2021: 9.9, 2022: -47.8, 2023: 98.6, 2024: 29.4, 2025: 8.0}, note: "A single company stock, enterprise software, historically more volatile than mega cap tech." },
+  PYPL: { type: "stock", sector: "Financials", pe: "16.5", returns: {2021: -19.9, 2022: -61.0, 2023: 12.9, 2024: 24.0, 2025: 10.0}, note: "A single company stock, payments and fintech, has seen more volatility than card network peers." },
+  INTC: { type: "stock", sector: "Technology", pe: "n/a", returns: {2021: -1.5, 2022: -48.9, 2023: 94.9, 2024: -52.0, 2025: 15.0}, note: "A single company stock, chipmaker in the middle of a difficult turnaround, a higher risk pick." },
+  AMD: { type: "stock", sector: "Technology", pe: "110.0", returns: {2021: 57.6, 2022: -54.7, 2023: 127.6, 2024: 7.9, 2025: 20.0}, note: "A single company stock, chipmaker, historically one of the more volatile large tech names." },
+  BA: { type: "stock", sector: "Industrials", pe: "n/a", returns: {2021: -5.0, 2022: -8.4, 2023: 35.5, 2024: -32.0, 2025: 12.0}, note: "A single company stock, aerospace manufacturer, has faced significant company specific headwinds." },
+  XOM: { type: "stock", sector: "Energy", pe: "13.5", returns: {2021: 57.8, 2022: 80.0, 2023: -8.9, 2024: 6.0, 2025: 5.0}, note: "A single company stock, oil and gas, moves with energy prices more than the broad market does." },
+  CVX: { type: "stock", sector: "Energy", pe: "14.0", returns: {2021: 41.2, 2022: 52.9, 2023: -14.7, 2024: -1.0, 2025: 6.0}, note: "A single company stock, similar profile to XOM, concentrated in the energy sector." },
+  PFE: { type: "stock", sector: "Healthcare", pe: "9.5", returns: {2021: 59.0, 2022: -16.0, 2023: -43.5, 2024: -3.0, 2025: 5.0}, note: "A single company stock, pharmaceutical giant, has had a rough multi year stretch since the pandemic boom." },
+  ABBV: { type: "stock", sector: "Healthcare", pe: "16.0", returns: {2021: 24.0, 2022: 22.5, 2023: -1.4, 2024: 10.0, 2025: 15.0}, note: "A single company stock, pharma, one of the steadier dividend payers in healthcare." },
+  VZ: { type: "stock", sector: "Communication Services", pe: "9.0", returns: {2021: -2.4, 2022: -19.3, 2023: 0.5, 2024: 8.0, 2025: 4.0}, note: "A single company stock, telecom, historically slow growth but a reliable dividend." },
+
+  // 10 individual REITs
+  O: { type: "stock", sector: "Real Estate", pe: "54.0", returns: {2021: 1.5, 2022: -11.1, 2023: 0.8, 2024: 4.5, 2025: 6.0}, note: "A single REIT stock. Owns retail properties, pays a monthly dividend, sensitive to interest rate changes." },
+  PLD: { type: "stock", sector: "Real Estate", pe: "35.0", returns: {2021: 65.4, 2022: -27.9, 2023: 32.9, 2024: -5.5, 2025: 8.0}, note: "A single REIT stock. Owns industrial warehouses, benefits from e-commerce and logistics demand." },
+  AMT: { type: "stock", sector: "Real Estate", pe: "38.0", returns: {2021: 3.9, 2022: -30.7, 2023: 1.1, 2024: 2.5, 2025: 9.0}, note: "A single REIT stock. Owns cell towers, a different kind of real estate tied to telecom infrastructure." },
+  SPG: { type: "stock", sector: "Real Estate", pe: "16.5", returns: {2021: 76.6, 2022: -14.6, 2023: 11.2, 2024: 23.0, 2025: 7.0}, note: "A single REIT stock. Owns shopping malls, tied closely to retail and consumer foot traffic." },
+  EQIX: { type: "stock", sector: "Real Estate", pe: "70.0", returns: {2021: 0.2, 2022: -27.3, 2023: 22.9, 2024: 12.0, 2025: 10.0}, note: "A single REIT stock. Owns data centers, benefits from cloud computing and AI infrastructure demand." },
+  PSA: { type: "stock", sector: "Real Estate", pe: "30.0", returns: {2021: 64.9, 2022: -19.5, 2023: -5.4, 2024: 8.0, 2025: 6.5}, note: "A single REIT stock. Owns self storage facilities, historically a steadier, less volatile REIT." },
+  WELL: { type: "stock", sector: "Real Estate", pe: "60.0", returns: {2021: 16.0, 2022: -25.7, 2023: 26.3, 2024: 47.0, 2025: 12.0}, note: "A single REIT stock. Owns senior housing and healthcare facilities, tied to aging population trends." },
+  DLR: { type: "stock", sector: "Real Estate", pe: "70.0", returns: {2021: -1.6, 2022: -24.1, 2023: 5.3, 2024: 9.0, 2025: 11.0}, note: "A single REIT stock. Owns data centers, a similar profile to Equinix." },
+  VICI: { type: "stock", sector: "Real Estate", pe: "17.0", returns: {2021: 20.3, 2022: 12.1, 2023: 5.4, 2024: -2.0, 2025: 5.0}, note: "A single REIT stock. Owns casino and entertainment properties, a more niche real estate bet." },
+  AVB: { type: "stock", sector: "Real Estate", pe: "22.0", returns: {2021: 33.2, 2022: -27.7, 2023: 1.9, 2024: 5.0, 2025: 6.0}, note: "A single REIT stock. Owns apartment buildings, tied to rental housing demand." },
+
+  // 7 Fidelity ETFs and index funds
+  FXAIX: { type: "etf", expense: "0.015%", holdingsCount: "500+", returns: {2021: 28.7, 2022: -18.1, 2023: 26.3, 2024: 25.0, 2025: 12.1}, note: "Fidelity's S&P 500 fund, nearly identical to VOO with an even lower expense ratio, full overlap if you own either." },
+  FZROX: { type: "etf", expense: "0.00%", holdingsCount: "2,700+", returns: {2021: 25.7, 2022: -19.7, 2023: 25.9, 2024: 23.5, 2025: 11.6}, note: "A zero fee total market fund, similar to VTI, only available if you hold it directly at Fidelity." },
+  FSKAX: { type: "etf", expense: "0.015%", holdingsCount: "3,900+", returns: {2021: 25.7, 2022: -19.5, 2023: 26.0, 2024: 23.7, 2025: 11.6}, note: "Very similar to VTI, covers the whole US stock market at a low cost." },
+  FTEC: { type: "etf", expense: "0.084%", holdingsCount: "290+", returns: {2021: 33.8, 2022: -28.0, 2023: 56.9, 2024: 22.0, 2025: 9.5}, note: "A technology sector fund, similar overlap concerns as XLK, heavy in AAPL, MSFT, and NVDA." },
+  FDVV: { type: "etf", expense: "0.16%", holdingsCount: "100+", returns: {2021: 26.5, 2022: -3.5, 2023: 6.0, 2024: 16.0, 2025: 9.0}, note: "Focused on high dividend payers, similar goal to VYM and SCHD, worth comparing overlap before owning more than one." },
+  FREL: { type: "etf", expense: "0.084%", holdingsCount: "160+", returns: {2021: 41.0, 2022: -26.5, 2023: 1.8, 2024: 4.0, 2025: 9.0}, note: "A real estate sector fund, similar to VNQ, adds property exposure outside of stocks." },
+  FBND: { type: "etf", expense: "0.36%", holdingsCount: "1,000+", returns: {2021: -1.5, 2022: -13.0, 2023: 6.5, 2024: 4.2, 2025: 4.8}, note: "A bond fund, moves differently than stock funds, used to balance risk rather than chase growth." },
+
+  // 7 Schwab ETFs
+  SCHB: { type: "etf", expense: "0.03%", holdingsCount: "2,500+", returns: {2021: 25.9, 2022: -19.6, 2023: 25.8, 2024: 23.5, 2025: 11.5}, note: "Covers nearly the whole US stock market, very similar to VTI." },
+  SCHX: { type: "etf", expense: "0.03%", holdingsCount: "750+", returns: {2021: 27.5, 2022: -18.5, 2023: 25.9, 2024: 24.5, 2025: 12.0}, note: "Large cap focused, high overlap with VOO and SPY." },
+  SCHG: { type: "etf", expense: "0.04%", holdingsCount: "230+", returns: {2021: 26.6, 2022: -30.0, 2023: 44.6, 2024: 29.0, 2025: 13.0}, note: "Growth focused, similar overlap concerns as VUG, heavy in the same mega cap tech names." },
+  SCHV: { type: "etf", expense: "0.04%", holdingsCount: "440+", returns: {2021: 26.0, 2022: -3.0, 2023: 9.5, 2024: 15.5, 2025: 9.5}, note: "Value focused, similar to VTV, tilts toward financials and healthcare." },
+  SCHF: { type: "etf", expense: "0.06%", holdingsCount: "1,500+", returns: {2021: 11.0, 2022: -15.8, 2023: 17.0, 2024: 5.0, 2025: 10.5}, note: "International stocks outside the US, similar goal to VXUS, adds real diversification." },
+  SCHA: { type: "etf", expense: "0.04%", holdingsCount: "1,750+", returns: {2021: 18.7, 2022: -17.9, 2023: 18.3, 2024: 11.0, 2025: 7.5}, note: "Small cap companies, a similar risk profile to IWM." },
+  SCHM: { type: "etf", expense: "0.04%", holdingsCount: "500+", returns: {2021: 24.6, 2022: -14.9, 2023: 15.6, 2024: 14.0, 2025: 8.5}, note: "Mid sized companies, sits between large cap funds like VOO and small cap funds like IWM." },
+
+  // 2 semiconductor ETFs
+  SOXX: { type: "etf", expense: "0.35%", holdingsCount: "30", returns: {2021: 41.6, 2022: -34.8, 2023: 66.0, 2024: 14.0, 2025: 18.0}, note: "A concentrated bet on chipmakers, high overlap with the semiconductor names already inside QQQ and XLK." },
+  SMH: { type: "etf", expense: "0.35%", holdingsCount: "25", returns: {2021: 44.0, 2022: -35.8, 2023: 70.8, 2024: 15.0, 2025: 17.0}, note: "Very similar to SOXX, the same sector bet on chipmakers, high overlap if you own both." },
+
+  // 24 additional individual stocks
+  "BRK.B": { type: "stock", sector: "Financials", pe: "22.0", returns: {2021: 29.6, 2022: 4.0, 2023: 15.8, 2024: 27.3, 2025: 8.0}, note: "A single company stock, a diversified holding company run by Warren Buffett, lower volatility than most individual stocks." },
+  UNH: { type: "stock", sector: "Healthcare", pe: "18.0", returns: {2021: 45.7, 2022: 7.1, 2023: -1.7, 2024: -32.0, 2025: 10.0}, note: "A single company stock, health insurer, has had a rougher recent stretch after years of steady growth." },
+  LLY: { type: "stock", sector: "Healthcare", pe: "58.0", returns: {2021: 64.7, 2022: 33.1, 2023: 59.0, 2024: 32.0, 2025: 5.0}, note: "A single company stock, pharmaceutical, driven heavily by demand for its weight loss and diabetes drugs." },
+  TSM: { type: "stock", sector: "Technology", pe: "26.0", returns: {2021: 12.1, 2022: -40.1, 2023: 42.4, 2024: 93.0, 2025: 20.0}, note: "A single company stock, the world's largest chip manufacturer, carries added geopolitical risk given its location." },
+  ORCL: { type: "stock", sector: "Technology", pe: "40.0", returns: {2021: 33.7, 2022: -8.8, 2023: 35.7, 2024: 80.0, 2025: 15.0}, note: "A single company stock, enterprise software and cloud infrastructure." },
+  IBM: { type: "stock", sector: "Technology", pe: "26.0", returns: {2021: 9.8, 2022: -2.1, 2023: 14.1, 2024: 38.0, 2025: 9.0}, note: "A single company stock, legacy tech giant that has been repositioning around AI and hybrid cloud." },
+  GE: { type: "stock", sector: "Industrials", pe: "35.0", returns: {2021: -3.3, 2022: -11.4, 2023: 99.0, 2024: 14.0, 2025: 10.0}, note: "A single company stock, industrial conglomerate that has gone through a major multi year restructuring." },
+  CAT: { type: "stock", sector: "Industrials", pe: "18.0", returns: {2021: 20.2, 2022: 13.5, 2023: 23.1, 2024: 24.0, 2025: 7.0}, note: "A single company stock, heavy machinery, tied closely to construction and infrastructure spending." },
+  DE: { type: "stock", sector: "Industrials", pe: "17.0", returns: {2021: 15.5, 2022: 25.4, 2023: -2.9, 2024: -4.0, 2025: 6.0}, note: "A single company stock, agricultural equipment, tied to farm income and commodity prices." },
+  LOW: { type: "stock", sector: "Consumer Discretionary", pe: "22.0", returns: {2021: 65.6, 2022: -24.5, 2023: 1.5, 2024: 5.0, 2025: 6.0}, note: "A single company stock, home improvement retailer, a similar profile to Home Depot." },
+  TGT: { type: "stock", sector: "Consumer Discretionary", pe: "13.0", returns: {2021: 16.7, 2022: -36.8, 2023: 14.9, 2024: 2.0, 2025: 4.0}, note: "A single company stock, general retailer, has underperformed peers like Walmart and Costco recently." },
+  CMG: { type: "stock", sector: "Consumer Discretionary", pe: "45.0", returns: {2021: 24.6, 2022: -14.6, 2023: 65.2, 2024: 30.0, 2025: 5.0}, note: "A single company stock, fast casual restaurant chain, historically a strong grower with a high valuation." },
+  UBER: { type: "stock", sector: "Technology", pe: "15.0", returns: {2021: -14.3, 2022: -42.1, 2023: 148.7, 2024: 6.0, 2025: 20.0}, note: "A single company stock, rideshare and delivery platform, became profitable more recently than many tech peers." },
+  SHOP: { type: "stock", sector: "Technology", pe: "80.0", returns: {2021: -0.4, 2022: -74.9, 2023: 124.5, 2024: 33.0, 2025: 25.0}, note: "A single company stock, e-commerce platform, historically very volatile." },
+  SQ: { type: "stock", sector: "Financials", pe: "22.0", returns: {2021: -14.5, 2022: -53.7, 2023: 11.6, 2024: -3.0, 2025: 15.0}, note: "A single company stock, payments and fintech, includes the Cash App and Square products." },
+  SNOW: { type: "stock", sector: "Technology", pe: "n/a", returns: {2021: -20.0, 2022: -48.6, 2023: 29.9, 2024: -25.0, 2025: 18.0}, note: "A single company stock, cloud data platform, unprofitable and historically volatile." },
+  PLTR: { type: "stock", sector: "Technology", pe: "180.0", returns: {2021: -27.4, 2022: -64.9, 2023: 167.2, 2024: 340.0, 2025: 30.0}, note: "A single company stock, data analytics and AI software, one of the more speculative, high volatility names here." },
+  RIVN: { type: "stock", sector: "Consumer Discretionary", pe: "n/a", returns: {2021: -82.0, 2022: -81.5, 2023: -44.0, 2024: -45.0, 2025: 10.0}, note: "A single company stock, electric vehicle startup, unprofitable and high risk, a very different bet than an established automaker." },
+  F: { type: "stock", sector: "Consumer Discretionary", pe: "9.0", returns: {2021: 135.9, 2022: -42.9, 2023: 16.0, 2024: -13.0, 2025: 5.0}, note: "A single company stock, traditional automaker transitioning toward EVs, a lower valuation than growth stocks." },
+  GM: { type: "stock", sector: "Consumer Discretionary", pe: "6.0", returns: {2021: 41.9, 2022: -43.6, 2023: 18.2, 2024: 47.0, 2025: 8.0}, note: "A single company stock, a similar profile to Ford, traditional automaker with a low valuation." },
+  TMUS: { type: "stock", sector: "Communication Services", pe: "23.0", returns: {2021: 0.1, 2022: 22.3, 2023: 26.6, 2024: 38.0, 2025: 9.0}, note: "A single company stock, telecom, has grown faster than older peers like Verizon and AT&T." },
+  QCOM: { type: "stock", sector: "Technology", pe: "16.0", returns: {2021: 14.0, 2022: -32.6, 2023: 35.1, 2024: 5.0, 2025: 12.0}, note: "A single company stock, chipmaker focused on mobile and wireless technology." },
+  TXN: { type: "stock", sector: "Technology", pe: "32.0", returns: {2021: 6.5, 2022: -6.7, 2023: 0.9, 2024: 14.0, 2025: 8.0}, note: "A single company stock, analog chipmaker, historically steadier than more speculative chip names." },
+  MU: { type: "stock", sector: "Technology", pe: "20.0", returns: {2021: 19.5, 2022: -44.0, 2023: 57.6, 2024: 76.0, 2025: 35.0}, note: "A single company stock, memory chipmaker, historically one of the more cyclical and volatile chip stocks." }
+};
+
+const STARTER_TICKERS = Object.keys(STATIC_SUPPLEMENT);
+
+const VANGUARD_FUNDS = ['VOO', 'VTI'];
+
+// Approximate top holdings by weight, used to illustrate overlap between selections.
+// Individual stocks are treated as 100% exposure to themselves.
+const HOLDINGS = {
+  VOO: { AAPL: 7.0, MSFT: 6.5, NVDA: 6.0, AMZN: 3.8, GOOGL: 3.5, META: 2.5, AVGO: 2.0, TSLA: 1.8 },
+  SPY: { AAPL: 6.9, MSFT: 6.4, NVDA: 5.9, AMZN: 3.7, GOOGL: 3.4, META: 2.5, AVGO: 2.0, TSLA: 1.8 },
+  QQQ: { AAPL: 8.5, MSFT: 8.0, NVDA: 7.5, AMZN: 5.5, AVGO: 4.5, META: 3.8, GOOGL: 3.2, TSLA: 2.8 },
+  VTI: { AAPL: 5.5, MSFT: 5.2, NVDA: 4.8, AMZN: 3.0, GOOGL: 2.8, META: 2.0, AVGO: 1.5, TSLA: 1.3 },
+  SCHD: { ABBV: 4.5, PEP: 4.2, HD: 4.0, KO: 3.8, VZ: 3.5, PFE: 3.2, CSCO: 3.0, TXN: 2.8 },
+  ARKK: { TSLA: 10.5, ROKU: 6.0, COIN: 5.5, RBLX: 5.0, PATH: 4.5, DKNG: 4.0 },
+  VYM: { JPM: 3.5, XOM: 3.0, JNJ: 2.8, PG: 2.5, HD: 2.2, ABBV: 2.0, KO: 1.8, PFE: 1.6 },
+  VUG: { AAPL: 11.5, MSFT: 10.8, NVDA: 9.5, AMZN: 6.0, GOOGL: 5.0, META: 4.0, AVGO: 3.0 },
+  VTV: { JPM: 3.2, XOM: 2.8, JNJ: 2.5, PG: 2.0, V: 1.9, HD: 1.7 },
+  IVV: { AAPL: 7.0, MSFT: 6.5, NVDA: 6.0, AMZN: 3.8, GOOGL: 3.5, META: 2.5, AVGO: 2.0, TSLA: 1.8 },
+  XLK: { AAPL: 14.5, MSFT: 13.0, NVDA: 11.0, AVGO: 5.0, AMD: 2.5 },
+  DIA: { GS: 6.5, MSFT: 5.0, HD: 4.5, V: 4.0, JPM: 3.5 },
+  VNQ: { PLD: 7.0, AMT: 6.5, EQIX: 5.0, PSA: 4.0, O: 3.5, WELL: 3.0, DLR: 2.8, SPG: 2.5 },
+  FXAIX: { AAPL: 7.0, MSFT: 6.5, NVDA: 6.0, AMZN: 3.8, GOOGL: 3.5, META: 2.5, AVGO: 2.0, TSLA: 1.8 },
+  FZROX: { AAPL: 5.5, MSFT: 5.2, NVDA: 4.8, AMZN: 3.0, GOOGL: 2.8, META: 2.0, AVGO: 1.5, TSLA: 1.3 },
+  FSKAX: { AAPL: 5.5, MSFT: 5.2, NVDA: 4.8, AMZN: 3.0, GOOGL: 2.8, META: 2.0, AVGO: 1.5, TSLA: 1.3 },
+  FTEC: { AAPL: 14.0, MSFT: 13.5, NVDA: 10.5, AVGO: 4.5, AMD: 2.0 },
+  FDVV: { JPM: 3.0, XOM: 2.8, JNJ: 2.5, PG: 2.2, HD: 2.0, ABBV: 1.8, KO: 1.6 },
+  FREL: { PLD: 7.5, AMT: 6.0, EQIX: 5.2, O: 4.2, PSA: 3.8, WELL: 3.0 },
+  SCHB: { AAPL: 5.6, MSFT: 5.3, NVDA: 4.9, AMZN: 3.1, GOOGL: 2.8, META: 2.1, AVGO: 1.6, TSLA: 1.3 },
+  SCHX: { AAPL: 7.1, MSFT: 6.6, NVDA: 6.1, AMZN: 3.9, GOOGL: 3.5, META: 2.6, AVGO: 2.0, TSLA: 1.8 },
+  SCHG: { AAPL: 11.0, MSFT: 10.5, NVDA: 9.0, AMZN: 6.5, GOOGL: 5.0, META: 4.2, AVGO: 3.2 },
+  SCHV: { JPM: 3.0, XOM: 2.7, JNJ: 2.4, PG: 1.9, V: 1.8, HD: 1.6 },
+  SOXX: { NVDA: 9.0, AVGO: 8.0, AMD: 5.0, QCOM: 4.5, TXN: 4.0, MU: 3.5 },
+  SMH: { NVDA: 12.0, TSM: 11.0, AVGO: 8.5, AMD: 4.5, QCOM: 4.0 },
+};
+
+function getHoldings(symbol) {
+  return HOLDINGS[symbol] || { [symbol]: 100 };
+}
+
+// Caches live lookups so switching platform or re-rendering doesn't re-fetch.
+const quoteCache = {};
+
+async function getTicker(symbol) {
+  if (quoteCache[symbol]) return quoteCache[symbol];
+
+  const resp = await fetch(`/.netlify/functions/stock-quote?symbol=${encodeURIComponent(symbol)}`);
+  const json = await resp.json();
+
+  if (!resp.ok) {
+    throw new Error(json.error || `Couldn't find "${symbol}".`);
+  }
+
+  const supplement = STATIC_SUPPLEMENT[symbol] || {};
+  const merged = {
+    name: json.name || supplement.name || symbol,
+    type: supplement.type || 'stock',
+    price: json.price,
+    change: json.change,
+    low52: json.low52,
+    high52: json.high52,
+    sector: supplement.sector,
+    pe: supplement.pe,
+    expense: supplement.expense,
+    holdings: supplement.holdingsCount,
+    returns: supplement.returns || null,
+    note: supplement.note || "Live price pulled from Twelve Data. Extended stats like sector, expense ratio, and 5 year history are available for our starter list of tickers right now, more are being added over time.",
+  };
+
+  quoteCache[symbol] = merged;
+  return merged;
+}
+
+let platform = 'vanguard';
+let lastSymbol = null;
+let lastCompareA = null;
+let lastCompareB = null;
+let portfolioTickers = [];
+let portfolioAmounts = {};
+
+const quickWrap = document.getElementById('quickTickers');
+STARTER_TICKERS.forEach(t => {
+  const btn = document.createElement('button');
+  btn.textContent = t;
+  btn.onclick = () => { document.getElementById('tickerInput').value = t; lookup(); };
+  quickWrap.appendChild(btn);
+});
+
+function setPlatform(p) {
+  platform = p;
+  document.getElementById('btnVanguard').classList.toggle('active', p === 'vanguard');
+  document.getElementById('btnOther').classList.toggle('active', p === 'other');
+  onControlsChange();
+}
+
+function updatePlatformNote() {
+  const note = document.getElementById('platformNote');
+  if (platform === 'vanguard') {
+    note.innerHTML = "Vanguard only allows fractional, dollar based investing on Vanguard's own funds (like VOO and VTI). For anything else, like an individual stock or a non Vanguard ETF, Vanguard requires a whole share, so leftover cash sits uninvested until you add more.";
+  } else {
+    note.innerHTML = "Brokers like Fidelity and Schwab allow fractional share investing across most stocks and ETFs, not just their own funds, so your full dollar amount typically gets put to work.";
+  }
+}
+updatePlatformNote();
+
+function investResultHtml(symbol, d) {
+  const amountRaw = parseFloat(document.getElementById('investAmount').value);
+  const amount = isNaN(amountRaw) || amountRaw <= 0 ? 0 : amountRaw;
+  const isVanguardFund = VANGUARD_FUNDS.includes(symbol);
+  const fractionalAvailable = platform === 'other' || isVanguardFund;
+
+  if (amount === 0) {
+    return `<div class="invest-block"><div class="invest-block-label">What $ buys on ${platform === 'vanguard' ? 'Vanguard' : 'Fidelity / Schwab'}</div><div class="platform-note">Enter an amount above to see what it buys.</div></div>`;
+  }
+
+  if (fractionalAvailable) {
+    const shares = amount / d.price;
+    return `
+      <div class="invest-block">
+        <div class="invest-block-label">What $${amount.toFixed(0)} buys on ${platform === 'vanguard' ? 'Vanguard' : 'Fidelity / Schwab'}</div>
+        <div class="invest-result">
+          <div class="invest-shares">${shares.toFixed(3)} shares</div>
+          <div class="invest-badge fractional">Fractional, full amount invested</div>
+        </div>
+      </div>
+    `;
+  } else {
+    const wholeShares = Math.floor(amount / d.price);
+    const spent = wholeShares * d.price;
+    const leftover = amount - spent;
+    if (wholeShares === 0) {
+      return `
+        <div class="invest-block">
+          <div class="invest-block-label">What $${amount.toFixed(0)} buys on Vanguard</div>
+          <div class="invest-result">
+            <div class="invest-shares">0 whole shares</div>
+            <div class="invest-badge whole">Not enough for 1 share</div>
+          </div>
+          <div class="invest-leftover">$${d.price.toFixed(2)} needed for just 1 share. Vanguard doesn't allow fractional buying on ${symbol}, so this amount stays uninvested until you add more or switch brokers.</div>
+        </div>
+      `;
+    }
+    return `
+      <div class="invest-block">
+        <div class="invest-block-label">What $${amount.toFixed(0)} buys on Vanguard</div>
+        <div class="invest-result">
+          <div class="invest-shares">${wholeShares} whole share${wholeShares > 1 ? 's' : ''}</div>
+          <div class="invest-badge whole">Whole shares only</div>
+        </div>
+        <div class="invest-leftover">Uses $${spent.toFixed(2)}, leaves $${leftover.toFixed(2)} uninvested since Vanguard doesn't allow fractional buying on ${symbol}.</div>
+      </div>
+    `;
+  }
+}
+
+function onControlsChange() {
+  updatePlatformNote();
+  if (lastSymbol) {
+    getTicker(lastSymbol).then(d => {
+      document.getElementById('resultCard').innerHTML = renderCard(lastSymbol, d);
+    }).catch(() => {});
+  }
+  if (lastCompareA && lastCompareB) {
+    Promise.all([getTicker(lastCompareA), getTicker(lastCompareB)]).then(([da, db]) => {
+      const grid = document.getElementById('compareGrid');
+      grid.innerHTML = `
+        <div class="card show">${renderCard(lastCompareA, da)}</div>
+        <div class="card show">${renderCard(lastCompareB, db)}</div>
+      `;
+    }).catch(() => {});
+  }
+  renderPortfolio();
+}
+
+function rangeBarHtml(d) {
+  if (d.low52 == null || d.high52 == null) {
+    return `<div class="range-block"><div class="invest-block-label">52 week range</div><div class="platform-note">Not available for this ticker on the current data plan.</div></div>`;
+  }
+  const pct = Math.max(0, Math.min(100, ((d.price - d.low52) / (d.high52 - d.low52)) * 100));
+  return `
+    <div class="range-block">
+      <div class="invest-block-label">52 week range</div>
+      <div class="range-labels"><span>$${d.low52.toFixed(2)}</span><span>$${d.high52.toFixed(2)}</span></div>
+      <div class="range-track"><div class="range-marker" style="left:${pct}%;"></div></div>
+      <div class="range-current">Currently $${d.price.toFixed(2)}, ${pct.toFixed(0)}% of the way between the 52 week low and high</div>
+    </div>
+  `;
+}
+
+function returnsRowHtml(d) {
+  if (!d.returns) {
+    return `<div class="returns-block"><div class="invest-block-label">5 year return, year by year</div><div class="platform-note">History is available for our starter list of tickers right now, more are being added.</div></div>`;
+  }
+  const years = Object.keys(d.returns);
+  const maxAbs = Math.max(...years.map(y => Math.abs(d.returns[y])));
+  const cols = years.map(y => {
+    const val = d.returns[y];
+    const barHeightPct = Math.max(8, (Math.abs(val) / maxAbs) * 100);
+    const cls = val >= 0 ? 'up' : 'down';
+    const sign = val >= 0 ? '+' : '';
+    return `
+      <div class="returns-col">
+        <div class="returns-bar-wrap">
+          <div class="returns-bar ${cls}" style="height:${barHeightPct}%;"></div>
+        </div>
+        <div class="returns-pct">${sign}${val.toFixed(1)}%</div>
+        <div class="returns-year">${y}</div>
+      </div>
+    `;
+  }).join('');
+  return `
+    <div class="returns-block">
+      <div class="invest-block-label">5 year return, year by year</div>
+      <div class="returns-row">${cols}</div>
+    </div>
+  `;
+}
+
+function renderCard(symbol, d) {
+  const isEtf = d.type === 'etf';
+  const changeClass = d.change >= 0 ? 'up' : 'down';
+  const changeSign = d.change >= 0 ? '+' : '';
+
+  let statsHtml = '';
+  if (isEtf) {
+    statsHtml = `
+      <div class="stat"><div class="stat-label">Expense ratio</div><div class="stat-value">${d.expense || 'Not available'}</div></div>
+      <div class="stat"><div class="stat-label">Holdings</div><div class="stat-value">${d.holdings || 'Not available'}</div></div>
+    `;
+  } else {
+    statsHtml = `
+      <div class="stat"><div class="stat-label">Sector</div><div class="stat-value">${d.sector || 'Not available'}</div></div>
+      <div class="stat"><div class="stat-label">P/E ratio</div><div class="stat-value">${d.pe || 'Not available'}</div></div>
+    `;
+  }
+
+  return `
+    <div class="card-top">
+      <div>
+        <div class="ticker-tag">${symbol}</div>
+        <div class="ticker-name">${d.name}</div>
+      </div>
+      <div class="type-pill ${isEtf ? 'etf' : ''}">${isEtf ? 'ETF' : 'Stock'}</div>
+    </div>
+    <div class="price-row">
+      <div class="price">$${d.price.toFixed(2)}</div>
+      <div class="change ${changeClass}">${changeSign}${d.change}%</div>
+    </div>
+    <div class="stat-grid">${statsHtml}</div>
+    ${rangeBarHtml(d)}
+    ${returnsRowHtml(d)}
+    <div class="selma-note"><b>What you're looking at:</b> ${d.note}</div>
+    ${investResultHtml(symbol, d)}
+  `;
+}
+
+async function lookup() {
+  const input = document.getElementById('tickerInput');
+  const symbol = input.value.trim().toUpperCase();
+  const card = document.getElementById('resultCard');
+  const empty = document.getElementById('emptyState');
+
+  if (!symbol) return;
+
+  card.classList.remove('show');
+  empty.style.display = 'block';
+  empty.textContent = `Looking up ${symbol}...`;
+
+  try {
+    const d = await getTicker(symbol);
+    lastSymbol = symbol;
+    card.innerHTML = renderCard(symbol, d);
+    card.classList.add('show');
+    empty.style.display = 'none';
+  } catch (err) {
+    card.classList.remove('show');
+    empty.style.display = 'block';
+    empty.textContent = err.message || `Couldn't find "${symbol}", double check the symbol and try again.`;
+  }
+}
+
+function toggleCompare() {
+  const wrap = document.getElementById('compareWrap');
+  const toggle = document.getElementById('compareToggle');
+  const showing = wrap.classList.toggle('show');
+  toggle.textContent = showing ? '- Hide compare' : '+ Compare two tickers side by side';
+  if (!showing) {
+    document.getElementById('compareGrid').classList.remove('show');
+  }
+}
+
+async function doCompare() {
+  const a = document.getElementById('compareA').value.trim().toUpperCase();
+  const b = document.getElementById('compareB').value.trim().toUpperCase();
+  const grid = document.getElementById('compareGrid');
+
+  if (!a || !b) return;
+
+  grid.innerHTML = `<div class="empty-state" style="grid-column: 1 / -1;">Looking up ${a} and ${b}...</div>`;
+  grid.classList.add('show');
+
+  try {
+    const [da, db] = await Promise.all([getTicker(a), getTicker(b)]);
+    lastCompareA = a;
+    lastCompareB = b;
+    grid.innerHTML = `
+      <div class="card show">${renderCard(a, da)}</div>
+      <div class="card show">${renderCard(b, db)}</div>
+    `;
+  } catch (err) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column: 1 / -1;">${err.message || "Couldn't find one of those tickers, double check both symbols."}</div>`;
+  }
+}
+
+async function addPortfolioTicker() {
+  const input = document.getElementById('portfolioTickerInput');
+  const symbol = input.value.trim().toUpperCase();
+  if (!symbol) return;
+  if (portfolioTickers.includes(symbol)) { input.value = ''; return; }
+
+  try {
+    await getTicker(symbol);
+  } catch (err) {
+    alert(err.message || `Couldn't find "${symbol}", double check the symbol and try again.`);
+    return;
+  }
+
+  portfolioTickers.push(symbol);
+  input.value = '';
+  splitEvenly();
+}
+
+function removePortfolioTicker(symbol) {
+  portfolioTickers = portfolioTickers.filter(t => t !== symbol);
+  delete portfolioAmounts[symbol];
+  splitEvenly();
+}
+
+function splitEvenly() {
+  const totalRaw = parseFloat(document.getElementById('portfolioTotal').value);
+  const total = isNaN(totalRaw) || totalRaw <= 0 ? 0 : totalRaw;
+  const n = portfolioTickers.length;
+  if (n > 0) {
+    const each = total / n;
+    portfolioTickers.forEach(t => { portfolioAmounts[t] = each; });
+  }
+  renderPortfolio();
+}
+
+function updatePortfolioAmount(symbol, value) {
+  const val = parseFloat(value);
+  portfolioAmounts[symbol] = isNaN(val) || val < 0 ? 0 : val;
+  renderPortfolio();
+}
+
+function renderPortfolioChips() {
+  const wrap = document.getElementById('portfolioChips');
+  if (portfolioTickers.length === 0) {
+    wrap.innerHTML = '';
+    return;
+  }
+  wrap.innerHTML = portfolioTickers.map(t => `
+    <div class="chip">${t}<button onclick="removePortfolioTicker('${t}')">&times;</button></div>
+  `).join('');
+}
+
+async function renderPortfolio() {
+  renderPortfolioChips();
+  const tableWrap = document.getElementById('portfolioTable');
+  const summaryWrap = document.getElementById('portfolioSummary');
+
+  if (portfolioTickers.length === 0) {
+    tableWrap.innerHTML = `<div class="portfolio-empty">Add a couple tickers above to start building a sample portfolio.</div>`;
+    summaryWrap.innerHTML = '';
+    document.getElementById('portfolioOverlap').innerHTML = '';
+    return;
+  }
+
+  tableWrap.innerHTML = `<div class="portfolio-empty">Loading prices...</div>`;
+
+  let totalAllocated = 0;
+  let totalSpent = 0;
+  const rowsHtml = [];
+
+  for (const symbol of portfolioTickers) {
+    let d;
+    try {
+      d = await getTicker(symbol);
+    } catch (err) {
+      rowsHtml.push(`<div class="portfolio-row"><div class="portfolio-ticker">${symbol}</div><div class="portfolio-price" style="color:var(--red);">Couldn't load this ticker</div><div></div><div></div></div>`);
+      continue;
+    }
+
+    const amount = portfolioAmounts[symbol] || 0;
+    totalAllocated += amount;
+    const isVanguardFund = VANGUARD_FUNDS.includes(symbol);
+    const fractionalAvailable = platform === 'other' || isVanguardFund;
+
+    let sharesLabel, noteLabel, spent;
+    if (fractionalAvailable) {
+      const shares = amount / d.price;
+      spent = amount;
+      sharesLabel = `${shares.toFixed(3)}`;
+      noteLabel = 'shares';
+    } else {
+      const wholeShares = Math.floor(amount / d.price);
+      spent = wholeShares * d.price;
+      const leftover = amount - spent;
+      sharesLabel = `${wholeShares}`;
+      noteLabel = leftover > 0.01 ? `whole, $${leftover.toFixed(2)} left over` : 'whole shares';
+    }
+    totalSpent += spent;
+
+    rowsHtml.push(`
+      <div class="portfolio-row">
+        <div class="portfolio-ticker">${symbol}</div>
+        <div class="portfolio-price">$${d.price.toFixed(2)} / share</div>
+        <div class="portfolio-dollar"><span>$</span><input type="text" value="${amount.toFixed(0)}" onchange="updatePortfolioAmount('${symbol}', this.value)"></div>
+        <div class="portfolio-shares">
+          <div class="portfolio-shares-num">${sharesLabel}</div>
+          <div class="portfolio-shares-note">${noteLabel}</div>
+        </div>
+      </div>
+    `);
+  }
+
+  tableWrap.innerHTML = rowsHtml.join('');
+
+  const uninvested = totalAllocated - totalSpent;
+  summaryWrap.innerHTML = `
+    <div class="portfolio-summary"><span>Total allocated</span><b>$${totalAllocated.toFixed(2)}</b></div>
+    <div class="portfolio-summary"><span>Actually invested</span><b>$${totalSpent.toFixed(2)}</b></div>
+    ${uninvested > 0.01 ? `<div class="portfolio-summary"><span>Sitting uninvested</span><b style="color:var(--red);">$${uninvested.toFixed(2)}</b></div>` : ''}
+  `;
+
+  renderOverlap(totalAllocated);
+}
+
+function renderOverlap(totalAllocated) {
+  const wrap = document.getElementById('portfolioOverlap');
+
+  if (portfolioTickers.length < 2 || totalAllocated <= 0) {
+    wrap.innerHTML = '';
+    return;
+  }
+
+  const exposure = {};
+  portfolioTickers.forEach(symbol => {
+    const amount = portfolioAmounts[symbol] || 0;
+    const holdings = getHoldings(symbol);
+    Object.keys(holdings).forEach(company => {
+      const dollarExposure = amount * (holdings[company] / 100);
+      if (!exposure[company]) exposure[company] = { dollar: 0, sources: new Set() };
+      exposure[company].dollar += dollarExposure;
+      exposure[company].sources.add(symbol);
+    });
+  });
+
+  const overlaps = Object.keys(exposure)
+    .map(company => ({ company, ...exposure[company] }))
+    .filter(e => e.sources.size >= 2)
+    .sort((a, b) => b.dollar - a.dollar);
+
+  if (overlaps.length === 0) {
+    wrap.innerHTML = `
+      <div class="overlap-block">
+        <div class="overlap-headline">Overlap check</div>
+        <div class="overlap-none">No meaningful overlap between your picks, these selections stay fairly distinct from each other.</div>
+      </div>
+    `;
+    return;
+  }
+
+  const totalOverlapPct = overlaps.reduce((sum, e) => sum + (e.dollar / totalAllocated) * 100, 0);
+
+  const rows = overlaps.slice(0, 6).map(e => {
+    const pct = (e.dollar / totalAllocated) * 100;
+    return `
+      <div class="overlap-row">
+        <div>
+          <div class="overlap-name">${e.company}</div>
+          <div class="overlap-sources">Shows up in ${Array.from(e.sources).join(' and ')}</div>
+        </div>
+        <div class="overlap-pct">${pct.toFixed(1)}%</div>
+      </div>
+    `;
+  }).join('');
+
+  wrap.innerHTML = `
+    <div class="overlap-block">
+      <div class="overlap-headline">Overlap check, <b>${totalOverlapPct.toFixed(1)}%</b> of your portfolio is doubled up</div>
+      <div class="overlap-sub">These companies show up in more than one of your picks, so you're paying for the same exposure twice.</div>
+      ${rows}
+    </div>
+  `;
+}
+
+renderPortfolio();
+
+</script>
+</body>
+</html>
