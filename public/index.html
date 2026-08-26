@@ -290,8 +290,8 @@
 
   .stat-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
     margin-bottom: 18px;
   }
   .stat {
@@ -726,6 +726,105 @@
     margin-top: 8px;
   }
 
+  .glossary-toggle {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    color: var(--brown);
+    background: white;
+    border: 2px solid var(--brown);
+    border-radius: 8px;
+    padding: 12px 18px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 28px;
+    margin-bottom: 8px;
+  }
+  .glossary-toggle:hover { background: var(--cream); }
+
+  .glossary-panel {
+    display: none;
+    background: white;
+    border: 1px solid var(--cream-dim);
+    box-shadow: 0 2px 10px rgba(27, 42, 74, 0.06);
+    border-radius: 14px;
+    padding: 6px 20px;
+    margin-bottom: 16px;
+  }
+  .glossary-panel.show { display: block; }
+
+  .glossary-row {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--cream-dim);
+  }
+  .glossary-row:last-child { border-bottom: none; }
+  .glossary-term {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--brown);
+    margin-bottom: 4px;
+  }
+  .glossary-def {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--brown-light);
+    line-height: 1.5;
+  }
+
+  .glossary-selma {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    color: var(--brown);
+    line-height: 1.5;
+    background: #FBF3E2;
+    border-left: 3px solid var(--gold);
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+  .glossary-selma-label {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #A6791F;
+    margin-bottom: 4px;
+  }
+
+  .glossary-search-wrap {
+    position: sticky;
+    top: 0;
+    background: white;
+    padding: 16px 0 12px;
+  }
+  .glossary-search-wrap input {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    padding: 12px 14px;
+    border: 2px solid var(--cream-dim);
+    border-radius: 8px;
+    background: var(--cream);
+    color: var(--ink);
+    outline: none;
+  }
+  .glossary-search-wrap input:focus { border-color: var(--green); }
+
+  .glossary-empty {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    color: #B0A08B;
+    padding: 20px 0;
+    text-align: center;
+  }
+
   .projection-result {
     background: var(--cream);
     border-radius: 10px;
@@ -1070,6 +1169,15 @@
     <div class="projection-disclaimer">This is a simple estimate, not a promise or financial advice. It assumes a steady yearly return, real markets move up and down along the way. The HYSA comparison assumes a fixed 3% rate, which also moves over time in real life. For a plan built around your full financial picture, talk with a licensed financial advisor.</div>
   </div>
 
+  <div class="glossary-toggle" onclick="toggleGlossary()" id="glossaryToggle">+ What do these terms mean?</div>
+  <div class="glossary-panel" id="glossaryPanel">
+    <div class="glossary-search-wrap">
+      <input type="text" id="glossarySearch" placeholder="Search a term, like ETF or dividend" oninput="filterGlossary()">
+    </div>
+    <div id="glossaryList"></div>
+    <div class="glossary-empty" id="glossaryEmpty" style="display:none;">No terms match that search.</div>
+  </div>
+
   <footer>For educational purposes only<br>Live prices via Twelve Data &middot; Built for Zero to Invested<br>@SelmaMakesCents</footer>
 </div>
 
@@ -1080,120 +1188,120 @@
 // list of tickers. Live price, change, and 52 week range come from Twelve Data for
 // ANY valid ticker, this list just adds the extra context on top for these ten.
 const STATIC_SUPPLEMENT = {
-  AAPL: { type: "stock", sector: "Technology", pe: "31.2", returns: {2021: 34.6, 2022: -26.8, 2023: 48.2, 2024: 30.1, 2025: 9.4}, note: "A single company stock. Owning this alone means your money rises and falls with one business, not a diversified basket." },
-  MSFT: { type: "stock", sector: "Technology", pe: "34.1", returns: {2021: 51.2, 2022: -28.4, 2023: 56.8, 2024: 12.1, 2025: 14.3}, note: "A single company stock. Strong fundamentals, but still one business, pair with a diversified core position." },
-  TSLA: { type: "stock", sector: "Consumer Discretionary", pe: "68.9", returns: {2021: 49.8, 2022: -65.0, 2023: 101.7, 2024: 62.5, 2025: -7.9}, note: "A single company stock with a high valuation. This is the kind of pick to size carefully, not build a backbone around." },
-  GOOGL: { type: "stock", sector: "Communication Services", pe: "26.4", returns: {2021: 65.3, 2022: -38.7, 2023: 58.3, 2024: 35.5, 2025: 10.8}, note: "A single company stock. Diversified business lines, but still concentrated risk in one company." },
-  VOO: { type: "etf", expense: "0.03%", holdingsCount: "500+", returns: {2021: 28.7, 2022: -18.1, 2023: 26.3, 2024: 25.0, 2025: 12.1}, note: "A broad market ETF. One share gives you a slice of the 500 largest US companies, this is a common backbone holding." },
-  SPY: { type: "etf", expense: "0.09%", holdingsCount: "500+", returns: {2021: 28.5, 2022: -18.2, 2023: 26.2, 2024: 24.9, 2025: 12.0}, note: "Tracks the same index as VOO, slightly higher expense ratio. Very high overlap if you already own VOO." },
-  QQQ: { type: "etf", expense: "0.20%", holdingsCount: "100", returns: {2021: 27.4, 2022: -32.6, 2023: 54.9, 2024: 25.6, 2025: 10.2}, note: "Tracks the Nasdaq 100, tech heavy. Owning this alongside VOO means real overlap in your top holdings." },
-  VTI: { type: "etf", expense: "0.03%", holdingsCount: "3,700+", returns: {2021: 25.7, 2022: -19.5, 2023: 26.0, 2024: 23.7, 2025: 11.6}, note: "Covers nearly the entire US stock market. Very similar performance to VOO, with more small and mid cap exposure." },
-  SCHD: { type: "etf", expense: "0.06%", holdingsCount: "100", returns: {2021: 21.1, 2022: -3.2, 2023: 4.3, 2024: 12.4, 2025: 7.6}, note: "Focused on dividend paying companies. Lower overlap with VOO, worth understanding before adding as a second holding." },
-  ARKK: { type: "etf", expense: "0.75%", holdingsCount: "35", returns: {2021: -23.4, 2022: -67.0, 2023: 67.4, 2024: 5.2, 2025: -14.8}, note: "A concentrated, actively managed fund with a much higher expense ratio. Higher risk, higher volatility than a broad index fund." },
+  AAPL: { type: "stock", yield: "0.44%", sector: "Technology", pe: "31.2", returns: {2021: 34.6, 2022: -26.8, 2023: 48.2, 2024: 30.1, 2025: 9.4}, note: "A single company stock. Owning this alone means your money rises and falls with one business, not a diversified basket." },
+  MSFT: { type: "stock", yield: "0.68%", sector: "Technology", pe: "34.1", returns: {2021: 51.2, 2022: -28.4, 2023: 56.8, 2024: 12.1, 2025: 14.3}, note: "A single company stock. Strong fundamentals, but still one business, pair with a diversified core position." },
+  TSLA: { type: "stock", yield: "0.00%", sector: "Consumer Discretionary", pe: "68.9", returns: {2021: 49.8, 2022: -65.0, 2023: 101.7, 2024: 62.5, 2025: -7.9}, note: "A single company stock with a high valuation. This is the kind of pick to size carefully, not build a backbone around." },
+  GOOGL: { type: "stock", yield: "0.39%", sector: "Communication Services", pe: "26.4", returns: {2021: 65.3, 2022: -38.7, 2023: 58.3, 2024: 35.5, 2025: 10.8}, note: "A single company stock. Diversified business lines, but still concentrated risk in one company." },
+  VOO: { type: "etf", yield: "1.30%", expense: "0.03%", holdingsCount: "500+", returns: {2021: 28.7, 2022: -18.1, 2023: 26.3, 2024: 25.0, 2025: 12.1}, note: "A broad market ETF. One share gives you a slice of the 500 largest US companies, this is a common backbone holding." },
+  SPY: { type: "etf", yield: "1.30%", expense: "0.09%", holdingsCount: "500+", returns: {2021: 28.5, 2022: -18.2, 2023: 26.2, 2024: 24.9, 2025: 12.0}, note: "Tracks the same index as VOO, slightly higher expense ratio. Very high overlap if you already own VOO." },
+  QQQ: { type: "etf", yield: "0.60%", expense: "0.20%", holdingsCount: "100", returns: {2021: 27.4, 2022: -32.6, 2023: 54.9, 2024: 25.6, 2025: 10.2}, note: "Tracks the Nasdaq 100, tech heavy. Owning this alongside VOO means real overlap in your top holdings." },
+  VTI: { type: "etf", yield: "1.30%", expense: "0.03%", holdingsCount: "3,700+", returns: {2021: 25.7, 2022: -19.5, 2023: 26.0, 2024: 23.7, 2025: 11.6}, note: "Covers nearly the entire US stock market. Very similar performance to VOO, with more small and mid cap exposure." },
+  SCHD: { type: "etf", yield: "3.50%", expense: "0.06%", holdingsCount: "100", returns: {2021: 21.1, 2022: -3.2, 2023: 4.3, 2024: 12.4, 2025: 7.6}, note: "Focused on dividend paying companies. Lower overlap with VOO, worth understanding before adding as a second holding." },
+  ARKK: { type: "etf", yield: "0.00%", expense: "0.75%", holdingsCount: "35", returns: {2021: -23.4, 2022: -67.0, 2023: 67.4, 2024: 5.2, 2025: -14.8}, note: "A concentrated, actively managed fund with a much higher expense ratio. Higher risk, higher volatility than a broad index fund." },
 
   // 10 additional ETFs
-  VYM: { type: "etf", expense: "0.06%", holdingsCount: "560+", returns: {2021: 24.8, 2022: -0.5, 2023: 8.9, 2024: 14.2, 2025: 9.1}, note: "Focused on high dividend paying large caps. Lower tech concentration than VOO, moderate overlap." },
-  VUG: { type: "etf", expense: "0.04%", holdingsCount: "180+", returns: {2021: 27.3, 2022: -33.1, 2023: 47.4, 2024: 31.2, 2025: 13.5}, note: "Growth focused, heavy tech tilt, high overlap with QQQ and the tech names inside VOO." },
-  VTV: { type: "etf", expense: "0.04%", holdingsCount: "340+", returns: {2021: 25.2, 2022: -2.1, 2023: 11.5, 2024: 16.8, 2025: 10.2}, note: "Value focused, tilts toward financials and healthcare, lower overlap with growth heavy funds." },
-  BND: { type: "etf", expense: "0.03%", holdingsCount: "10,000+", returns: {2021: -1.9, 2022: -13.1, 2023: 5.7, 2024: 3.9, 2025: 4.5}, note: "Bonds, not stocks. Moves differently than everything else here, useful for balancing risk, not for growth." },
-  VXUS: { type: "etf", expense: "0.05%", holdingsCount: "8,500+", returns: {2021: 8.7, 2022: -16.0, 2023: 15.6, 2024: 5.5, 2025: 11.0}, note: "International stocks outside the US. Little overlap with US focused funds like VOO, genuine diversification." },
-  IVV: { type: "etf", expense: "0.03%", holdingsCount: "500+", returns: {2021: 28.7, 2022: -18.1, 2023: 26.3, 2024: 25.0, 2025: 12.1}, note: "Tracks the same index as VOO and SPY, essentially interchangeable, full overlap if you already own either." },
-  XLK: { type: "etf", expense: "0.09%", holdingsCount: "65", returns: {2021: 34.5, 2022: -28.2, 2023: 57.8, 2024: 22.5, 2025: 9.0}, note: "A pure technology sector bet, very high overlap with QQQ and the tech names inside VOO." },
-  DIA: { type: "etf", expense: "0.16%", holdingsCount: "30", returns: {2021: 20.9, 2022: -6.9, 2023: 16.2, 2024: 15.0, 2025: 8.5}, note: "Tracks 30 large, older economy companies. A different mix than VOO, less tech heavy." },
-  IWM: { type: "etf", expense: "0.19%", holdingsCount: "1,900+", returns: {2021: 14.8, 2022: -20.5, 2023: 16.9, 2024: 11.5, 2025: 7.0}, note: "Small cap companies, a meaningfully different risk profile than large cap funds like VOO." },
-  VNQ: { type: "etf", expense: "0.13%", holdingsCount: "160+", returns: {2021: 40.5, 2022: -26.2, 2023: 1.6, 2024: 4.5, 2025: 9.5}, note: "A real estate sector fund. Adds property exposure, minimal overlap with broad market funds." },
+  VYM: { type: "etf", yield: "2.80%", expense: "0.06%", holdingsCount: "560+", returns: {2021: 24.8, 2022: -0.5, 2023: 8.9, 2024: 14.2, 2025: 9.1}, note: "Focused on high dividend paying large caps. Lower tech concentration than VOO, moderate overlap." },
+  VUG: { type: "etf", yield: "0.50%", expense: "0.04%", holdingsCount: "180+", returns: {2021: 27.3, 2022: -33.1, 2023: 47.4, 2024: 31.2, 2025: 13.5}, note: "Growth focused, heavy tech tilt, high overlap with QQQ and the tech names inside VOO." },
+  VTV: { type: "etf", yield: "2.30%", expense: "0.04%", holdingsCount: "340+", returns: {2021: 25.2, 2022: -2.1, 2023: 11.5, 2024: 16.8, 2025: 10.2}, note: "Value focused, tilts toward financials and healthcare, lower overlap with growth heavy funds." },
+  BND: { type: "etf", yield: "3.20%", expense: "0.03%", holdingsCount: "10,000+", returns: {2021: -1.9, 2022: -13.1, 2023: 5.7, 2024: 3.9, 2025: 4.5}, note: "Bonds, not stocks. Moves differently than everything else here, useful for balancing risk, not for growth." },
+  VXUS: { type: "etf", yield: "3.00%", expense: "0.05%", holdingsCount: "8,500+", returns: {2021: 8.7, 2022: -16.0, 2023: 15.6, 2024: 5.5, 2025: 11.0}, note: "International stocks outside the US. Little overlap with US focused funds like VOO, genuine diversification." },
+  IVV: { type: "etf", yield: "1.30%", expense: "0.03%", holdingsCount: "500+", returns: {2021: 28.7, 2022: -18.1, 2023: 26.3, 2024: 25.0, 2025: 12.1}, note: "Tracks the same index as VOO and SPY, essentially interchangeable, full overlap if you already own either." },
+  XLK: { type: "etf", yield: "0.70%", expense: "0.09%", holdingsCount: "65", returns: {2021: 34.5, 2022: -28.2, 2023: 57.8, 2024: 22.5, 2025: 9.0}, note: "A pure technology sector bet, very high overlap with QQQ and the tech names inside VOO." },
+  DIA: { type: "etf", yield: "1.70%", expense: "0.16%", holdingsCount: "30", returns: {2021: 20.9, 2022: -6.9, 2023: 16.2, 2024: 15.0, 2025: 8.5}, note: "Tracks 30 large, older economy companies. A different mix than VOO, less tech heavy." },
+  IWM: { type: "etf", yield: "1.20%", expense: "0.19%", holdingsCount: "1,900+", returns: {2021: 14.8, 2022: -20.5, 2023: 16.9, 2024: 11.5, 2025: 7.0}, note: "Small cap companies, a meaningfully different risk profile than large cap funds like VOO." },
+  VNQ: { type: "etf", yield: "3.80%", expense: "0.13%", holdingsCount: "160+", returns: {2021: 40.5, 2022: -26.2, 2023: 1.6, 2024: 4.5, 2025: 9.5}, note: "A real estate sector fund. Adds property exposure, minimal overlap with broad market funds." },
 
   // 30 additional individual stocks
-  AMZN: { type: "stock", sector: "Consumer Discretionary", pe: "38.5", returns: {2021: 2.4, 2022: -49.6, 2023: 80.9, 2024: 44.4, 2025: 12.0}, note: "A single company stock. E-commerce and cloud business combined, still one company's risk." },
-  META: { type: "stock", sector: "Communication Services", pe: "24.8", returns: {2021: 23.1, 2022: -64.2, 2023: 194.1, 2024: 65.4, 2025: 8.5}, note: "A single company stock, historically one of the more volatile large tech names." },
-  NVDA: { type: "stock", sector: "Technology", pe: "45.2", returns: {2021: 125.5, 2022: -50.3, 2023: 238.9, 2024: 171.2, 2025: 15.0}, note: "A single company stock with an extremely high valuation, priced for a lot of future growth to happen." },
-  NFLX: { type: "stock", sector: "Communication Services", pe: "42.0", returns: {2021: 11.3, 2022: -51.1, 2023: 65.1, 2024: 80.9, 2025: 20.0}, note: "A single company stock. Entertainment and streaming, sensitive to subscriber growth trends." },
-  DIS: { type: "stock", sector: "Communication Services", pe: "22.5", returns: {2021: -14.5, 2022: -43.9, 2023: 4.5, 2024: 27.1, 2025: 5.0}, note: "A single company stock, historically choppier than the broad market, streaming plus parks plus media." },
-  KO: { type: "stock", sector: "Consumer Staples", pe: "24.1", returns: {2021: 11.1, 2022: 8.0, 2023: 6.5, 2024: 11.4, 2025: 7.0}, note: "A single company stock, a classic slow and steady dividend payer, lower volatility than growth names." },
-  PEP: { type: "stock", sector: "Consumer Staples", pe: "22.0", returns: {2021: 13.5, 2022: 4.7, 2023: 4.9, 2024: 2.5, 2025: 6.0}, note: "A single company stock, similar profile to KO, steady but not a fast grower." },
-  JNJ: { type: "stock", sector: "Healthcare", pe: "16.8", returns: {2021: 1.7, 2022: -1.1, 2023: 4.6, 2024: 5.0, 2025: 8.0}, note: "A single company stock, healthcare giant, historically defensive during downturns." },
-  PG: { type: "stock", sector: "Consumer Staples", pe: "25.4", returns: {2021: 19.4, 2022: -3.8, 2023: 2.3, 2024: 14.9, 2025: 6.5}, note: "A single company stock, household products, dependable but not a fast grower." },
-  V: { type: "stock", sector: "Financials", pe: "31.0", returns: {2021: 15.2, 2022: -3.3, 2023: 23.5, 2024: 26.2, 2025: 10.0}, note: "A single company stock, payments network, benefits from overall consumer spending growth." },
-  MA: { type: "stock", sector: "Financials", pe: "34.2", returns: {2021: 15.0, 2022: -8.5, 2023: 23.2, 2024: 17.3, 2025: 9.5}, note: "A single company stock, similar business model to V, high overlap in what drives its growth." },
-  JPM: { type: "stock", sector: "Financials", pe: "13.5", returns: {2021: 27.1, 2022: -12.1, 2023: 30.9, 2024: 39.0, 2025: 11.0}, note: "A single company stock, the largest US bank, tends to track interest rates and the broader economy." },
-  BAC: { type: "stock", sector: "Financials", pe: "14.0", returns: {2021: 47.1, 2022: -25.9, 2023: 0.3, 2024: 34.1, 2025: 9.0}, note: "A single company stock, a bank stock historically more volatile than JPM." },
-  WMT: { type: "stock", sector: "Consumer Staples", pe: "38.5", returns: {2021: -2.4, 2022: -0.5, 2023: 16.5, 2024: 71.9, 2025: 12.0}, note: "A single company stock, defensive retailer, tends to hold up better during economic slowdowns." },
-  HD: { type: "stock", sector: "Consumer Discretionary", pe: "24.6", returns: {2021: 56.6, 2022: -24.5, 2023: 9.1, 2024: 12.6, 2025: 5.0}, note: "A single company stock, tied closely to the housing market and consumer renovation spending." },
-  COST: { type: "stock", sector: "Consumer Staples", pe: "48.0", returns: {2021: 47.0, 2022: -20.6, 2023: 47.7, 2024: 53.2, 2025: 10.0}, note: "A single company stock, membership retail model, historically strong and steady with a high valuation." },
-  NKE: { type: "stock", sector: "Consumer Discretionary", pe: "35.0", returns: {2021: -5.5, 2022: -29.6, 2023: -7.8, 2024: -30.0, 2025: 8.0}, note: "A single company stock, brand and consumer spending sensitive, has had a rougher stretch recently." },
-  SBUX: { type: "stock", sector: "Consumer Discretionary", pe: "30.5", returns: {2021: 2.1, 2022: -24.0, 2023: 11.1, 2024: 5.6, 2025: 6.0}, note: "A single company stock, consumer discretionary, sensitive to spending pullbacks." },
-  MCD: { type: "stock", sector: "Consumer Discretionary", pe: "24.0", returns: {2021: 20.6, 2022: 0.4, 2023: 10.9, 2024: 2.8, 2025: 7.0}, note: "A single company stock, historically a defensive fast food giant, steadier than most retail names." },
-  ADBE: { type: "stock", sector: "Technology", pe: "28.5", returns: {2021: 23.1, 2022: -40.1, 2023: 64.6, 2024: -6.0, 2025: 9.0}, note: "A single company stock, software subscription model, tied to creative and marketing spending." },
-  CRM: { type: "stock", sector: "Technology", pe: "38.0", returns: {2021: 9.9, 2022: -47.8, 2023: 98.6, 2024: 29.4, 2025: 8.0}, note: "A single company stock, enterprise software, historically more volatile than mega cap tech." },
-  PYPL: { type: "stock", sector: "Financials", pe: "16.5", returns: {2021: -19.9, 2022: -61.0, 2023: 12.9, 2024: 24.0, 2025: 10.0}, note: "A single company stock, payments and fintech, has seen more volatility than card network peers." },
-  INTC: { type: "stock", sector: "Technology", pe: "n/a", returns: {2021: -1.5, 2022: -48.9, 2023: 94.9, 2024: -52.0, 2025: 15.0}, note: "A single company stock, chipmaker in the middle of a difficult turnaround, a higher risk pick." },
-  AMD: { type: "stock", sector: "Technology", pe: "110.0", returns: {2021: 57.6, 2022: -54.7, 2023: 127.6, 2024: 7.9, 2025: 20.0}, note: "A single company stock, chipmaker, historically one of the more volatile large tech names." },
-  BA: { type: "stock", sector: "Industrials", pe: "n/a", returns: {2021: -5.0, 2022: -8.4, 2023: 35.5, 2024: -32.0, 2025: 12.0}, note: "A single company stock, aerospace manufacturer, has faced significant company specific headwinds." },
-  XOM: { type: "stock", sector: "Energy", pe: "13.5", returns: {2021: 57.8, 2022: 80.0, 2023: -8.9, 2024: 6.0, 2025: 5.0}, note: "A single company stock, oil and gas, moves with energy prices more than the broad market does." },
-  CVX: { type: "stock", sector: "Energy", pe: "14.0", returns: {2021: 41.2, 2022: 52.9, 2023: -14.7, 2024: -1.0, 2025: 6.0}, note: "A single company stock, similar profile to XOM, concentrated in the energy sector." },
-  PFE: { type: "stock", sector: "Healthcare", pe: "9.5", returns: {2021: 59.0, 2022: -16.0, 2023: -43.5, 2024: -3.0, 2025: 5.0}, note: "A single company stock, pharmaceutical giant, has had a rough multi year stretch since the pandemic boom." },
-  ABBV: { type: "stock", sector: "Healthcare", pe: "16.0", returns: {2021: 24.0, 2022: 22.5, 2023: -1.4, 2024: 10.0, 2025: 15.0}, note: "A single company stock, pharma, one of the steadier dividend payers in healthcare." },
-  VZ: { type: "stock", sector: "Communication Services", pe: "9.0", returns: {2021: -2.4, 2022: -19.3, 2023: 0.5, 2024: 8.0, 2025: 4.0}, note: "A single company stock, telecom, historically slow growth but a reliable dividend." },
+  AMZN: { type: "stock", yield: "0.00%", sector: "Consumer Discretionary", pe: "38.5", returns: {2021: 2.4, 2022: -49.6, 2023: 80.9, 2024: 44.4, 2025: 12.0}, note: "A single company stock. E-commerce and cloud business combined, still one company's risk." },
+  META: { type: "stock", yield: "0.30%", sector: "Communication Services", pe: "24.8", returns: {2021: 23.1, 2022: -64.2, 2023: 194.1, 2024: 65.4, 2025: 8.5}, note: "A single company stock, historically one of the more volatile large tech names." },
+  NVDA: { type: "stock", yield: "0.03%", sector: "Technology", pe: "45.2", returns: {2021: 125.5, 2022: -50.3, 2023: 238.9, 2024: 171.2, 2025: 15.0}, note: "A single company stock with an extremely high valuation, priced for a lot of future growth to happen." },
+  NFLX: { type: "stock", yield: "0.00%", sector: "Communication Services", pe: "42.0", returns: {2021: 11.3, 2022: -51.1, 2023: 65.1, 2024: 80.9, 2025: 20.0}, note: "A single company stock. Entertainment and streaming, sensitive to subscriber growth trends." },
+  DIS: { type: "stock", yield: "0.10%", sector: "Communication Services", pe: "22.5", returns: {2021: -14.5, 2022: -43.9, 2023: 4.5, 2024: 27.1, 2025: 5.0}, note: "A single company stock, historically choppier than the broad market, streaming plus parks plus media." },
+  KO: { type: "stock", yield: "2.90%", sector: "Consumer Staples", pe: "24.1", returns: {2021: 11.1, 2022: 8.0, 2023: 6.5, 2024: 11.4, 2025: 7.0}, note: "A single company stock, a classic slow and steady dividend payer, lower volatility than growth names." },
+  PEP: { type: "stock", yield: "3.40%", sector: "Consumer Staples", pe: "22.0", returns: {2021: 13.5, 2022: 4.7, 2023: 4.9, 2024: 2.5, 2025: 6.0}, note: "A single company stock, similar profile to KO, steady but not a fast grower." },
+  JNJ: { type: "stock", yield: "3.10%", sector: "Healthcare", pe: "16.8", returns: {2021: 1.7, 2022: -1.1, 2023: 4.6, 2024: 5.0, 2025: 8.0}, note: "A single company stock, healthcare giant, historically defensive during downturns." },
+  PG: { type: "stock", yield: "2.30%", sector: "Consumer Staples", pe: "25.4", returns: {2021: 19.4, 2022: -3.8, 2023: 2.3, 2024: 14.9, 2025: 6.5}, note: "A single company stock, household products, dependable but not a fast grower." },
+  V: { type: "stock", yield: "0.70%", sector: "Financials", pe: "31.0", returns: {2021: 15.2, 2022: -3.3, 2023: 23.5, 2024: 26.2, 2025: 10.0}, note: "A single company stock, payments network, benefits from overall consumer spending growth." },
+  MA: { type: "stock", yield: "0.50%", sector: "Financials", pe: "34.2", returns: {2021: 15.0, 2022: -8.5, 2023: 23.2, 2024: 17.3, 2025: 9.5}, note: "A single company stock, similar business model to V, high overlap in what drives its growth." },
+  JPM: { type: "stock", yield: "2.20%", sector: "Financials", pe: "13.5", returns: {2021: 27.1, 2022: -12.1, 2023: 30.9, 2024: 39.0, 2025: 11.0}, note: "A single company stock, the largest US bank, tends to track interest rates and the broader economy." },
+  BAC: { type: "stock", yield: "2.30%", sector: "Financials", pe: "14.0", returns: {2021: 47.1, 2022: -25.9, 2023: 0.3, 2024: 34.1, 2025: 9.0}, note: "A single company stock, a bank stock historically more volatile than JPM." },
+  WMT: { type: "stock", yield: "1.00%", sector: "Consumer Staples", pe: "38.5", returns: {2021: -2.4, 2022: -0.5, 2023: 16.5, 2024: 71.9, 2025: 12.0}, note: "A single company stock, defensive retailer, tends to hold up better during economic slowdowns." },
+  HD: { type: "stock", yield: "2.20%", sector: "Consumer Discretionary", pe: "24.6", returns: {2021: 56.6, 2022: -24.5, 2023: 9.1, 2024: 12.6, 2025: 5.0}, note: "A single company stock, tied closely to the housing market and consumer renovation spending." },
+  COST: { type: "stock", yield: "0.50%", sector: "Consumer Staples", pe: "48.0", returns: {2021: 47.0, 2022: -20.6, 2023: 47.7, 2024: 53.2, 2025: 10.0}, note: "A single company stock, membership retail model, historically strong and steady with a high valuation." },
+  NKE: { type: "stock", yield: "2.00%", sector: "Consumer Discretionary", pe: "35.0", returns: {2021: -5.5, 2022: -29.6, 2023: -7.8, 2024: -30.0, 2025: 8.0}, note: "A single company stock, brand and consumer spending sensitive, has had a rougher stretch recently." },
+  SBUX: { type: "stock", yield: "2.80%", sector: "Consumer Discretionary", pe: "30.5", returns: {2021: 2.1, 2022: -24.0, 2023: 11.1, 2024: 5.6, 2025: 6.0}, note: "A single company stock, consumer discretionary, sensitive to spending pullbacks." },
+  MCD: { type: "stock", yield: "2.20%", sector: "Consumer Discretionary", pe: "24.0", returns: {2021: 20.6, 2022: 0.4, 2023: 10.9, 2024: 2.8, 2025: 7.0}, note: "A single company stock, historically a defensive fast food giant, steadier than most retail names." },
+  ADBE: { type: "stock", yield: "0.00%", sector: "Technology", pe: "28.5", returns: {2021: 23.1, 2022: -40.1, 2023: 64.6, 2024: -6.0, 2025: 9.0}, note: "A single company stock, software subscription model, tied to creative and marketing spending." },
+  CRM: { type: "stock", yield: "0.40%", sector: "Technology", pe: "38.0", returns: {2021: 9.9, 2022: -47.8, 2023: 98.6, 2024: 29.4, 2025: 8.0}, note: "A single company stock, enterprise software, historically more volatile than mega cap tech." },
+  PYPL: { type: "stock", yield: "0.00%", sector: "Financials", pe: "16.5", returns: {2021: -19.9, 2022: -61.0, 2023: 12.9, 2024: 24.0, 2025: 10.0}, note: "A single company stock, payments and fintech, has seen more volatility than card network peers." },
+  INTC: { type: "stock", yield: "0.00%", sector: "Technology", pe: "n/a", returns: {2021: -1.5, 2022: -48.9, 2023: 94.9, 2024: -52.0, 2025: 15.0}, note: "A single company stock, chipmaker in the middle of a difficult turnaround, a higher risk pick." },
+  AMD: { type: "stock", yield: "0.00%", sector: "Technology", pe: "110.0", returns: {2021: 57.6, 2022: -54.7, 2023: 127.6, 2024: 7.9, 2025: 20.0}, note: "A single company stock, chipmaker, historically one of the more volatile large tech names." },
+  BA: { type: "stock", yield: "0.00%", sector: "Industrials", pe: "n/a", returns: {2021: -5.0, 2022: -8.4, 2023: 35.5, 2024: -32.0, 2025: 12.0}, note: "A single company stock, aerospace manufacturer, has faced significant company specific headwinds." },
+  XOM: { type: "stock", yield: "3.30%", sector: "Energy", pe: "13.5", returns: {2021: 57.8, 2022: 80.0, 2023: -8.9, 2024: 6.0, 2025: 5.0}, note: "A single company stock, oil and gas, moves with energy prices more than the broad market does." },
+  CVX: { type: "stock", yield: "4.00%", sector: "Energy", pe: "14.0", returns: {2021: 41.2, 2022: 52.9, 2023: -14.7, 2024: -1.0, 2025: 6.0}, note: "A single company stock, similar profile to XOM, concentrated in the energy sector." },
+  PFE: { type: "stock", yield: "6.50%", sector: "Healthcare", pe: "9.5", returns: {2021: 59.0, 2022: -16.0, 2023: -43.5, 2024: -3.0, 2025: 5.0}, note: "A single company stock, pharmaceutical giant, has had a rough multi year stretch since the pandemic boom." },
+  ABBV: { type: "stock", yield: "3.30%", sector: "Healthcare", pe: "16.0", returns: {2021: 24.0, 2022: 22.5, 2023: -1.4, 2024: 10.0, 2025: 15.0}, note: "A single company stock, pharma, one of the steadier dividend payers in healthcare." },
+  VZ: { type: "stock", yield: "6.30%", sector: "Communication Services", pe: "9.0", returns: {2021: -2.4, 2022: -19.3, 2023: 0.5, 2024: 8.0, 2025: 4.0}, note: "A single company stock, telecom, historically slow growth but a reliable dividend." },
 
   // 10 individual REITs
-  O: { type: "stock", sector: "Real Estate", pe: "54.0", returns: {2021: 1.5, 2022: -11.1, 2023: 0.8, 2024: 4.5, 2025: 6.0}, note: "A single REIT stock. Owns retail properties, pays a monthly dividend, sensitive to interest rate changes." },
-  PLD: { type: "stock", sector: "Real Estate", pe: "35.0", returns: {2021: 65.4, 2022: -27.9, 2023: 32.9, 2024: -5.5, 2025: 8.0}, note: "A single REIT stock. Owns industrial warehouses, benefits from e-commerce and logistics demand." },
-  AMT: { type: "stock", sector: "Real Estate", pe: "38.0", returns: {2021: 3.9, 2022: -30.7, 2023: 1.1, 2024: 2.5, 2025: 9.0}, note: "A single REIT stock. Owns cell towers, a different kind of real estate tied to telecom infrastructure." },
-  SPG: { type: "stock", sector: "Real Estate", pe: "16.5", returns: {2021: 76.6, 2022: -14.6, 2023: 11.2, 2024: 23.0, 2025: 7.0}, note: "A single REIT stock. Owns shopping malls, tied closely to retail and consumer foot traffic." },
-  EQIX: { type: "stock", sector: "Real Estate", pe: "70.0", returns: {2021: 0.2, 2022: -27.3, 2023: 22.9, 2024: 12.0, 2025: 10.0}, note: "A single REIT stock. Owns data centers, benefits from cloud computing and AI infrastructure demand." },
-  PSA: { type: "stock", sector: "Real Estate", pe: "30.0", returns: {2021: 64.9, 2022: -19.5, 2023: -5.4, 2024: 8.0, 2025: 6.5}, note: "A single REIT stock. Owns self storage facilities, historically a steadier, less volatile REIT." },
-  WELL: { type: "stock", sector: "Real Estate", pe: "60.0", returns: {2021: 16.0, 2022: -25.7, 2023: 26.3, 2024: 47.0, 2025: 12.0}, note: "A single REIT stock. Owns senior housing and healthcare facilities, tied to aging population trends." },
-  DLR: { type: "stock", sector: "Real Estate", pe: "70.0", returns: {2021: -1.6, 2022: -24.1, 2023: 5.3, 2024: 9.0, 2025: 11.0}, note: "A single REIT stock. Owns data centers, a similar profile to Equinix." },
-  VICI: { type: "stock", sector: "Real Estate", pe: "17.0", returns: {2021: 20.3, 2022: 12.1, 2023: 5.4, 2024: -2.0, 2025: 5.0}, note: "A single REIT stock. Owns casino and entertainment properties, a more niche real estate bet." },
-  AVB: { type: "stock", sector: "Real Estate", pe: "22.0", returns: {2021: 33.2, 2022: -27.7, 2023: 1.9, 2024: 5.0, 2025: 6.0}, note: "A single REIT stock. Owns apartment buildings, tied to rental housing demand." },
+  O: { type: "stock", yield: "5.60%", sector: "Real Estate", pe: "54.0", returns: {2021: 1.5, 2022: -11.1, 2023: 0.8, 2024: 4.5, 2025: 6.0}, note: "A single REIT stock. Owns retail properties, pays a monthly dividend, sensitive to interest rate changes." },
+  PLD: { type: "stock", yield: "3.50%", sector: "Real Estate", pe: "35.0", returns: {2021: 65.4, 2022: -27.9, 2023: 32.9, 2024: -5.5, 2025: 8.0}, note: "A single REIT stock. Owns industrial warehouses, benefits from e-commerce and logistics demand." },
+  AMT: { type: "stock", yield: "3.20%", sector: "Real Estate", pe: "38.0", returns: {2021: 3.9, 2022: -30.7, 2023: 1.1, 2024: 2.5, 2025: 9.0}, note: "A single REIT stock. Owns cell towers, a different kind of real estate tied to telecom infrastructure." },
+  SPG: { type: "stock", yield: "4.90%", sector: "Real Estate", pe: "16.5", returns: {2021: 76.6, 2022: -14.6, 2023: 11.2, 2024: 23.0, 2025: 7.0}, note: "A single REIT stock. Owns shopping malls, tied closely to retail and consumer foot traffic." },
+  EQIX: { type: "stock", yield: "2.10%", sector: "Real Estate", pe: "70.0", returns: {2021: 0.2, 2022: -27.3, 2023: 22.9, 2024: 12.0, 2025: 10.0}, note: "A single REIT stock. Owns data centers, benefits from cloud computing and AI infrastructure demand." },
+  PSA: { type: "stock", yield: "3.80%", sector: "Real Estate", pe: "30.0", returns: {2021: 64.9, 2022: -19.5, 2023: -5.4, 2024: 8.0, 2025: 6.5}, note: "A single REIT stock. Owns self storage facilities, historically a steadier, less volatile REIT." },
+  WELL: { type: "stock", yield: "2.30%", sector: "Real Estate", pe: "60.0", returns: {2021: 16.0, 2022: -25.7, 2023: 26.3, 2024: 47.0, 2025: 12.0}, note: "A single REIT stock. Owns senior housing and healthcare facilities, tied to aging population trends." },
+  DLR: { type: "stock", yield: "3.00%", sector: "Real Estate", pe: "70.0", returns: {2021: -1.6, 2022: -24.1, 2023: 5.3, 2024: 9.0, 2025: 11.0}, note: "A single REIT stock. Owns data centers, a similar profile to Equinix." },
+  VICI: { type: "stock", yield: "5.10%", sector: "Real Estate", pe: "17.0", returns: {2021: 20.3, 2022: 12.1, 2023: 5.4, 2024: -2.0, 2025: 5.0}, note: "A single REIT stock. Owns casino and entertainment properties, a more niche real estate bet." },
+  AVB: { type: "stock", yield: "3.20%", sector: "Real Estate", pe: "22.0", returns: {2021: 33.2, 2022: -27.7, 2023: 1.9, 2024: 5.0, 2025: 6.0}, note: "A single REIT stock. Owns apartment buildings, tied to rental housing demand." },
 
   // 7 Fidelity ETFs and index funds
-  FXAIX: { type: "etf", expense: "0.015%", holdingsCount: "500+", returns: {2021: 28.7, 2022: -18.1, 2023: 26.3, 2024: 25.0, 2025: 12.1}, note: "Fidelity's S&P 500 fund, nearly identical to VOO with an even lower expense ratio, full overlap if you own either." },
-  FZROX: { type: "etf", expense: "0.00%", holdingsCount: "2,700+", returns: {2021: 25.7, 2022: -19.7, 2023: 25.9, 2024: 23.5, 2025: 11.6}, note: "A zero fee total market fund, similar to VTI, only available if you hold it directly at Fidelity." },
-  FSKAX: { type: "etf", expense: "0.015%", holdingsCount: "3,900+", returns: {2021: 25.7, 2022: -19.5, 2023: 26.0, 2024: 23.7, 2025: 11.6}, note: "Very similar to VTI, covers the whole US stock market at a low cost." },
-  FTEC: { type: "etf", expense: "0.084%", holdingsCount: "290+", returns: {2021: 33.8, 2022: -28.0, 2023: 56.9, 2024: 22.0, 2025: 9.5}, note: "A technology sector fund, similar overlap concerns as XLK, heavy in AAPL, MSFT, and NVDA." },
-  FDVV: { type: "etf", expense: "0.16%", holdingsCount: "100+", returns: {2021: 26.5, 2022: -3.5, 2023: 6.0, 2024: 16.0, 2025: 9.0}, note: "Focused on high dividend payers, similar goal to VYM and SCHD, worth comparing overlap before owning more than one." },
-  FREL: { type: "etf", expense: "0.084%", holdingsCount: "160+", returns: {2021: 41.0, 2022: -26.5, 2023: 1.8, 2024: 4.0, 2025: 9.0}, note: "A real estate sector fund, similar to VNQ, adds property exposure outside of stocks." },
-  FBND: { type: "etf", expense: "0.36%", holdingsCount: "1,000+", returns: {2021: -1.5, 2022: -13.0, 2023: 6.5, 2024: 4.2, 2025: 4.8}, note: "A bond fund, moves differently than stock funds, used to balance risk rather than chase growth." },
+  FXAIX: { type: "etf", yield: "1.30%", expense: "0.015%", holdingsCount: "500+", returns: {2021: 28.7, 2022: -18.1, 2023: 26.3, 2024: 25.0, 2025: 12.1}, note: "Fidelity's S&P 500 fund, nearly identical to VOO with an even lower expense ratio, full overlap if you own either." },
+  FZROX: { type: "etf", yield: "1.30%", expense: "0.00%", holdingsCount: "2,700+", returns: {2021: 25.7, 2022: -19.7, 2023: 25.9, 2024: 23.5, 2025: 11.6}, note: "A zero fee total market fund, similar to VTI, only available if you hold it directly at Fidelity." },
+  FSKAX: { type: "etf", yield: "1.30%", expense: "0.015%", holdingsCount: "3,900+", returns: {2021: 25.7, 2022: -19.5, 2023: 26.0, 2024: 23.7, 2025: 11.6}, note: "Very similar to VTI, covers the whole US stock market at a low cost." },
+  FTEC: { type: "etf", yield: "0.60%", expense: "0.084%", holdingsCount: "290+", returns: {2021: 33.8, 2022: -28.0, 2023: 56.9, 2024: 22.0, 2025: 9.5}, note: "A technology sector fund, similar overlap concerns as XLK, heavy in AAPL, MSFT, and NVDA." },
+  FDVV: { type: "etf", yield: "2.90%", expense: "0.16%", holdingsCount: "100+", returns: {2021: 26.5, 2022: -3.5, 2023: 6.0, 2024: 16.0, 2025: 9.0}, note: "Focused on high dividend payers, similar goal to VYM and SCHD, worth comparing overlap before owning more than one." },
+  FREL: { type: "etf", yield: "3.60%", expense: "0.084%", holdingsCount: "160+", returns: {2021: 41.0, 2022: -26.5, 2023: 1.8, 2024: 4.0, 2025: 9.0}, note: "A real estate sector fund, similar to VNQ, adds property exposure outside of stocks." },
+  FBND: { type: "etf", yield: "3.30%", expense: "0.36%", holdingsCount: "1,000+", returns: {2021: -1.5, 2022: -13.0, 2023: 6.5, 2024: 4.2, 2025: 4.8}, note: "A bond fund, moves differently than stock funds, used to balance risk rather than chase growth." },
 
   // 7 Schwab ETFs
-  SCHB: { type: "etf", expense: "0.03%", holdingsCount: "2,500+", returns: {2021: 25.9, 2022: -19.6, 2023: 25.8, 2024: 23.5, 2025: 11.5}, note: "Covers nearly the whole US stock market, very similar to VTI." },
-  SCHX: { type: "etf", expense: "0.03%", holdingsCount: "750+", returns: {2021: 27.5, 2022: -18.5, 2023: 25.9, 2024: 24.5, 2025: 12.0}, note: "Large cap focused, high overlap with VOO and SPY." },
-  SCHG: { type: "etf", expense: "0.04%", holdingsCount: "230+", returns: {2021: 26.6, 2022: -30.0, 2023: 44.6, 2024: 29.0, 2025: 13.0}, note: "Growth focused, similar overlap concerns as VUG, heavy in the same mega cap tech names." },
-  SCHV: { type: "etf", expense: "0.04%", holdingsCount: "440+", returns: {2021: 26.0, 2022: -3.0, 2023: 9.5, 2024: 15.5, 2025: 9.5}, note: "Value focused, similar to VTV, tilts toward financials and healthcare." },
-  SCHF: { type: "etf", expense: "0.06%", holdingsCount: "1,500+", returns: {2021: 11.0, 2022: -15.8, 2023: 17.0, 2024: 5.0, 2025: 10.5}, note: "International stocks outside the US, similar goal to VXUS, adds real diversification." },
-  SCHA: { type: "etf", expense: "0.04%", holdingsCount: "1,750+", returns: {2021: 18.7, 2022: -17.9, 2023: 18.3, 2024: 11.0, 2025: 7.5}, note: "Small cap companies, a similar risk profile to IWM." },
-  SCHM: { type: "etf", expense: "0.04%", holdingsCount: "500+", returns: {2021: 24.6, 2022: -14.9, 2023: 15.6, 2024: 14.0, 2025: 8.5}, note: "Mid sized companies, sits between large cap funds like VOO and small cap funds like IWM." },
+  SCHB: { type: "etf", yield: "1.30%", expense: "0.03%", holdingsCount: "2,500+", returns: {2021: 25.9, 2022: -19.6, 2023: 25.8, 2024: 23.5, 2025: 11.5}, note: "Covers nearly the whole US stock market, very similar to VTI." },
+  SCHX: { type: "etf", yield: "1.30%", expense: "0.03%", holdingsCount: "750+", returns: {2021: 27.5, 2022: -18.5, 2023: 25.9, 2024: 24.5, 2025: 12.0}, note: "Large cap focused, high overlap with VOO and SPY." },
+  SCHG: { type: "etf", yield: "0.50%", expense: "0.04%", holdingsCount: "230+", returns: {2021: 26.6, 2022: -30.0, 2023: 44.6, 2024: 29.0, 2025: 13.0}, note: "Growth focused, similar overlap concerns as VUG, heavy in the same mega cap tech names." },
+  SCHV: { type: "etf", yield: "2.20%", expense: "0.04%", holdingsCount: "440+", returns: {2021: 26.0, 2022: -3.0, 2023: 9.5, 2024: 15.5, 2025: 9.5}, note: "Value focused, similar to VTV, tilts toward financials and healthcare." },
+  SCHF: { type: "etf", yield: "2.80%", expense: "0.06%", holdingsCount: "1,500+", returns: {2021: 11.0, 2022: -15.8, 2023: 17.0, 2024: 5.0, 2025: 10.5}, note: "International stocks outside the US, similar goal to VXUS, adds real diversification." },
+  SCHA: { type: "etf", yield: "1.10%", expense: "0.04%", holdingsCount: "1,750+", returns: {2021: 18.7, 2022: -17.9, 2023: 18.3, 2024: 11.0, 2025: 7.5}, note: "Small cap companies, a similar risk profile to IWM." },
+  SCHM: { type: "etf", yield: "1.20%", expense: "0.04%", holdingsCount: "500+", returns: {2021: 24.6, 2022: -14.9, 2023: 15.6, 2024: 14.0, 2025: 8.5}, note: "Mid sized companies, sits between large cap funds like VOO and small cap funds like IWM." },
 
   // 2 semiconductor ETFs
-  SOXX: { type: "etf", expense: "0.35%", holdingsCount: "30", returns: {2021: 41.6, 2022: -34.8, 2023: 66.0, 2024: 14.0, 2025: 18.0}, note: "A concentrated bet on chipmakers, high overlap with the semiconductor names already inside QQQ and XLK." },
-  SMH: { type: "etf", expense: "0.35%", holdingsCount: "25", returns: {2021: 44.0, 2022: -35.8, 2023: 70.8, 2024: 15.0, 2025: 17.0}, note: "Very similar to SOXX, the same sector bet on chipmakers, high overlap if you own both." },
+  SOXX: { type: "etf", yield: "0.80%", expense: "0.35%", holdingsCount: "30", returns: {2021: 41.6, 2022: -34.8, 2023: 66.0, 2024: 14.0, 2025: 18.0}, note: "A concentrated bet on chipmakers, high overlap with the semiconductor names already inside QQQ and XLK." },
+  SMH: { type: "etf", yield: "0.60%", expense: "0.35%", holdingsCount: "25", returns: {2021: 44.0, 2022: -35.8, 2023: 70.8, 2024: 15.0, 2025: 17.0}, note: "Very similar to SOXX, the same sector bet on chipmakers, high overlap if you own both." },
 
   // 24 additional individual stocks
-  "BRK.B": { type: "stock", sector: "Financials", pe: "22.0", returns: {2021: 29.6, 2022: 4.0, 2023: 15.8, 2024: 27.3, 2025: 8.0}, note: "A single company stock, a diversified holding company run by Warren Buffett, lower volatility than most individual stocks." },
-  UNH: { type: "stock", sector: "Healthcare", pe: "18.0", returns: {2021: 45.7, 2022: 7.1, 2023: -1.7, 2024: -32.0, 2025: 10.0}, note: "A single company stock, health insurer, has had a rougher recent stretch after years of steady growth." },
-  LLY: { type: "stock", sector: "Healthcare", pe: "58.0", returns: {2021: 64.7, 2022: 33.1, 2023: 59.0, 2024: 32.0, 2025: 5.0}, note: "A single company stock, pharmaceutical, driven heavily by demand for its weight loss and diabetes drugs." },
-  TSM: { type: "stock", sector: "Technology", pe: "26.0", returns: {2021: 12.1, 2022: -40.1, 2023: 42.4, 2024: 93.0, 2025: 20.0}, note: "A single company stock, the world's largest chip manufacturer, carries added geopolitical risk given its location." },
-  ORCL: { type: "stock", sector: "Technology", pe: "40.0", returns: {2021: 33.7, 2022: -8.8, 2023: 35.7, 2024: 80.0, 2025: 15.0}, note: "A single company stock, enterprise software and cloud infrastructure." },
-  IBM: { type: "stock", sector: "Technology", pe: "26.0", returns: {2021: 9.8, 2022: -2.1, 2023: 14.1, 2024: 38.0, 2025: 9.0}, note: "A single company stock, legacy tech giant that has been repositioning around AI and hybrid cloud." },
-  GE: { type: "stock", sector: "Industrials", pe: "35.0", returns: {2021: -3.3, 2022: -11.4, 2023: 99.0, 2024: 14.0, 2025: 10.0}, note: "A single company stock, industrial conglomerate that has gone through a major multi year restructuring." },
-  CAT: { type: "stock", sector: "Industrials", pe: "18.0", returns: {2021: 20.2, 2022: 13.5, 2023: 23.1, 2024: 24.0, 2025: 7.0}, note: "A single company stock, heavy machinery, tied closely to construction and infrastructure spending." },
-  DE: { type: "stock", sector: "Industrials", pe: "17.0", returns: {2021: 15.5, 2022: 25.4, 2023: -2.9, 2024: -4.0, 2025: 6.0}, note: "A single company stock, agricultural equipment, tied to farm income and commodity prices." },
-  LOW: { type: "stock", sector: "Consumer Discretionary", pe: "22.0", returns: {2021: 65.6, 2022: -24.5, 2023: 1.5, 2024: 5.0, 2025: 6.0}, note: "A single company stock, home improvement retailer, a similar profile to Home Depot." },
-  TGT: { type: "stock", sector: "Consumer Discretionary", pe: "13.0", returns: {2021: 16.7, 2022: -36.8, 2023: 14.9, 2024: 2.0, 2025: 4.0}, note: "A single company stock, general retailer, has underperformed peers like Walmart and Costco recently." },
-  CMG: { type: "stock", sector: "Consumer Discretionary", pe: "45.0", returns: {2021: 24.6, 2022: -14.6, 2023: 65.2, 2024: 30.0, 2025: 5.0}, note: "A single company stock, fast casual restaurant chain, historically a strong grower with a high valuation." },
-  UBER: { type: "stock", sector: "Technology", pe: "15.0", returns: {2021: -14.3, 2022: -42.1, 2023: 148.7, 2024: 6.0, 2025: 20.0}, note: "A single company stock, rideshare and delivery platform, became profitable more recently than many tech peers." },
-  SHOP: { type: "stock", sector: "Technology", pe: "80.0", returns: {2021: -0.4, 2022: -74.9, 2023: 124.5, 2024: 33.0, 2025: 25.0}, note: "A single company stock, e-commerce platform, historically very volatile." },
-  SQ: { type: "stock", sector: "Financials", pe: "22.0", returns: {2021: -14.5, 2022: -53.7, 2023: 11.6, 2024: -3.0, 2025: 15.0}, note: "A single company stock, payments and fintech, includes the Cash App and Square products." },
-  SNOW: { type: "stock", sector: "Technology", pe: "n/a", returns: {2021: -20.0, 2022: -48.6, 2023: 29.9, 2024: -25.0, 2025: 18.0}, note: "A single company stock, cloud data platform, unprofitable and historically volatile." },
-  PLTR: { type: "stock", sector: "Technology", pe: "180.0", returns: {2021: -27.4, 2022: -64.9, 2023: 167.2, 2024: 340.0, 2025: 30.0}, note: "A single company stock, data analytics and AI software, one of the more speculative, high volatility names here." },
-  RIVN: { type: "stock", sector: "Consumer Discretionary", pe: "n/a", returns: {2021: -82.0, 2022: -81.5, 2023: -44.0, 2024: -45.0, 2025: 10.0}, note: "A single company stock, electric vehicle startup, unprofitable and high risk, a very different bet than an established automaker." },
-  F: { type: "stock", sector: "Consumer Discretionary", pe: "9.0", returns: {2021: 135.9, 2022: -42.9, 2023: 16.0, 2024: -13.0, 2025: 5.0}, note: "A single company stock, traditional automaker transitioning toward EVs, a lower valuation than growth stocks." },
-  GM: { type: "stock", sector: "Consumer Discretionary", pe: "6.0", returns: {2021: 41.9, 2022: -43.6, 2023: 18.2, 2024: 47.0, 2025: 8.0}, note: "A single company stock, a similar profile to Ford, traditional automaker with a low valuation." },
-  TMUS: { type: "stock", sector: "Communication Services", pe: "23.0", returns: {2021: 0.1, 2022: 22.3, 2023: 26.6, 2024: 38.0, 2025: 9.0}, note: "A single company stock, telecom, has grown faster than older peers like Verizon and AT&T." },
-  QCOM: { type: "stock", sector: "Technology", pe: "16.0", returns: {2021: 14.0, 2022: -32.6, 2023: 35.1, 2024: 5.0, 2025: 12.0}, note: "A single company stock, chipmaker focused on mobile and wireless technology." },
-  TXN: { type: "stock", sector: "Technology", pe: "32.0", returns: {2021: 6.5, 2022: -6.7, 2023: 0.9, 2024: 14.0, 2025: 8.0}, note: "A single company stock, analog chipmaker, historically steadier than more speculative chip names." },
-  MU: { type: "stock", sector: "Technology", pe: "20.0", returns: {2021: 19.5, 2022: -44.0, 2023: 57.6, 2024: 76.0, 2025: 35.0}, note: "A single company stock, memory chipmaker, historically one of the more cyclical and volatile chip stocks." }
+  "BRK.B": { type: "stock", yield: "0.00%", sector: "Financials", pe: "22.0", returns: {2021: 29.6, 2022: 4.0, 2023: 15.8, 2024: 27.3, 2025: 8.0}, note: "A single company stock, a diversified holding company run by Warren Buffett, lower volatility than most individual stocks." },
+  UNH: { type: "stock", yield: "1.70%", sector: "Healthcare", pe: "18.0", returns: {2021: 45.7, 2022: 7.1, 2023: -1.7, 2024: -32.0, 2025: 10.0}, note: "A single company stock, health insurer, has had a rougher recent stretch after years of steady growth." },
+  LLY: { type: "stock", yield: "0.70%", sector: "Healthcare", pe: "58.0", returns: {2021: 64.7, 2022: 33.1, 2023: 59.0, 2024: 32.0, 2025: 5.0}, note: "A single company stock, pharmaceutical, driven heavily by demand for its weight loss and diabetes drugs." },
+  TSM: { type: "stock", yield: "1.30%", sector: "Technology", pe: "26.0", returns: {2021: 12.1, 2022: -40.1, 2023: 42.4, 2024: 93.0, 2025: 20.0}, note: "A single company stock, the world's largest chip manufacturer, carries added geopolitical risk given its location." },
+  ORCL: { type: "stock", yield: "0.90%", sector: "Technology", pe: "40.0", returns: {2021: 33.7, 2022: -8.8, 2023: 35.7, 2024: 80.0, 2025: 15.0}, note: "A single company stock, enterprise software and cloud infrastructure." },
+  IBM: { type: "stock", yield: "3.00%", sector: "Technology", pe: "26.0", returns: {2021: 9.8, 2022: -2.1, 2023: 14.1, 2024: 38.0, 2025: 9.0}, note: "A single company stock, legacy tech giant that has been repositioning around AI and hybrid cloud." },
+  GE: { type: "stock", yield: "0.60%", sector: "Industrials", pe: "35.0", returns: {2021: -3.3, 2022: -11.4, 2023: 99.0, 2024: 14.0, 2025: 10.0}, note: "A single company stock, industrial conglomerate that has gone through a major multi year restructuring." },
+  CAT: { type: "stock", yield: "1.60%", sector: "Industrials", pe: "18.0", returns: {2021: 20.2, 2022: 13.5, 2023: 23.1, 2024: 24.0, 2025: 7.0}, note: "A single company stock, heavy machinery, tied closely to construction and infrastructure spending." },
+  DE: { type: "stock", yield: "1.50%", sector: "Industrials", pe: "17.0", returns: {2021: 15.5, 2022: 25.4, 2023: -2.9, 2024: -4.0, 2025: 6.0}, note: "A single company stock, agricultural equipment, tied to farm income and commodity prices." },
+  LOW: { type: "stock", yield: "1.90%", sector: "Consumer Discretionary", pe: "22.0", returns: {2021: 65.6, 2022: -24.5, 2023: 1.5, 2024: 5.0, 2025: 6.0}, note: "A single company stock, home improvement retailer, a similar profile to Home Depot." },
+  TGT: { type: "stock", yield: "3.00%", sector: "Consumer Discretionary", pe: "13.0", returns: {2021: 16.7, 2022: -36.8, 2023: 14.9, 2024: 2.0, 2025: 4.0}, note: "A single company stock, general retailer, has underperformed peers like Walmart and Costco recently." },
+  CMG: { type: "stock", yield: "0.00%", sector: "Consumer Discretionary", pe: "45.0", returns: {2021: 24.6, 2022: -14.6, 2023: 65.2, 2024: 30.0, 2025: 5.0}, note: "A single company stock, fast casual restaurant chain, historically a strong grower with a high valuation." },
+  UBER: { type: "stock", yield: "0.00%", sector: "Technology", pe: "15.0", returns: {2021: -14.3, 2022: -42.1, 2023: 148.7, 2024: 6.0, 2025: 20.0}, note: "A single company stock, rideshare and delivery platform, became profitable more recently than many tech peers." },
+  SHOP: { type: "stock", yield: "0.00%", sector: "Technology", pe: "80.0", returns: {2021: -0.4, 2022: -74.9, 2023: 124.5, 2024: 33.0, 2025: 25.0}, note: "A single company stock, e-commerce platform, historically very volatile." },
+  SQ: { type: "stock", yield: "0.00%", sector: "Financials", pe: "22.0", returns: {2021: -14.5, 2022: -53.7, 2023: 11.6, 2024: -3.0, 2025: 15.0}, note: "A single company stock, payments and fintech, includes the Cash App and Square products." },
+  SNOW: { type: "stock", yield: "0.00%", sector: "Technology", pe: "n/a", returns: {2021: -20.0, 2022: -48.6, 2023: 29.9, 2024: -25.0, 2025: 18.0}, note: "A single company stock, cloud data platform, unprofitable and historically volatile." },
+  PLTR: { type: "stock", yield: "0.00%", sector: "Technology", pe: "180.0", returns: {2021: -27.4, 2022: -64.9, 2023: 167.2, 2024: 340.0, 2025: 30.0}, note: "A single company stock, data analytics and AI software, one of the more speculative, high volatility names here." },
+  RIVN: { type: "stock", yield: "0.00%", sector: "Consumer Discretionary", pe: "n/a", returns: {2021: -82.0, 2022: -81.5, 2023: -44.0, 2024: -45.0, 2025: 10.0}, note: "A single company stock, electric vehicle startup, unprofitable and high risk, a very different bet than an established automaker." },
+  F: { type: "stock", yield: "5.50%", sector: "Consumer Discretionary", pe: "9.0", returns: {2021: 135.9, 2022: -42.9, 2023: 16.0, 2024: -13.0, 2025: 5.0}, note: "A single company stock, traditional automaker transitioning toward EVs, a lower valuation than growth stocks." },
+  GM: { type: "stock", yield: "1.00%", sector: "Consumer Discretionary", pe: "6.0", returns: {2021: 41.9, 2022: -43.6, 2023: 18.2, 2024: 47.0, 2025: 8.0}, note: "A single company stock, a similar profile to Ford, traditional automaker with a low valuation." },
+  TMUS: { type: "stock", yield: "1.50%", sector: "Communication Services", pe: "23.0", returns: {2021: 0.1, 2022: 22.3, 2023: 26.6, 2024: 38.0, 2025: 9.0}, note: "A single company stock, telecom, has grown faster than older peers like Verizon and AT&T." },
+  QCOM: { type: "stock", yield: "2.10%", sector: "Technology", pe: "16.0", returns: {2021: 14.0, 2022: -32.6, 2023: 35.1, 2024: 5.0, 2025: 12.0}, note: "A single company stock, chipmaker focused on mobile and wireless technology." },
+  TXN: { type: "stock", yield: "3.10%", sector: "Technology", pe: "32.0", returns: {2021: 6.5, 2022: -6.7, 2023: 0.9, 2024: 14.0, 2025: 8.0}, note: "A single company stock, analog chipmaker, historically steadier than more speculative chip names." },
+  MU: { type: "stock", yield: "0.40%", sector: "Technology", pe: "20.0", returns: {2021: 19.5, 2022: -44.0, 2023: 57.6, 2024: 76.0, 2025: 35.0}, note: "A single company stock, memory chipmaker, historically one of the more cyclical and volatile chip stocks." }
 };
 
 const STARTER_TICKERS = Object.keys(STATIC_SUPPLEMENT);
@@ -1274,6 +1382,9 @@ async function getTicker(symbol) {
   const json = await resp.json();
 
   if (!resp.ok) {
+    if (resp.status === 429) {
+      throw new Error("We're getting a lot of lookups right now and hit our data limit. Try again in a few minutes.");
+    }
     throw new Error(json.error || `Couldn't find "${symbol}".`);
   }
 
@@ -1289,6 +1400,7 @@ async function getTicker(symbol) {
     pe: supplement.pe,
     expense: supplement.expense,
     holdings: supplement.holdingsCount,
+    yield: supplement.yield,
     returns: supplement.returns || null,
     note: supplement.note || "Live price pulled from Twelve Data. Extended stats like sector, expense ratio, and 5 year history are available for our starter list of tickers right now, more are being added over time.",
   };
@@ -1321,6 +1433,7 @@ const DEFINITIONS = {
   fractional: "Buying a partial share instead of a whole one, so your exact dollar amount gets invested even if it's less than one full share's price.",
   wholeOnly: "Some brokers only let you buy full shares of certain funds, so any leftover money after buying whole shares sits uninvested until you add more.",
   risk: "Based on how much this ticker's yearly returns have swung over the last 5 years. Low means steadier, high means bigger ups and downs.",
+  yield: "The percentage of the current price paid back to you each year in dividends, before any price growth. A 0% yield means it doesn't pay a dividend at all, common for growth focused stocks and funds.",
 };
 
 let defToastTimer;
@@ -1387,7 +1500,7 @@ function renderQuickTickers() {
   quickWrap.innerHTML = '';
 
   if (activeCategory === 'saved') {
-    const saved = getWatchlist();
+    const saved = getWatchlist().sort();
     if (saved.length === 0) {
       const msg = document.createElement('div');
       msg.className = 'portfolio-empty';
@@ -1405,7 +1518,7 @@ function renderQuickTickers() {
     return;
   }
 
-  STARTER_TICKERS.filter(t => getCategory(t) === activeCategory).forEach(t => {
+  STARTER_TICKERS.filter(t => getCategory(t) === activeCategory).sort().forEach(t => {
     const btn = document.createElement('button');
     btn.textContent = t;
     btn.onclick = () => { document.getElementById('tickerInput').value = t; lookup(); };
@@ -1557,10 +1670,12 @@ function renderCard(symbol, d) {
 
   const statsLabelsHtml = isEtf ? `
       <div class="stat"><div class="stat-label">Expense ratio<span class="info-icon" onclick="showDef('expense')">i</span></div><div class="stat-value">${d.expense || 'Not available'}</div></div>
+      <div class="stat"><div class="stat-label">Dividend yield<span class="info-icon" onclick="showDef('yield')">i</span></div><div class="stat-value">${d.yield || 'Not available'}</div></div>
       <div class="stat"><div class="stat-label">Holdings<span class="info-icon" onclick="showDef('holdings')">i</span></div><div class="stat-value">${d.holdings || 'Not available'}</div></div>
     ` : `
       <div class="stat"><div class="stat-label">Sector<span class="info-icon" onclick="showDef('sector')">i</span></div><div class="stat-value">${d.sector || 'Not available'}</div></div>
       <div class="stat"><div class="stat-label">P/E ratio<span class="info-icon" onclick="showDef('pe')">i</span></div><div class="stat-value">${d.pe || 'Not available'}</div></div>
+      <div class="stat"><div class="stat-label">Dividend yield<span class="info-icon" onclick="showDef('yield')">i</span></div><div class="stat-value">${d.yield || 'Not available'}</div></div>
     `;
 
   return `
@@ -1610,6 +1725,106 @@ async function lookup() {
     empty.style.display = 'block';
     empty.textContent = err.message || `Couldn't find "${symbol}", double check the symbol and try again.`;
   }
+}
+
+const GLOSSARY = [
+  { term: "401(k)", def: "A retirement account offered through a for profit employer, often with a company match, contributions usually come straight out of your paycheck." },
+  { term: "403(b)", def: "A retirement account similar to a 401(k), but offered by nonprofits, schools, hospitals, and other tax exempt organizations instead of for profit companies." },
+  { term: "457(b)", def: "A retirement account for state and local government employees, works similarly to a 401(k), but often has different, more flexible early withdrawal rules." },
+  { term: "52 week range", def: "The lowest and highest price a stock or fund has traded at over the past year, useful for seeing where the current price sits in context." },
+  { term: "Ask price", def: "The lowest price someone is currently willing to sell a stock for." },
+  { term: "Asset allocation", def: "How your money is divided across different types of investments, like stocks, bonds, and cash, based on your goals and timeline." },
+  { term: "Backdoor Roth", def: "A workaround for high earners who make too much to contribute to a Roth IRA directly, you put money into a traditional IRA first, then convert it to a Roth. A bit more paperwork, but it gets the same tax free growth for people over the income limit." },
+  { term: "Bear market", def: "A period when prices are generally falling, typically defined as a drop of 20% or more from a recent high." },
+  { term: "Bid price", def: "The highest price someone is currently willing to pay for a stock." },
+  { term: "Blue chip stock", def: "A large, well known, financially stable company with a long track record, think the kind of name your grandmother would recognize." },
+  { term: "Bond", def: "A loan you make to a government or company, which pays you back with interest over time. Generally lower risk and lower return than stocks." },
+  { term: "Broker", def: "Another word for a brokerage, or sometimes the platform itself that executes your trade." },
+  { term: "Brokerage", def: "The company or app you use to actually buy and sell stocks and funds, think Vanguard, Fidelity, or Schwab." },
+  { term: "Bull market", def: "A period when prices are generally rising and confidence is high." },
+  { term: "Capital gains", def: "The profit you make when you sell an investment for more than you paid for it." },
+  { term: "Capital gains tax", def: "The tax owed on that profit, the rate depends on how long you held the investment before selling." },
+  { term: "Compound interest", def: "Earning returns not just on your original money, but on the returns it already earned, which is why starting early matters so much." },
+  { term: "Diversification", def: "Spreading your money across many different companies or funds instead of betting it all on one, so one bad company doesn't sink your whole portfolio." },
+  { term: "Dividend", def: "A cash payment some companies make to shareholders, usually every quarter, as a way of sharing profit." },
+  { term: "Dividend reinvestment, or DRIP", def: "Automatically using your dividend payments to buy more shares instead of taking the cash, which speeds up growth over time." },
+  { term: "Dividend yield", def: "The percentage of the current price paid back to you each year in dividends, before any price growth. 0% means it doesn't pay a dividend at all." },
+  { term: "Dollar cost averaging", def: "Investing a fixed amount on a regular schedule regardless of price, so you buy more shares when prices are low and fewer when they're high.", selma: "They made this shit complicated for no reason. It simply means you invest the same amount of money every month, no matter the stock price." },
+  { term: "Dow Jones", def: "An older index tracking 30 large, well established US companies, one of the most widely quoted market measures." },
+  { term: "Employer match", def: "Free money your employer adds to your 401(k) when you contribute, usually up to a certain percentage of your salary. Leaving this unclaimed is leaving free money on the table." },
+  { term: "ETF", def: "Short for exchange traded fund, a basket of many stocks or bonds bundled into one thing you can buy with a single purchase, like a starter pack of companies. Examples: VOO, QQQ, SCHD." },
+  { term: "Expense ratio", def: "The yearly fee a fund charges to manage your money, taken automatically out of your returns. Lower is better, most good index funds charge under 0.20%." },
+  { term: "Fractional share", def: "Buying a partial share instead of a whole one, so your exact dollar amount gets invested even if it's less than one full share's price." },
+  { term: "Growth stock", def: "A company expected to grow faster than average, usually reinvesting profit into the business instead of paying dividends." },
+  { term: "Holdings", def: "How many different companies a fund actually owns. More holdings generally means more built in diversification." },
+  { term: "Index fund", def: "A fund built to match a specific market index, like the S&P 500, instead of a person picking stocks by hand. Usually low cost and widely recommended for beginners." },
+  { term: "Inflation", def: "The general rise in prices over time, which is why money sitting still loses purchasing power." },
+  { term: "Interest rate", def: "The cost of borrowing money, set in large part by the Federal Reserve, which ripples through everything from mortgages to how stocks are priced." },
+  { term: "Large cap", def: "A company with a market cap generally above $10 billion, usually well established and less volatile." },
+  { term: "Limit order", def: "An order to buy or sell only at a specific price or better, it might not execute right away, or at all, if the price isn't hit." },
+  { term: "Liquidity", def: "How easily an investment can be turned into cash without losing value. Stocks are generally very liquid, real estate is not." },
+  { term: "Market cap", def: "The total value of a company, found by multiplying its share price by the number of shares that exist." },
+  { term: "Market order", def: "An order to buy or sell immediately at the current price, whatever that happens to be.", selma: "Most of your trades will happen here. It simply means you're buying or selling the stock at the price you currently see it for." },
+  { term: "Mid cap", def: "A company with a market cap roughly between $2 billion and $10 billion, a middle ground on risk and growth potential." },
+  { term: "Mutual fund", def: "Similar to an ETF, a bundle of many investments in one, but usually bought directly through the fund company instead of traded like a stock during the day." },
+  { term: "Nasdaq", def: "A stock exchange known for listing many technology companies, also the name of an index tracking its largest names." },
+  { term: "Options trading", def: "A way to bet on which direction a stock's price will move using contracts instead of buying the stock itself. Higher risk, more complex, and not necessary for building wealth as a beginner.", selma: "Real tea, I lost money doing this, LMFAO. I gained money too, but I really lost overall. This should not be your first move when it comes to investing, long term investing should be." },
+  { term: "Overlap", def: "When two or more of your investments secretly own a lot of the same underlying companies, meaning you're paying for the same exposure more than once." },
+  { term: "P/E ratio", def: "Compares a company's stock price to how much profit it makes. A higher number usually means the stock is priced for a lot of future growth." },
+  { term: "Portfolio", def: "Everything you own across your investments, all your holdings combined." },
+  { term: "Rebalancing", def: "Periodically adjusting your portfolio back to your original target mix, since some investments grow faster than others over time." },
+  { term: "Recession", def: "A period of significant economic decline, typically affecting jobs, spending, and company profits." },
+  { term: "REIT", def: "Short for real estate investment trust, a way to invest in real estate, like apartment buildings or data centers, without buying property yourself. Examples: O, PLD, VICI." },
+  { term: "Risk tolerance", def: "How much ups and downs in value you can handle emotionally and financially before it affects your decisions.", selma: "This is one of the most important things to know about yourself. Don't invest in a volatile stock when you know your risk tolerance is low, and you're the type to sell when the stock is at its lowest." },
+  { term: "Roth IRA", def: "A retirement account you fund with money you've already paid tax on, so withdrawals in retirement are tax free.", selma: "Friend, I got this account and you need to have one too! It's NOT optional, especially if you're within the income limits! We love tax free growth!" },
+  { term: "S&P 500", def: "An index tracking 500 of the largest US companies, often used as a stand in for how the overall US stock market is doing." },
+  { term: "Sector", def: "The industry a company operates in, like Technology or Healthcare. Owning several companies in the same sector means less real diversification than it looks like." },
+  { term: "Small cap", def: "A company with a market cap generally under $2 billion, often earlier stage and more volatile." },
+  { term: "Spread", def: "The gap between the bid and ask price, usually small for popular stocks and funds." },
+  { term: "Stock", def: "Owning a small piece of one specific company. When you buy a stock, your money is tied to how that one business performs, not a basket of many. Examples: AAPL, MSFT, TSLA." },
+  { term: "Stock split", def: "When a company divides its existing shares into more shares at a lower price each, the total value you own doesn't change." },
+  { term: "TIAA", def: "A major retirement account provider that manages 403(b) and other plans, especially common in education, healthcare, and nonprofit jobs. If your employer uses TIAA, that's who's actually holding and investing your account, similar to how Fidelity or Vanguard would." },
+  { term: "Ticker symbol", def: "The short code used to look up a stock or fund, like AAPL for Apple or VOO for Vanguard's S&P 500 fund." },
+  { term: "Total return", def: "The full picture of what an investment earned, combining both price growth and any dividends paid along the way." },
+  { term: "Traditional IRA", def: "A retirement account funded with pre tax money, lowering your taxable income now, but you pay tax when you withdraw in retirement." },
+  { term: "TSP, or Thrift Savings Plan", def: "The retirement account offered to federal government employees and military service members, works a lot like a 401(k) with low cost fund options." },
+  { term: "Value stock", def: "A company that looks cheap relative to its earnings or assets, often more established and slower growing than a growth stock." },
+  { term: "Vesting", def: "The waiting period before employer contributions to your 401(k) fully belong to you if you leave the job." },
+  { term: "Volatility", def: "How much a price swings up and down over time. High volatility means bigger, faster moves in either direction." },
+];
+
+function renderGlossaryList(list) {
+  const wrap = document.getElementById('glossaryList');
+  const empty = document.getElementById('glossaryEmpty');
+  if (list.length === 0) {
+    wrap.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  wrap.innerHTML = list.map(g => `
+    <div class="glossary-row">
+      <div class="glossary-term">${g.term}</div>
+      <div class="glossary-def">${g.def}</div>
+      ${g.selma ? `<div class="glossary-selma"><span class="glossary-selma-label">Selma says</span>${g.selma}</div>` : ''}
+    </div>
+  `).join('');
+}
+
+function filterGlossary() {
+  const q = document.getElementById('glossarySearch').value.trim().toLowerCase();
+  if (!q) { renderGlossaryList(GLOSSARY); return; }
+  const filtered = GLOSSARY.filter(g => g.term.toLowerCase().includes(q) || g.def.toLowerCase().includes(q));
+  renderGlossaryList(filtered);
+}
+
+renderGlossaryList(GLOSSARY);
+
+function toggleGlossary() {
+  const panel = document.getElementById('glossaryPanel');
+  const toggle = document.getElementById('glossaryToggle');
+  const showing = panel.classList.toggle('show');
+  toggle.textContent = showing ? '- Hide the glossary' : '+ What do these terms mean?';
 }
 
 function toggleCompare() {

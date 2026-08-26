@@ -32,6 +32,21 @@ exports.handler = async function (event) {
     const resp = await fetch(url);
     const data = await resp.json();
 
+    // Twelve Data returns HTTP 429, or a code of 429/'limit' inside a normal 200 response,
+    // depending on where the limit was hit. Catch both so the frontend can show a friendly message.
+    const isRateLimited =
+      resp.status === 429 ||
+      data.code === 429 ||
+      (typeof data.message === 'string' && /credit|limit|too many requests/i.test(data.message));
+
+    if (isRateLimited) {
+      return {
+        statusCode: 429,
+        headers,
+        body: JSON.stringify({ error: "We're getting a lot of lookups right now and hit our data limit. Try again in a few minutes." }),
+      };
+    }
+
     if (data.status === "error" || data.code) {
       return {
         statusCode: 404,
