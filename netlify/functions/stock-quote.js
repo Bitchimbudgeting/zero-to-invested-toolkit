@@ -62,7 +62,9 @@ exports.handler = async function (event) {
 
     return {
       statusCode: 200,
-      headers,
+      // Only good answers are cached (a day on Netlify's CDN), so each ticker is fetched once a day.
+      // Errors and rate limit messages are never cached.
+      headers: { ...headers, "Cache-Control": "public, max-age=3600, s-maxage=86400" },
       body: JSON.stringify({
         symbol: data.symbol,
         name: data.name,
@@ -71,6 +73,9 @@ exports.handler = async function (event) {
         low52,
         high52,
         exchange: data.exchange,
+        currency: data.currency,
+        isMarketOpen: data.is_market_open,
+        timestamp: data.last_quote_at || data.timestamp || null,
       }),
     };
   } catch (err) {

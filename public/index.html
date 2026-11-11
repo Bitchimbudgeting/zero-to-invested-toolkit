@@ -1049,33 +1049,194 @@
     margin-top: 4px;
   }
   .same-index-line b { font-family: 'Space Mono', monospace; }
+
+  .start-panel{background:var(--cream);border:2px solid var(--green);border-radius:14px;padding:18px;margin-bottom:18px;}
+  .start-panel h2{font-family:'Playfair Display',serif;font-size:22px;color:var(--brown);margin:0 0 6px;}
+  .start-panel p{font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.5;color:var(--ink);margin:0 0 10px;}
+  .start-steps{list-style:none;padding:0;margin:0 0 10px;}
+  .start-steps li{display:flex;gap:10px;align-items:flex-start;font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.4;color:var(--ink);padding:6px 0;}
+  .start-steps .num{flex:none;width:26px;height:26px;border-radius:50%;background:var(--green);color:white;font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;}
+  .start-close{font-family:'Oswald',sans-serif;font-size:13px;color:var(--green);cursor:pointer;background:none;border:none;padding:0;text-decoration:underline;}
+  .start-reopen{display:none;font-family:'Oswald',sans-serif;font-size:13px;color:var(--green);cursor:pointer;background:none;border:none;padding:0 0 12px;text-decoration:underline;}
+  .step-label{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);margin:26px 0 4px;font-weight:700;}
+  .picks-title{font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;color:var(--brown);margin:4px 0 8px;}
+  .picks-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+  .pick{background:white;border:2px solid var(--green);border-radius:10px;padding:8px 12px;cursor:pointer;text-align:left;font-family:'DM Sans',sans-serif;}
+  .pick b{display:block;font-family:'Space Mono',monospace;font-size:15px;color:var(--brown);}
+  .pick span{font-size:12px;color:#6E7B96;}
+  .pick:hover{background:var(--cream);}
+  .stat-sub{display:block;font-family:'DM Sans',sans-serif;font-size:11px;color:#6E7B96;font-weight:400;text-transform:none;letter-spacing:0;margin-top:2px;}
+  .verdict{border-radius:10px;padding:12px 14px;margin:14px 0;font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.5;color:var(--ink);border-left:6px solid var(--green);background:#EAF4EE;}
+  .verdict.warn{border-left-color:var(--gold);background:#FCF5E1;}
+  .verdict.risky{border-left-color:var(--red);background:#FBEDEB;}
+  .verdict b.vh{display:block;font-family:'Oswald',sans-serif;font-size:15px;color:var(--brown);margin-bottom:2px;}
+  .fee-line{margin-bottom:14px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--ink);margin-top:6px;line-height:1.45;}
+
+  .portfolio-panel{border:2px solid var(--brown);box-shadow:0 6px 22px rgba(27,42,74,0.14);padding:0;overflow:hidden;}
+  .pf-hero{background:var(--brown);color:white;padding:20px 22px;}
+  .pf-kicker{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-bright);margin-bottom:4px;}
+  .pf-title{font-family:'Playfair Display',serif;font-size:28px;line-height:1.15;margin-bottom:6px;}
+  .pf-sub{font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.5;color:#D9E0EC;}
+  .pf-body{padding:20px 22px 24px;}
+  .pf-presets-title{font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;color:var(--brown);margin-bottom:8px;}
+  .pf-presets{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+  .pf-preset{background:var(--cream);border:2px solid var(--green);border-radius:10px;padding:8px 12px;cursor:pointer;text-align:left;font-family:'DM Sans',sans-serif;}
+  .pf-preset b{display:block;font-family:'Oswald',sans-serif;font-size:14px;color:var(--brown);}
+  .pf-preset span{font-size:12px;color:#6E7B96;}
+  .pf-preset:hover{background:white;}
+  .pf-report{margin:18px 0 6px;}
+  .pf-score-card{border-radius:12px;padding:16px;background:var(--cream);margin-bottom:16px;}
+  .pf-score-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+  .pf-score-num{font-family:'Playfair Display',serif;font-size:44px;line-height:1;color:var(--brown);}
+  .pf-score-num small{font-size:16px;color:#6E7B96;}
+  .pf-score-label{font-family:'Oswald',sans-serif;font-weight:700;font-size:18px;}
+  .pf-meter{height:12px;border-radius:6px;background:#E3E7ED;overflow:hidden;margin-bottom:12px;}
+  .pf-meter i{display:block;height:100%;border-radius:6px;}
+  .pf-summary{font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.55;color:var(--ink);}
+  .pf-section-title{font-family:'Oswald',sans-serif;font-weight:700;font-size:15px;color:var(--brown);margin:20px 0 8px;}
+  .pf-viz{display:flex;gap:18px;align-items:center;flex-wrap:wrap;}
+  .pf-donut{flex:none;width:170px;height:170px;position:relative;margin:0 auto;}
+  .pf-donut svg{width:170px;height:170px;margin:0;}
+  .pf-donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Space Mono',monospace;text-align:center;}
+  .pf-donut-center b{font-size:18px;color:var(--brown);}
+  .pf-donut-center span{font-size:11px;color:#6E7B96;}
+  .pf-legend{flex:1;min-width:200px;}
+  .pf-leg-row{display:flex;align-items:center;gap:8px;padding:5px 0;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);}
+  .pf-dot{flex:none;width:12px;height:12px;border-radius:3px;}
+  .pf-leg-row b{font-family:'Space Mono',monospace;color:var(--brown);}
+  .pf-leg-row .pf-pct{margin-left:auto;font-family:'Space Mono',monospace;font-weight:700;}
+  .pf-class-row{margin-bottom:10px;}
+  .pf-class-head{display:flex;justify-content:space-between;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);margin-bottom:4px;}
+  .pf-class-head b{font-family:'Space Mono',monospace;color:var(--brown);}
+  .pf-bar{height:14px;border-radius:7px;background:#EEF1F6;overflow:hidden;}
+  .pf-bar i{display:block;height:100%;border-radius:7px;}
+  .pf-class-note{font-family:'DM Sans',sans-serif;font-size:12px;color:#6E7B96;margin-top:3px;}
+  .pf-check{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:10px;margin-bottom:8px;font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.45;color:var(--ink);}
+  .pf-check.ok{background:#EAF4EE;}
+  .pf-check.warn{background:#FCF5E1;}
+  .pf-check.bad{background:#FBEDEB;}
+  .pf-check.info{background:#EEF1F6;}
+  .pf-check.info .ic{background:#6E7B96;}
+  .pf-check .ic{flex:none;width:22px;height:22px;border-radius:50%;color:white;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;}
+  .pf-check.ok .ic{background:var(--green);}
+  .pf-check.warn .ic{background:#C99A2E;}
+  .pf-check.bad .ic{background:var(--red);}
+  .pf-check b{color:var(--brown);}
+  .pf-next{border:2px dashed var(--green);border-radius:12px;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.5;color:var(--ink);margin-top:12px;}
+  .pf-next b{font-family:'Oswald',sans-serif;color:var(--brown);}
+  .pf-fine{font-family:'DM Sans',sans-serif;font-size:12px;color:#6E7B96;line-height:1.45;margin-top:12px;}
+  .pf-details-title{font-family:'Oswald',sans-serif;font-weight:700;font-size:15px;color:var(--brown);margin:22px 0 6px;}
+
+  .cat-info{font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.5;color:var(--ink);background:var(--cream);border-radius:10px;padding:10px 12px;margin-bottom:10px;}
+  .cat-info b{color:var(--brown);}
+  .show-all-btn{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;background:none;border:2px dashed var(--green);color:var(--green);border-radius:20px;padding:6px 14px;cursor:pointer;}
+  .verdict.unknown{border-left-color:#98A3B8;background:#F1F3F7;}
+  .verdict .vtag{display:inline-block;font-family:'Space Mono',monospace;font-size:11px;background:white;border:1px solid var(--cream-dim);border-radius:10px;padding:1px 8px;margin-left:6px;color:var(--brown-light);font-weight:400;}
+  .verdict .vwhy{display:block;margin-top:4px;}
+  .verdict .vnote{display:block;margin-top:6px;font-size:12px;color:#55627C;}
+  .label-disclaimer{font-family:'DM Sans',sans-serif;font-size:12px;color:#6E7B96;line-height:1.45;margin:-6px 0 12px;}
+  .expense-box{background:var(--cream);border-radius:10px;padding:12px 14px;margin:12px 0;font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.5;color:var(--ink);}
+  .expense-box b{color:var(--brown);}
+  .expense-box .exp-big{font-family:'Space Mono',monospace;font-weight:700;color:var(--brown);}
+  .expense-box details{margin-top:8px;font-size:13px;}
+  .expense-box summary{cursor:pointer;color:var(--green);font-family:'Oswald',sans-serif;font-weight:700;}
+  .expense-box table{width:100%;border-collapse:collapse;margin-top:6px;font-family:'Space Mono',monospace;font-size:13px;}
+  .expense-box td,.expense-box th{padding:5px 4px;border-bottom:1px solid var(--cream-dim);text-align:left;}
+  .exp-src{font-size:12px;color:#6E7B96;margin-top:6px;}
+  .inside-box{border:1px solid var(--cream-dim);border-radius:10px;padding:12px 14px;margin:12px 0;font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.5;color:var(--ink);}
+  .inside-box .inside-title{font-family:'Oswald',sans-serif;font-weight:700;font-size:15px;color:var(--brown);margin-bottom:6px;}
+  .inside-box p{margin:0 0 8px;}
+  .inside-box .inside-fine{font-size:12px;color:#6E7B96;margin:0;}
+  .price-meta{font-family:'DM Sans',sans-serif;font-size:12px;color:#6E7B96;margin:-4px 0 10px;line-height:1.4;}
+  .projection-assume{font-family:'DM Sans',sans-serif;font-size:13px;line-height:1.5;color:var(--ink);background:var(--cream);border-radius:10px;padding:10px 12px;margin-top:12px;}
+  .projection-assume ul{margin:6px 0 0 18px;padding:0;}
+  .projection-warn{font-family:'DM Sans',sans-serif;font-size:13px;line-height:1.5;color:#7A4B00;background:#FCF5E1;border-radius:10px;padding:10px 12px;margin-top:10px;}
+  .next-panel{background:var(--brown);color:white;border-radius:14px;padding:22px;margin-top:28px;}
+  .next-panel h2{font-family:'Playfair Display',serif;font-size:26px;line-height:1.2;margin:0 0 8px;}
+  .next-panel p{font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.55;color:#D9E0EC;margin:0 0 12px;}
+  .next-step{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,0.08);border-radius:10px;padding:12px;margin-bottom:10px;}
+  .next-step .num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--gold);color:var(--brown);font-family:'Oswald',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center;}
+  .next-step b{display:block;font-family:'Oswald',sans-serif;font-size:16px;margin-bottom:2px;color:white;}
+  .next-step span{font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.5;color:#D9E0EC;}
+  .next-btn{display:inline-block;margin-top:6px;background:var(--gold);color:var(--brown);font-family:'Oswald',sans-serif;font-weight:700;font-size:16px;padding:14px 22px;border-radius:10px;text-decoration:none;}
+  .overlap-explain{font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.55;color:var(--ink);margin:8px 0;}
+  .limit-note{font-family:'DM Sans',sans-serif;font-size:12px;color:#6E7B96;line-height:1.45;margin-top:8px;}
+
+  @media (max-width: 600px) {
+    input[type="text"] { font-size: 16px !important; }
+    button, .go, .compare-toggle, .glossary-toggle { min-height: 44px; }
+    .category-tabs { flex-wrap: wrap; }
+    .category-tabs button, .quick-tickers button, .platform-toggle button, .growth-toggle button { min-height: 44px; font-size: 14px; }
+    .platform-toggle { flex-wrap: wrap; }
+    .stat-label, .stat-sub, .platform-note, .section-helper, .invest-leftover, .projection-disclaimer, .chart-tap-hint, .pf-class-note, .pf-fine, .exp-src, .price-meta, .label-disclaimer, .limit-note, .inside-box .inside-fine { font-size: 13px !important; }
+    .pf-title { font-size: 24px; }
+    .card { padding: 16px; }
+    .stat-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .stat { padding: 8px; min-width: 0; }
+    .stat-label { letter-spacing: 0; word-break: break-word; }
+    .stat-value { font-size: 14px; word-break: break-word; }
+    .price-row { flex-wrap: wrap; row-gap: 8px; }
+    .risk-badge { white-space: normal; }
+    .compare-grid { grid-template-columns: 1fr !important; }
+    .growth-toggle { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+    .growth-toggle button { padding: 8px 2px; font-size: 12px; line-height: 1.25; overflow-wrap: normal; word-break: normal; }
+    .projection-grid { grid-template-columns: 1fr 1fr; }
+    .pf-hero, .pf-body { padding-left: 16px; padding-right: 16px; }
+    .portfolio-row { flex-wrap: wrap; row-gap: 6px; }
+    .wrap { padding-left: 16px; padding-right: 16px; }
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="eyebrow">Zero to Invested &middot; Toolkit</div>
-  <h1>Ticker Lookup</h1>
-  <div class="sub">Type a symbol, see what you're actually looking at.</div>
+  <h1>Your Investing Toolkit</h1>
+  <div class="sub">No finance degree needed. Look up a fund, see it in plain English.</div>
 
-  <div class="proto-banner">
-    <b>Live prices.</b> Type any ticker to pull real time price and 52 week range. Our list of 100 common stocks and ETFs, including REITs and Fidelity and Schwab's own funds, also includes sector, expense ratio, and 5 year history, more get added over time.
+  <button class="start-reopen" id="startReopen" onclick="toggleStart(true)">Show the quick start guide</button>
+  <button class="start-close" style="display:block;margin-bottom:12px;" onclick="document.querySelector('.portfolio-panel').scrollIntoView({behavior:'smooth',block:'start'})">Skip ahead to Build your portfolio</button>
+  <div class="start-panel" id="startPanel">
+    <h2>New here? Start here.</h2>
+    <p>Everything you can buy in the stock market has a short code called a <b>ticker</b>. VOO is a ticker. You type it in, and this toolkit tells you what it is, what it costs, and whether it fits a beginner portfolio.</p>
+    <ol class="start-steps">
+      <li><span class="num">1</span><span><b>Look something up.</b> Tap one of the beginner picks below, or type any ticker.</span></li>
+      <li><span class="num">2</span><span><b>Check the color coded explanation.</b> It helps you understand how diversified or concentrated an investment is, so you can make a more informed decision. Then check what it costs.</span></li>
+      <li><span class="num">3</span><span><b>Compare and practice.</b> Put two side by side, build a practice portfolio, and check for overlap.</span></li>
+      <li><span class="num">4</span><span><b>Explore long term growth,</b> then see your next step at the bottom.</span></li>
+    </ol>
+    <button class="start-close" onclick="toggleStart(false)">Got it, hide this</button>
   </div>
 
+  <div class="proto-banner">
+    <b>Prices from Twelve Data.</b> They can be delayed or come from the last market close. Our list of 100 common stocks and funds adds extras like fees and past yearly returns from our own reference data.
+  </div>
+
+  <div class="step-label">Step 1 &middot; Look it up</div>
+  <div class="picks-title">Beginner picks, tap one to start</div>
+  <div class="picks-row">
+    <button class="pick" onclick="pickTicker('VOO')"><b>VOO</b><span>500 big US companies</span></button>
+    <button class="pick" onclick="pickTicker('VTI')"><b>VTI</b><span>The whole US market</span></button>
+    <button class="pick" onclick="pickTicker('VXUS')"><b>VXUS</b><span>Companies outside the US</span></button>
+    <button class="pick" onclick="pickTicker('FXAIX')"><b>FXAIX</b><span>Fidelity's 500 company fund</span></button>
+  </div>
   <div class="search-row">
     <input type="text" id="tickerInput" placeholder="Type a ticker, ex: VOO" maxlength="6" onkeydown="if(event.key==='Enter')lookup()">
     <button class="go" onclick="lookup()">Look up</button>
   </div>
-  <div class="section-helper">Or browse by category below, tap any ticker to look it up.</div>
+  <div class="section-helper">Not sure what to type? Browse by category and tap any ticker. ETFs are baskets of many companies. Stocks are single companies. REITs are real estate.</div>
   <div class="category-tabs" id="categoryTabs">
     <button class="active" data-cat="etf" onclick="setCategory('etf')">ETFs</button>
+    <button data-cat="mutual" onclick="setCategory('mutual')">Mutual Funds</button>
     <button data-cat="stock" onclick="setCategory('stock')">Stocks</button>
     <button data-cat="reit" onclick="setCategory('reit')">REITs</button>
     <button data-cat="saved" onclick="setCategory('saved')">Saved</button>
   </div>
+  <div class="cat-info" id="categoryInfo"></div>
   <div class="quick-tickers" id="quickTickers"></div>
 
   <div class="amount-panel">
     <div class="amount-panel-title">What would your money actually buy?</div>
+    <div class="platform-note" style="margin-top:0; margin-bottom:10px;">Type how much you want to invest, then pick a brokerage. Each one handles partial shares a little differently. Fractional share availability depends on the brokerage, account type, and investment. Check your brokerage's current rules before placing an order.</div>
     <div class="amount-row">
       <div class="dollar-input-wrap">
         <span>$</span>
@@ -1083,17 +1244,18 @@
       </div>
       <div class="platform-toggle">
         <button id="btnVanguard" class="active" onclick="setPlatform('vanguard')">Vanguard</button>
-        <button id="btnOther" onclick="setPlatform('other')">Fidelity / Schwab</button>
+        <button id="btnFidelity" onclick="setPlatform('fidelity')">Fidelity</button>
+        <button id="btnSchwab" onclick="setPlatform('schwab')">Schwab</button>
       </div>
     </div>
     <div class="platform-note" id="platformNote"></div>
   </div>
 
   <div class="card" id="resultCard"></div>
-  <div class="empty-state" id="emptyState">Try VOO, AAPL, QQQ, or SCHD to start.</div>
+  <div class="empty-state" id="emptyState">Not sure where to start? Tap VOO above.</div>
 
-  <div class="compare-toggle" onclick="toggleCompare()" id="compareToggle">+ Compare two tickers side by side</div>
-  <div class="compare-helper" id="compareHelper">Enter two symbols to see them next to each other, useful for checking if two funds are more similar than they look.</div>
+  <div class="compare-toggle" onclick="toggleCompare()" id="compareToggle">+ Step 2: Compare two investments side by side</div>
+  <div class="compare-helper" id="compareHelper">Optional. Put two tickers side by side to see if they are more alike than they look.</div>
 
   <div class="compare-wrap" id="compareWrap">
     <input type="text" id="compareA" placeholder="First ticker, ex: VOO" maxlength="6">
@@ -1103,12 +1265,25 @@
 
   <div class="compare-grid" id="compareGrid"></div>
 
+  <div class="step-label">Step 2 &middot; Build a starter mix</div>
   <div class="portfolio-panel">
-    <div class="amount-panel-title">Build a portfolio</div>
-    <div class="platform-note" style="margin-top:0; margin-bottom:12px;">Add a few tickers, set how much you want to invest total, and see how many shares of each you'd actually own.</div>
+    <div class="pf-hero">
+      <div class="pf-kicker">The main event</div>
+      <div class="pf-title">Build your portfolio</div>
+      <div class="pf-sub">Pick a few investments and get a plain English summary of what you would own, how concentrated it is, and where your holdings overlap. It is practice, not advice.</div>
+    </div>
+    <div class="pf-body">
+    <div class="pf-presets-title">Not sure where to start? Try a sample mix</div>
+    <div class="pf-presets">
+      <button class="pf-preset" onclick="loadPreset('backbone')"><b>Simple backbone</b><span>VOO and VXUS</span></button>
+      <button class="pf-preset" onclick="loadPreset('tilt')"><b>Backbone plus a stock</b><span>VOO, VXUS, NVDA</span></button>
+      <button class="pf-preset" onclick="loadPreset('trap')"><b>The overlap trap</b><span>VOO, SPY, QQQ</span></button>
+      <button class="pf-preset" onclick="loadPreset('tech')"><b>All tech bets</b><span>QQQ, XLK, NVDA, TSLA</span></button>
+    </div>
+    <div class="platform-note" style="margin-top:0; margin-bottom:12px;">Add 2 or 3 tickers, say how much you plan to invest, and see what you would own. The overlap check at the bottom tells you if two picks are really the same thing.</div>
 
     <div class="amount-row" style="margin-bottom:12px;">
-      <input type="text" id="portfolioTickerInput" placeholder="Add a ticker" maxlength="6" style="max-width:140px;" onkeydown="if(event.key==='Enter')addPortfolioTicker()">
+      <input type="text" id="portfolioTickerInput" placeholder="Add ticker" maxlength="6" style="max-width:190px;" onkeydown="if(event.key==='Enter')addPortfolioTicker()">
       <button class="go" onclick="addPortfolioTicker()">Add</button>
     </div>
 
@@ -1117,19 +1292,24 @@
     <div class="amount-row" style="margin-top:14px;">
       <div class="dollar-input-wrap">
         <span>$</span>
-        <input type="text" id="portfolioTotal" value="300" oninput="renderPortfolio()">
+        <input type="text" id="portfolioTotal" value="300" oninput="rescaleTotal()">
       </div>
       <button class="go secondary" onclick="splitEvenly()">Split evenly</button>
     </div>
 
+    <div class="pf-report" id="portfolioReport"></div>
+
+    <div class="pf-details-title" id="pfDetailsTitle" style="display:none;">The details, share by share</div>
     <div id="portfolioTable"></div>
     <div id="portfolioSummary"></div>
     <div id="portfolioOverlap"></div>
+    </div>
   </div>
 
+  <div class="step-label">Step 3 &middot; See your future</div>
   <div class="projection-panel">
     <div class="amount-panel-title">Where could you land by retirement?</div>
-    <div class="platform-note" style="margin-top:0; margin-bottom:14px;">Fill in your numbers to see a simple projection, and what it would take to close the gap.</div>
+    <div class="platform-note" style="margin-top:0; margin-bottom:14px;">Fill in your numbers to see a hypothetical estimate, and what it could take to close the gap. These are estimates, not guarantees.</div>
 
     <div class="projection-grid">
       <div class="projection-field">
@@ -1141,23 +1321,23 @@
         <input type="text" id="projRetireAge" value="65" oninput="calculateProjection()">
       </div>
       <div class="projection-field">
-        <label>Invested right now</label>
+        <label>Already invested, $0 is fine</label>
         <input type="text" id="projCurrent" value="1000" oninput="calculateProjection()">
       </div>
       <div class="projection-field">
-        <label>Goal to retire with</label>
+        <label>Retirement savings goal</label>
         <input type="text" id="projTarget" value="1000000" oninput="calculateProjection()">
       </div>
     </div>
 
-    <div class="platform-note" style="margin-bottom:8px;">Assumed average yearly return, 7% is the long term stock market average</div>
+    <div class="platform-note" style="margin-bottom:8px;">We're using a hypothetical annual return to show how your investments could grow over time. Actual returns will vary, and investing involves risk.</div>
     <div class="growth-toggle" id="growthToggle">
-      <button data-rate="0.05" onclick="setGrowthRate(0.05)">Conservative, 5%</button>
-      <button class="active" data-rate="0.07" onclick="setGrowthRate(0.07)">Moderate, 7%</button>
-      <button data-rate="0.09" onclick="setGrowthRate(0.09)">Aggressive, 9%</button>
+      <button data-rate="0.05" onclick="setGrowthRate(0.05)">Conservative illustration, 5%</button>
+      <button class="active" data-rate="0.07" onclick="setGrowthRate(0.07)">Moderate illustration, 7%</button>
+      <button data-rate="0.09" onclick="setGrowthRate(0.09)">Higher return illustration, 9%</button>
     </div>
     <div class="custom-rate-row">
-      <span>Or use your own rate</span>
+      <span>Or use your own annual return</span>
       <div class="custom-rate-wrap">
         <input type="text" id="projCustomRate" value="7" oninput="setCustomRate(this.value)">
         <span>%</span>
@@ -1166,16 +1346,26 @@
 
     <div class="projection-result" id="projectionResult"></div>
 
-    <div class="projection-disclaimer">This is a simple estimate, not a promise or financial advice. It assumes a steady yearly return, real markets move up and down along the way. The HYSA comparison assumes a fixed 3% rate, which also moves over time in real life. For a plan built around your full financial picture, talk with a licensed financial advisor.</div>
+    <div class="projection-disclaimer">These projections are hypothetical examples, not predictions. Actual investment returns fluctuate, and you could lose money. Your results will depend on market performance, fees, taxes, and how consistently you invest. The savings account line assumes a fixed 3% rate, which changes over time in real life.</div>
   </div>
 
-  <div class="glossary-toggle" onclick="toggleGlossary()" id="glossaryToggle">+ What do these terms mean?</div>
+  <div class="glossary-toggle" onclick="toggleGlossary()" id="glossaryToggle">+ New to investing? Tap for plain English definitions</div>
   <div class="glossary-panel" id="glossaryPanel">
     <div class="glossary-search-wrap">
       <input type="text" id="glossarySearch" placeholder="Search a term, like ETF or dividend" oninput="filterGlossary()">
     </div>
     <div id="glossaryList"></div>
     <div class="glossary-empty" id="glossaryEmpty" style="display:none;">No terms match that search.</div>
+  </div>
+
+  <div class="next-panel" id="nextPanel">
+    <div class="step-label" style="color:var(--gold-bright);margin-top:0;">Step 4 &middot; Your next step</div>
+    <h2>You Did the Research. Now What?</h2>
+    <p>You've explored ticker symbols, compared investments, and practiced building a portfolio. Now it's time to turn what you've learned into action.</p>
+    <div class="next-step"><span class="num">1</span><div><b>Choose Your Account</b><span>Decide which investment account fits your goal, such as a Roth IRA or a regular brokerage account.</span></div></div>
+    <div class="next-step"><span class="num">2</span><div><b>Choose Your Investment</b><span>Review the investments you've researched and decide which ones fit your goals, timeline, and comfort with risk.</span></div></div>
+    <div class="next-step"><span class="num">3</span><div><b>Put Your Money to Work</b><span>Use your Zero to Invested course lessons to learn how to fund your account, place an investment order, and set up automatic investing.</span></div></div>
+    <a class="next-btn" id="courseLink" href="#" style="display:none;" target="_top" rel="noopener">Back to Zero to Invested</a>
   </div>
 
   <footer>For educational purposes only<br>Live prices via Twelve Data &middot; Built for Zero to Invested<br>@SelmaMakesCents</footer>
@@ -1193,21 +1383,21 @@ const STATIC_SUPPLEMENT = {
   TSLA: { type: "stock", yield: "0.00%", sector: "Consumer Discretionary", pe: "68.9", returns: {2021: 49.8, 2022: -65.0, 2023: 101.7, 2024: 62.5, 2025: -7.9}, note: "A single company stock with a high valuation. This is the kind of pick to size carefully, not build a backbone around." },
   GOOGL: { type: "stock", yield: "0.39%", sector: "Communication Services", pe: "26.4", returns: {2021: 65.3, 2022: -38.7, 2023: 58.3, 2024: 35.5, 2025: 10.8}, note: "A single company stock. Diversified business lines, but still concentrated risk in one company." },
   VOO: { type: "etf", yield: "1.30%", expense: "0.03%", holdingsCount: "500+", returns: {2021: 28.7, 2022: -18.1, 2023: 26.3, 2024: 25.0, 2025: 12.1}, note: "A broad market ETF. One share gives you a slice of the 500 largest US companies, this is a common backbone holding." },
-  SPY: { type: "etf", yield: "1.30%", expense: "0.09%", holdingsCount: "500+", returns: {2021: 28.5, 2022: -18.2, 2023: 26.2, 2024: 24.9, 2025: 12.0}, note: "Tracks the same index as VOO, slightly higher expense ratio. Very high overlap if you already own VOO." },
-  QQQ: { type: "etf", yield: "0.60%", expense: "0.20%", holdingsCount: "100", returns: {2021: 27.4, 2022: -32.6, 2023: 54.9, 2024: 25.6, 2025: 10.2}, note: "Tracks the Nasdaq 100, tech heavy. Owning this alongside VOO means real overlap in your top holdings." },
+  SPY: { type: "etf", yield: "1.30%", expense: "0.0945%", holdingsCount: "500+", returns: {2021: 28.5, 2022: -18.2, 2023: 26.2, 2024: 24.9, 2025: 12.0}, note: "Tracks the same index as VOO, slightly higher expense ratio. Very high overlap if you already own VOO." },
+  QQQ: { type: "etf", yield: "0.60%", holdingsCount: "100", returns: {2021: 27.4, 2022: -32.6, 2023: 54.9, 2024: 25.6, 2025: 10.2}, note: "Tracks the Nasdaq 100, tech heavy. Owning this alongside VOO means real overlap in your top holdings." },
   VTI: { type: "etf", yield: "1.30%", expense: "0.03%", holdingsCount: "3,700+", returns: {2021: 25.7, 2022: -19.5, 2023: 26.0, 2024: 23.7, 2025: 11.6}, note: "Covers nearly the entire US stock market. Very similar performance to VOO, with more small and mid cap exposure." },
   SCHD: { type: "etf", yield: "3.50%", expense: "0.06%", holdingsCount: "100", returns: {2021: 21.1, 2022: -3.2, 2023: 4.3, 2024: 12.4, 2025: 7.6}, note: "Focused on dividend paying companies. Lower overlap with VOO, worth understanding before adding as a second holding." },
-  ARKK: { type: "etf", yield: "0.00%", expense: "0.75%", holdingsCount: "35", returns: {2021: -23.4, 2022: -67.0, 2023: 67.4, 2024: 5.2, 2025: -14.8}, note: "A concentrated, actively managed fund with a much higher expense ratio. Higher risk, higher volatility than a broad index fund." },
+  ARKK: { type: "etf", yield: "0.00%", holdingsCount: "35", returns: {2021: -23.4, 2022: -67.0, 2023: 67.4, 2024: 5.2, 2025: -14.8}, note: "A concentrated, actively managed fund with a much higher expense ratio. Higher risk, higher volatility than a broad index fund." },
 
   // 10 additional ETFs
-  VYM: { type: "etf", yield: "2.80%", expense: "0.06%", holdingsCount: "560+", returns: {2021: 24.8, 2022: -0.5, 2023: 8.9, 2024: 14.2, 2025: 9.1}, note: "Focused on high dividend paying large caps. Lower tech concentration than VOO, moderate overlap." },
-  VUG: { type: "etf", yield: "0.50%", expense: "0.04%", holdingsCount: "180+", returns: {2021: 27.3, 2022: -33.1, 2023: 47.4, 2024: 31.2, 2025: 13.5}, note: "Growth focused, heavy tech tilt, high overlap with QQQ and the tech names inside VOO." },
-  VTV: { type: "etf", yield: "2.30%", expense: "0.04%", holdingsCount: "340+", returns: {2021: 25.2, 2022: -2.1, 2023: 11.5, 2024: 16.8, 2025: 10.2}, note: "Value focused, tilts toward financials and healthcare, lower overlap with growth heavy funds." },
+  VYM: { type: "etf", yield: "2.80%", expense: "0.04%", holdingsCount: "560+", returns: {2021: 24.8, 2022: -0.5, 2023: 8.9, 2024: 14.2, 2025: 9.1}, note: "Focused on high dividend paying large caps. Lower tech concentration than VOO, moderate overlap." },
+  VUG: { type: "etf", yield: "0.50%", expense: "0.03%", holdingsCount: "180+", returns: {2021: 27.3, 2022: -33.1, 2023: 47.4, 2024: 31.2, 2025: 13.5}, note: "Growth focused, heavy tech tilt, high overlap with QQQ and the tech names inside VOO." },
+  VTV: { type: "etf", yield: "2.30%", expense: "0.03%", holdingsCount: "340+", returns: {2021: 25.2, 2022: -2.1, 2023: 11.5, 2024: 16.8, 2025: 10.2}, note: "Value focused, tilts toward financials and healthcare, lower overlap with growth heavy funds." },
   BND: { type: "etf", yield: "3.20%", expense: "0.03%", holdingsCount: "10,000+", returns: {2021: -1.9, 2022: -13.1, 2023: 5.7, 2024: 3.9, 2025: 4.5}, note: "Bonds, not stocks. Moves differently than everything else here, useful for balancing risk, not for growth." },
   VXUS: { type: "etf", yield: "3.00%", expense: "0.05%", holdingsCount: "8,500+", returns: {2021: 8.7, 2022: -16.0, 2023: 15.6, 2024: 5.5, 2025: 11.0}, note: "International stocks outside the US. Little overlap with US focused funds like VOO, genuine diversification." },
   IVV: { type: "etf", yield: "1.30%", expense: "0.03%", holdingsCount: "500+", returns: {2021: 28.7, 2022: -18.1, 2023: 26.3, 2024: 25.0, 2025: 12.1}, note: "Tracks the same index as VOO and SPY, essentially interchangeable, full overlap if you already own either." },
-  XLK: { type: "etf", yield: "0.70%", expense: "0.09%", holdingsCount: "65", returns: {2021: 34.5, 2022: -28.2, 2023: 57.8, 2024: 22.5, 2025: 9.0}, note: "A pure technology sector bet, very high overlap with QQQ and the tech names inside VOO." },
-  DIA: { type: "etf", yield: "1.70%", expense: "0.16%", holdingsCount: "30", returns: {2021: 20.9, 2022: -6.9, 2023: 16.2, 2024: 15.0, 2025: 8.5}, note: "Tracks 30 large, older economy companies. A different mix than VOO, less tech heavy." },
+  XLK: { type: "etf", yield: "0.70%", expense: "0.08%", holdingsCount: "65", returns: {2021: 34.5, 2022: -28.2, 2023: 57.8, 2024: 22.5, 2025: 9.0}, note: "A pure technology sector bet, very high overlap with QQQ and the tech names inside VOO." },
+  DIA: { type: "etf", yield: "1.70%", holdingsCount: "30", returns: {2021: 20.9, 2022: -6.9, 2023: 16.2, 2024: 15.0, 2025: 8.5}, note: "Tracks 30 large, older economy companies. A different mix than VOO, less tech heavy." },
   IWM: { type: "etf", yield: "1.20%", expense: "0.19%", holdingsCount: "1,900+", returns: {2021: 14.8, 2022: -20.5, 2023: 16.9, 2024: 11.5, 2025: 7.0}, note: "Small cap companies, a meaningfully different risk profile than large cap funds like VOO." },
   VNQ: { type: "etf", yield: "3.80%", expense: "0.13%", holdingsCount: "160+", returns: {2021: 40.5, 2022: -26.2, 2023: 1.6, 2024: 4.5, 2025: 9.5}, note: "A real estate sector fund. Adds property exposure, minimal overlap with broad market funds." },
 
@@ -1256,12 +1446,12 @@ const STATIC_SUPPLEMENT = {
   AVB: { type: "stock", yield: "3.20%", sector: "Real Estate", pe: "22.0", returns: {2021: 33.2, 2022: -27.7, 2023: 1.9, 2024: 5.0, 2025: 6.0}, note: "A single REIT stock. Owns apartment buildings, tied to rental housing demand." },
 
   // 7 Fidelity ETFs and index funds
-  FXAIX: { type: "etf", yield: "1.30%", expense: "0.015%", holdingsCount: "500+", returns: {2021: 28.7, 2022: -18.1, 2023: 26.3, 2024: 25.0, 2025: 12.1}, note: "Fidelity's S&P 500 fund, nearly identical to VOO with an even lower expense ratio, full overlap if you own either." },
-  FZROX: { type: "etf", yield: "1.30%", expense: "0.00%", holdingsCount: "2,700+", returns: {2021: 25.7, 2022: -19.7, 2023: 25.9, 2024: 23.5, 2025: 11.6}, note: "A zero fee total market fund, similar to VTI, only available if you hold it directly at Fidelity." },
-  FSKAX: { type: "etf", yield: "1.30%", expense: "0.015%", holdingsCount: "3,900+", returns: {2021: 25.7, 2022: -19.5, 2023: 26.0, 2024: 23.7, 2025: 11.6}, note: "Very similar to VTI, covers the whole US stock market at a low cost." },
-  FTEC: { type: "etf", yield: "0.60%", expense: "0.084%", holdingsCount: "290+", returns: {2021: 33.8, 2022: -28.0, 2023: 56.9, 2024: 22.0, 2025: 9.5}, note: "A technology sector fund, similar overlap concerns as XLK, heavy in AAPL, MSFT, and NVDA." },
-  FDVV: { type: "etf", yield: "2.90%", expense: "0.16%", holdingsCount: "100+", returns: {2021: 26.5, 2022: -3.5, 2023: 6.0, 2024: 16.0, 2025: 9.0}, note: "Focused on high dividend payers, similar goal to VYM and SCHD, worth comparing overlap before owning more than one." },
-  FREL: { type: "etf", yield: "3.60%", expense: "0.084%", holdingsCount: "160+", returns: {2021: 41.0, 2022: -26.5, 2023: 1.8, 2024: 4.0, 2025: 9.0}, note: "A real estate sector fund, similar to VNQ, adds property exposure outside of stocks." },
+  FXAIX: { type: "mutual", yield: "1.30%", expense: "0.015%", holdingsCount: "500+", returns: {2021: 28.7, 2022: -18.1, 2023: 26.3, 2024: 25.0, 2025: 12.1}, note: "Fidelity's S&P 500 fund, nearly identical to VOO with an even lower expense ratio, full overlap if you own either." },
+  FZROX: { type: "mutual", yield: "1.30%", expense: "0.00%", holdingsCount: "2,700+", returns: {2021: 25.7, 2022: -19.7, 2023: 25.9, 2024: 23.5, 2025: 11.6}, note: "A zero fee total market fund, similar to VTI, only available if you hold it directly at Fidelity." },
+  FSKAX: { type: "mutual", yield: "1.30%", expense: "0.015%", holdingsCount: "3,900+", returns: {2021: 25.7, 2022: -19.5, 2023: 26.0, 2024: 23.7, 2025: 11.6}, note: "Very similar to VTI, covers the whole US stock market at a low cost." },
+  FTEC: { type: "etf", yield: "0.60%", holdingsCount: "290+", returns: {2021: 33.8, 2022: -28.0, 2023: 56.9, 2024: 22.0, 2025: 9.5}, note: "A technology sector fund, similar overlap concerns as XLK, heavy in AAPL, MSFT, and NVDA." },
+  FDVV: { type: "etf", yield: "2.90%", holdingsCount: "100+", returns: {2021: 26.5, 2022: -3.5, 2023: 6.0, 2024: 16.0, 2025: 9.0}, note: "Focused on high dividend payers, similar goal to VYM and SCHD, worth comparing overlap before owning more than one." },
+  FREL: { type: "etf", yield: "3.60%", holdingsCount: "160+", returns: {2021: 41.0, 2022: -26.5, 2023: 1.8, 2024: 4.0, 2025: 9.0}, note: "A real estate sector fund, similar to VNQ, adds property exposure outside of stocks." },
   FBND: { type: "etf", yield: "3.30%", expense: "0.36%", holdingsCount: "1,000+", returns: {2021: -1.5, 2022: -13.0, 2023: 6.5, 2024: 4.2, 2025: 4.8}, note: "A bond fund, moves differently than stock funds, used to balance risk rather than chase growth." },
 
   // 7 Schwab ETFs
@@ -1269,13 +1459,13 @@ const STATIC_SUPPLEMENT = {
   SCHX: { type: "etf", yield: "1.30%", expense: "0.03%", holdingsCount: "750+", returns: {2021: 27.5, 2022: -18.5, 2023: 25.9, 2024: 24.5, 2025: 12.0}, note: "Large cap focused, high overlap with VOO and SPY." },
   SCHG: { type: "etf", yield: "0.50%", expense: "0.04%", holdingsCount: "230+", returns: {2021: 26.6, 2022: -30.0, 2023: 44.6, 2024: 29.0, 2025: 13.0}, note: "Growth focused, similar overlap concerns as VUG, heavy in the same mega cap tech names." },
   SCHV: { type: "etf", yield: "2.20%", expense: "0.04%", holdingsCount: "440+", returns: {2021: 26.0, 2022: -3.0, 2023: 9.5, 2024: 15.5, 2025: 9.5}, note: "Value focused, similar to VTV, tilts toward financials and healthcare." },
-  SCHF: { type: "etf", yield: "2.80%", expense: "0.06%", holdingsCount: "1,500+", returns: {2021: 11.0, 2022: -15.8, 2023: 17.0, 2024: 5.0, 2025: 10.5}, note: "International stocks outside the US, similar goal to VXUS, adds real diversification." },
+  SCHF: { type: "etf", yield: "2.80%", expense: "0.03%", holdingsCount: "1,500+", returns: {2021: 11.0, 2022: -15.8, 2023: 17.0, 2024: 5.0, 2025: 10.5}, note: "International stocks outside the US, similar goal to VXUS, adds real diversification." },
   SCHA: { type: "etf", yield: "1.10%", expense: "0.04%", holdingsCount: "1,750+", returns: {2021: 18.7, 2022: -17.9, 2023: 18.3, 2024: 11.0, 2025: 7.5}, note: "Small cap companies, a similar risk profile to IWM." },
-  SCHM: { type: "etf", yield: "1.20%", expense: "0.04%", holdingsCount: "500+", returns: {2021: 24.6, 2022: -14.9, 2023: 15.6, 2024: 14.0, 2025: 8.5}, note: "Mid sized companies, sits between large cap funds like VOO and small cap funds like IWM." },
+  SCHM: { type: "etf", yield: "1.20%", holdingsCount: "500+", returns: {2021: 24.6, 2022: -14.9, 2023: 15.6, 2024: 14.0, 2025: 8.5}, note: "Mid sized companies, sits between large cap funds like VOO and small cap funds like IWM." },
 
   // 2 semiconductor ETFs
-  SOXX: { type: "etf", yield: "0.80%", expense: "0.35%", holdingsCount: "30", returns: {2021: 41.6, 2022: -34.8, 2023: 66.0, 2024: 14.0, 2025: 18.0}, note: "A concentrated bet on chipmakers, high overlap with the semiconductor names already inside QQQ and XLK." },
-  SMH: { type: "etf", yield: "0.60%", expense: "0.35%", holdingsCount: "25", returns: {2021: 44.0, 2022: -35.8, 2023: 70.8, 2024: 15.0, 2025: 17.0}, note: "Very similar to SOXX, the same sector bet on chipmakers, high overlap if you own both." },
+  SOXX: { type: "etf", yield: "0.80%", holdingsCount: "30", returns: {2021: 41.6, 2022: -34.8, 2023: 66.0, 2024: 14.0, 2025: 18.0}, note: "A concentrated bet on chipmakers, high overlap with the semiconductor names already inside QQQ and XLK." },
+  SMH: { type: "etf", yield: "0.60%", holdingsCount: "25", returns: {2021: 44.0, 2022: -35.8, 2023: 70.8, 2024: 15.0, 2025: 17.0}, note: "Very similar to SOXX, the same sector bet on chipmakers, high overlap if you own both." },
 
   // 24 additional individual stocks
   "BRK.B": { type: "stock", yield: "0.00%", sector: "Financials", pe: "22.0", returns: {2021: 29.6, 2022: 4.0, 2023: 15.8, 2024: 27.3, 2025: 8.0}, note: "A single company stock, a diversified holding company run by Warren Buffett, lower volatility than most individual stocks." },
@@ -1346,12 +1536,14 @@ function getHoldings(symbol) {
 // even though our partial top-holdings list only catches a fraction of that overlap.
 // This flags those pairs directly instead of relying on the incomplete holdings math.
 const INDEX_GROUPS = [
-  { id: 'sp500', label: 'the S&P 500', members: ['VOO', 'SPY', 'IVV', 'FXAIX', 'SCHX'] },
-  { id: 'totalmarket', label: 'the total US stock market', members: ['VTI', 'SCHB', 'FZROX', 'FSKAX'] },
-  { id: 'reit', label: 'the real estate sector', members: ['VNQ', 'FREL'] },
-  { id: 'semis', label: 'the semiconductor sector', members: ['SOXX', 'SMH'] },
-  { id: 'largegrowth', label: 'large cap growth stocks', members: ['VUG', 'SCHG'] },
-  { id: 'largevalue', label: 'large cap value stocks', members: ['VTV', 'SCHV'] },
+  // identical: true means the funds follow the exact same index.
+  { id: 'sp500', label: 'the S&P 500', identical: true, members: ['VOO', 'SPY', 'IVV', 'FXAIX'] },
+  { id: 'uslarge', label: 'large U.S. companies', identical: false, members: ['SCHX'] },
+  { id: 'totalmarket', label: 'the total U.S. stock market', identical: false, members: ['VTI', 'SCHB', 'FZROX', 'FSKAX'] },
+  { id: 'reit', label: 'U.S. real estate companies', identical: false, members: ['VNQ', 'FREL'] },
+  { id: 'semis', label: 'semiconductor companies', identical: false, members: ['SOXX', 'SMH'] },
+  { id: 'largegrowth', label: 'large U.S. growth companies', identical: false, members: ['VUG', 'SCHG'] },
+  { id: 'largevalue', label: 'large U.S. value companies', identical: false, members: ['VTV', 'SCHV'] },
 ];
 
 function getIndexGroup(symbol) {
@@ -1365,7 +1557,9 @@ function findSameIndexPairs(tickers) {
       const ga = getIndexGroup(tickers[i]);
       const gb = getIndexGroup(tickers[j]);
       if (ga && gb && ga.id === gb.id) {
-        pairs.push({ a: tickers[i], b: tickers[j], label: ga.label });
+        pairs.push({ a: tickers[i], b: tickers[j], label: ga.label, kind: ga.identical ? 'same' : 'near' });
+      } else if (ga && gb && (ga.id === 'sp500' && gb.id === 'uslarge' || ga.id === 'uslarge' && gb.id === 'sp500')) {
+        pairs.push({ a: tickers[i], b: tickers[j], label: 'large U.S. companies', kind: 'near' });
       }
     }
   }
@@ -1375,17 +1569,42 @@ function findSameIndexPairs(tickers) {
 // Caches live lookups so switching platform or re-rendering doesn't re-fetch.
 const quoteCache = {};
 
+let dailyPrices = null;
+async function loadDailyPrices() {
+  if (dailyPrices) return dailyPrices;
+  try {
+    const r = await fetch('/prices.json');
+    dailyPrices = r.ok ? await r.json() : { quotes: {} };
+  } catch (e) { dailyPrices = { quotes: {} }; }
+  return dailyPrices;
+}
+
 async function getTicker(symbol) {
   if (quoteCache[symbol]) return quoteCache[symbol];
 
-  const resp = await fetch(`/.netlify/functions/stock-quote?symbol=${encodeURIComponent(symbol)}`);
-  const json = await resp.json();
+  // First choice: the daily price file. It is one static file, so thousands of visitors cost nothing.
+  const daily = await loadDailyPrices();
+  let json = daily.quotes && daily.quotes[symbol]
+    ? { name: daily.quotes[symbol].name, price: daily.quotes[symbol].price, change: daily.quotes[symbol].change,
+        low52: daily.quotes[symbol].low52, high52: daily.quotes[symbol].high52,
+        timestamp: daily.quotes[symbol].asOf, isMarketOpen: false }
+    : null;
 
-  if (!resp.ok) {
-    if (resp.status === 429) {
-      throw new Error("We're getting a lot of lookups right now and hit our data limit. Try again in a few minutes.");
+  // Backup: tickers not in the daily file use the live lookup, which the server caches for a day.
+  if (!json) {
+    let resp;
+    try {
+      resp = await fetch(`/.netlify/functions/stock-quote?symbol=${encodeURIComponent(symbol)}`);
+      json = await resp.json();
+    } catch (e) {
+      throw new Error("We couldn't reach the price service right now. Check your connection and try again in a moment.");
     }
-    throw new Error(json.error || `Couldn't find "${symbol}".`);
+    if (!resp.ok) {
+      if (resp.status === 429) {
+        throw new Error("We're getting a lot of lookups right now and hit our data limit. Try again in a few minutes.");
+      }
+      throw new Error(json.error || `Couldn't find "${symbol}".`);
+    }
   }
 
   const supplement = STATIC_SUPPLEMENT[symbol] || {};
@@ -1396,13 +1615,15 @@ async function getTicker(symbol) {
     change: json.change,
     low52: json.low52,
     high52: json.high52,
+    asOf: json.timestamp || null,
+    marketOpen: json.isMarketOpen,
     sector: supplement.sector,
     pe: supplement.pe,
     expense: supplement.expense,
     holdings: supplement.holdingsCount,
     yield: supplement.yield,
     returns: supplement.returns || null,
-    note: supplement.note || "Live price pulled from Twelve Data. Extended stats like sector, expense ratio, and 5 year history are available for our starter list of tickers right now, more are being added over time.",
+    note: supplement.note || "We have a price for this one, but not extra details like fees or past yearly returns. Those are available for the 100 tickers in our list.",
   };
 
   quoteCache[symbol] = merged;
@@ -1420,19 +1641,20 @@ function getCategory(symbol) {
   const d = STATIC_SUPPLEMENT[symbol];
   if (!d) return 'stock';
   if (d.type === 'etf') return 'etf';
+  if (d.type === 'mutual') return 'mutual';
   if (d.sector === 'Real Estate') return 'reit';
   return 'stock';
 }
 
 // Plain language definitions for the info icons next to jargon.
 const DEFINITIONS = {
-  expense: "The yearly fee a fund charges to manage your money, taken automatically out of your returns. Lower is better, most good index funds charge under 0.20%.",
+  expense: "The annual cost of operating an ETF or mutual fund, shown as a percentage. It is generally deducted within the fund, so you won't typically get a separate bill.",
   pe: "P/E ratio compares a company's stock price to how much profit it makes. A higher number usually means the stock is priced for a lot of future growth.",
   sector: "The industry a company operates in, like Technology or Healthcare. Owning several companies in the same sector means less real diversification than it looks like.",
   holdings: "How many different companies a fund actually owns. More holdings generally means more built in diversification.",
   fractional: "Buying a partial share instead of a whole one, so your exact dollar amount gets invested even if it's less than one full share's price.",
   wholeOnly: "Some brokers only let you buy full shares of certain funds, so any leftover money after buying whole shares sits uninvested until you add more.",
-  risk: "Based on how much this ticker's yearly returns have swung over the last 5 years. Low means steadier, high means bigger ups and downs.",
+  risk: "Based on how much this investment's yearly returns swung over the last 5 calendar years in our reference data. It describes the past only, and it does not predict the future or tell you if something is right for you.",
   yield: "The percentage of the current price paid back to you each year in dividends, before any price growth. A 0% yield means it doesn't pay a dividend at all, common for growth focused stocks and funds.",
 };
 
@@ -1482,10 +1704,169 @@ function riskBadgeHtml(d) {
   if (stdev < 15) { level = 'Low'; cls = 'low'; }
   else if (stdev < 35) { level = 'Medium'; cls = 'medium'; }
   else { level = 'High'; cls = 'high'; }
-  return `<span class="risk-badge ${cls}">${level} risk<span class="risk-info" onclick="showDef('risk')">?</span></span>`;
+  return `<span class="risk-badge ${cls}">${level} past swings<span class="risk-info" onclick="showDef('risk')">?</span></span>`;
+}
+
+function toggleStart(show) {
+  document.getElementById('startPanel').style.display = show ? 'block' : 'none';
+  document.getElementById('startReopen').style.display = show ? 'none' : 'block';
+  try { localStorage.setItem('ztiStartHidden', show ? '0' : '1'); } catch (e) {}
+}
+try { if (localStorage.getItem('ztiStartHidden') === '1') toggleStart(false); } catch (e) {}
+
+function pickTicker(t) {
+  document.getElementById('tickerInput').value = t;
+  lookup();
+  document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+
+// ---------- Course link (edit this one line) ----------
+// Paste the full link to your course lesson or dashboard between the quotes, for example
+// 'https://your-course-link-here'. While it is empty, the Back to Zero to Invested button stays hidden.
+const COURSE_URL = '';
+(function () {
+  const a = document.getElementById('courseLink');
+  if (a && COURSE_URL) { a.href = COURSE_URL; a.style.display = 'inline-block'; }
+})();
+
+const EXPENSE_CHECKED = 'November 2026';
+const isFundType = d => d.type === 'etf' || d.type === 'mutual';
+
+// ---------- Educational diversification labels ----------
+const LEVELS = {
+  green:  { cls: '',        title: 'Broadly Diversified',
+            text: 'This investment spreads your money across many companies or assets. That can help reduce the risk of relying on just one company.' },
+  yellow: { cls: 'warn',    title: 'More Concentrated',
+            text: 'This investment focuses on a smaller group of companies, a specific industry, or a particular investment strategy. It may experience larger price swings.' },
+  red:    { cls: 'risky',   title: 'Highly Concentrated or Speculative',
+            text: 'This investment may carry additional risks because it relies on a single company, a narrow investment theme, leverage, or another higher risk strategy.' },
+};
+const SP = 'Follows the S&P 500, about 500 of the largest U.S. companies.';
+const TOTAL = 'Follows the total U.S. stock market, with large, mid, and small companies.';
+const CLASSIFY = {
+  VOO: ['green', 'Stock index fund', SP], SPY: ['green', 'Stock index fund', SP], IVV: ['green', 'Stock index fund', SP], FXAIX: ['green', 'Stock index fund', SP],
+  VTI: ['green', 'Stock index fund', TOTAL], SCHB: ['green', 'Stock index fund', TOTAL], FZROX: ['green', 'Stock index fund', TOTAL], FSKAX: ['green', 'Stock index fund', TOTAL],
+  SCHX: ['green', 'Stock index fund', 'Follows large U.S. companies, roughly 750 of them.'],
+  VXUS: ['green', 'International stock fund', 'Holds companies outside the U.S. across many countries.'],
+  SCHF: ['green', 'International stock fund', 'Holds large companies in developed countries outside the U.S.'],
+  BND: ['green', 'Bond fund', 'Holds thousands of U.S. bonds, which are loans to governments and companies.'],
+  FBND: ['green', 'Bond fund', 'A professionally managed fund holding many U.S. bonds.'],
+  QQQ: ['yellow', 'Stock index fund', 'Follows the Nasdaq 100, about 100 companies with a heavy tilt toward technology.'],
+  VUG: ['yellow', 'Growth style fund', 'Holds large U.S. companies expected to grow faster than average, with a tilt toward technology.'],
+  SCHG: ['yellow', 'Growth style fund', 'Holds large U.S. companies expected to grow faster than average, with a tilt toward technology.'],
+  VTV: ['yellow', 'Value style fund', 'Holds large U.S. companies that look cheap compared with their earnings or assets.'],
+  SCHV: ['yellow', 'Value style fund', 'Holds large U.S. companies that look cheap compared with their earnings or assets.'],
+  SCHD: ['yellow', 'Dividend strategy fund', 'Holds about 100 U.S. companies chosen for their dividend track record.'],
+  VYM: ['yellow', 'Dividend strategy fund', 'Holds U.S. companies with higher than average dividend payments.'],
+  FDVV: ['yellow', 'Dividend strategy fund', 'Holds U.S. companies chosen for dividend payments and quality screens.'],
+  DIA: ['yellow', 'Stock index fund', 'Follows the Dow Jones Industrial Average, only 30 large U.S. companies.'],
+  IWM: ['yellow', 'Small company fund', 'Holds about 2,000 small U.S. companies, which tend to swing more than large ones.'],
+  SCHA: ['yellow', 'Small company fund', 'Holds small U.S. companies, which tend to swing more than large ones.'],
+  SCHM: ['yellow', 'Mid size company fund', 'Holds mid sized U.S. companies, which can swing more than the largest ones.'],
+  XLK: ['yellow', 'Industry fund', 'Holds U.S. technology companies, a single industry.'],
+  FTEC: ['yellow', 'Industry fund', 'Holds U.S. technology companies, a single industry.'],
+  VNQ: ['yellow', 'Real estate fund', 'Holds real estate companies, a single industry.'],
+  FREL: ['yellow', 'Real estate fund', 'Holds real estate companies, a single industry.'],
+  ARKK: ['red', 'Actively managed theme fund', 'Focuses on a small number of companies tied to one theme, disruptive innovation.'],
+  SOXX: ['red', 'Industry theme fund', 'Focuses on semiconductor companies, a narrow industry theme.'],
+  SMH: ['red', 'Industry theme fund', 'Focuses on semiconductor companies, a narrow industry theme.'],
+};
+
+function labelInfo(symbol, d) {
+  if (CLASSIFY[symbol]) return { level: CLASSIFY[symbol][0], tag: CLASSIFY[symbol][1], why: CLASSIFY[symbol][2] };
+  if (STATIC_SUPPLEMENT[symbol] && STATIC_SUPPLEMENT[symbol].type === 'stock') return { level: 'red', tag: 'Individual stock', why: 'This is one company, so your money rises and falls with that one business.' };
+  return null;
+}
+
+function labelHtml(symbol, d) {
+  const info = labelInfo(symbol, d);
+  if (!info) {
+    return `<div class="verdict unknown"><b class="vh">Not enough information</b>We do not have enough information about ${symbol} to say how diversified or concentrated it is. Look up what it holds before you decide anything.</div>
+      <div class="label-disclaimer">These labels are educational and do not determine whether an investment is appropriate for your personal financial situation.</div>`;
+  }
+  const L = LEVELS[info.level];
+  const extra = info.level === 'green'
+    ? `<span class="vnote">Broadly diversified does not mean safe. These investments can still lose a lot of value.${info.tag === 'Bond fund' ? ' Bond funds hold loans instead of ownership in companies, so they behave differently from stock funds and can lose value too, for example when interest rates rise.' : ''}</span>`
+    : '';
+  return `<div class="verdict ${L.cls}"><b class="vh">${L.title}<span class="vtag">${info.tag}</span></b>${L.text}<span class="vwhy"><b>Why:</b> ${info.why}</span>${extra}</div>
+    <div class="label-disclaimer">These labels are educational and do not determine whether an investment is appropriate for your personal financial situation.</div>`;
+}
+
+// ---------- Expense ratio in plain English ----------
+function fmtMoney(n) {
+  if (n === 0) return '$0';
+  return Number.isInteger(n) ? '$' + n.toLocaleString() : '$' + n.toFixed(2);
+}
+function expenseBlockHtml(symbol, d) {
+  if (!STATIC_SUPPLEMENT[symbol]) {
+    return `<div class="expense-box"><b>Expense ratio:</b> Not available here. We can't tell whether ${symbol} is a fund or a single stock, so we don't show a fee. If it is a fund, check the fund company's website for its expense ratio.</div>`;
+  }
+  if (!isFundType(d)) {
+    return `<div class="expense-box"><b>Expense ratio:</b> Not applicable. An individual stock does not charge a fund expense ratio.</div>`;
+  }
+  const e = parseFloat(d.expense);
+  if (d.expense == null || isNaN(e)) {
+    return `<div class="expense-box"><b>Expense ratio:</b> Not available here yet. Check the fund company's website for the current number before you buy.</div>`;
+  }
+  const per10k = 10000 * (e / 100);
+  const amtRaw = parseFloat(document.getElementById('investAmount').value);
+  const amt = isNaN(amtRaw) || amtRaw <= 0 ? 0 : amtRaw;
+  const mine = amt * (e / 100);
+  const rows = [0.03, 0.05, 0.10, 0.25, 0.50, 1.00].map(x => `<tr><td>${x.toFixed(2)}%</td><td>${fmtMoney(10000 * x / 100)}</td></tr>`).join('');
+  return `<div class="expense-box">
+      <b>Expense ratio:</b> <span class="exp-big">${d.expense}</span><br>
+      That means approximately <b>${fmtMoney(per10k)} per year for every $10,000</b> invested.${amt > 0 ? ` On the ${fmtMoney(amt)} you entered above, that is about ${fmtMoney(mine)} a year.` : ''}<br>
+      An expense ratio is the annual cost of operating an ETF or mutual fund. The expense is generally deducted within the fund, so you won't typically receive a separate bill.
+      <details><summary>See how other fees compare</summary><table><tr><th>Expense ratio</th><th>Cost per $10,000 a year</th></tr>${rows}</table></details>
+      <div class="exp-src">Expense ratio checked against public fund listings in ${EXPENSE_CHECKED}. Fees change, so confirm in the fund's own documents.</div>
+    </div>`;
+}
+
+// ---------- What is inside this investment ----------
+function insideHtml(symbol, d) {
+  if (!isFundType(d)) return '';
+  const info = labelInfo(symbol, d);
+  const isBond = info && info.tag === 'Bond fund';
+  const what = isBond ? 'bonds' : 'companies';
+  const hc = d.holdings ? (String(d.holdings).endsWith('+') ? `more than ${String(d.holdings).slice(0, -1)}` : `about ${d.holdings}`) : '';
+  const holdings = hc ? `${hc} ${what}` : 'many investments';
+  return `<div class="inside-box">
+      <div class="inside-title">What's actually inside this investment?</div>
+      <p>When you buy ${symbol}, you're not just buying one ${isBond ? 'bond' : 'company'}. You're buying a share of a fund that holds ${holdings}.</p>
+      ${info ? `<p><b>What it follows:</b> ${info.why}</p>` : ''}
+      <p>Some funds own many of the same companies. Buying multiple ETFs doesn't always mean your money is more diversified.</p>
+      <p class="inside-fine">Top holdings and sector weights change often. We don't list them here because we can't show a reliable date for them, so check the fund company's website for the current list. The holdings count above is approximate.</p>
+    </div>`;
+}
+
+// ---------- Price time stamp ----------
+function priceMetaHtml(d) {
+  if (d.type === 'mutual') {
+    return `<div class="price-meta">Mutual fund prices update once per trading day, after the market closes.</div>`;
+  }
+  return `<div class="price-meta">Prices update once a day after the market closes, so they may not match today's live price.</div>`;
+}
+function fmtStamp(ts) {
+  try {
+    const n = Number(ts);
+    const dt = isNaN(n) ? new Date(ts) : new Date(n * 1000);
+    if (isNaN(dt.getTime())) return String(ts);
+    return dt.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+  } catch (e) { return String(ts); }
 }
 
 let activeCategory = 'etf';
+
+const CATEGORY_INFO = {
+  etf: ['ETF', 'A basket of investments you can buy and sell on the stock market throughout the trading day.'],
+  mutual: ['Mutual fund', 'A collection of investments you buy through a fund company or brokerage. Mutual fund trades typically happen once per trading day at the closing price.'],
+  stock: ['Individual stock', 'A small ownership piece of one company.'],
+  reit: ['REIT', 'A company that owns or finances income producing real estate. Some REITs trade on the stock market.'],
+  saved: ['Saved', 'Investments you starred. They are kept on this device only.'],
+};
+const catExpanded = {};
+const SHOW_FIRST = 8;
 
 function setCategory(cat) {
   activeCategory = cat;
@@ -1495,13 +1876,23 @@ function setCategory(cat) {
   renderQuickTickers();
 }
 
+function addQuickButton(wrap, t) {
+  const btn = document.createElement('button');
+  btn.textContent = t;
+  btn.onclick = () => { document.getElementById('tickerInput').value = t; lookup(); };
+  wrap.appendChild(btn);
+}
+
 function renderQuickTickers() {
   const quickWrap = document.getElementById('quickTickers');
   quickWrap.innerHTML = '';
+  const info = CATEGORY_INFO[activeCategory];
+  document.getElementById('categoryInfo').innerHTML = `<b>${info[0]}:</b> ${info[1]}`;
 
+  let list;
   if (activeCategory === 'saved') {
-    const saved = getWatchlist().sort();
-    if (saved.length === 0) {
+    list = getWatchlist().sort();
+    if (list.length === 0) {
       const msg = document.createElement('div');
       msg.className = 'portfolio-empty';
       msg.style.padding = '4px 0';
@@ -1509,89 +1900,107 @@ function renderQuickTickers() {
       quickWrap.appendChild(msg);
       return;
     }
-    saved.forEach(t => {
-      const btn = document.createElement('button');
-      btn.textContent = t;
-      btn.onclick = () => { document.getElementById('tickerInput').value = t; lookup(); };
-      quickWrap.appendChild(btn);
-    });
-    return;
+  } else {
+    list = STARTER_TICKERS.filter(t => getCategory(t) === activeCategory).sort();
   }
-
-  STARTER_TICKERS.filter(t => getCategory(t) === activeCategory).sort().forEach(t => {
-    const btn = document.createElement('button');
-    btn.textContent = t;
-    btn.onclick = () => { document.getElementById('tickerInput').value = t; lookup(); };
-    quickWrap.appendChild(btn);
-  });
+  const expanded = catExpanded[activeCategory];
+  const shown = (expanded || list.length <= SHOW_FIRST) ? list : list.slice(0, SHOW_FIRST);
+  shown.forEach(t => addQuickButton(quickWrap, t));
+  if (!expanded && list.length > SHOW_FIRST) {
+    const more = document.createElement('button');
+    more.className = 'show-all-btn';
+    more.textContent = `Show all ${list.length}`;
+    more.onclick = () => { catExpanded[activeCategory] = true; renderQuickTickers(); };
+    quickWrap.appendChild(more);
+  }
 }
 renderQuickTickers();
+
+const PLATFORM_NAMES = { vanguard: 'Vanguard', fidelity: 'Fidelity', schwab: 'Schwab' };
+const VANGUARD_ETFS = ['VOO', 'VTI', 'VXUS', 'BND', 'VYM', 'VUG', 'VTV', 'VNQ'];
 
 function setPlatform(p) {
   platform = p;
   document.getElementById('btnVanguard').classList.toggle('active', p === 'vanguard');
-  document.getElementById('btnOther').classList.toggle('active', p === 'other');
+  document.getElementById('btnFidelity').classList.toggle('active', p === 'fidelity');
+  document.getElementById('btnSchwab').classList.toggle('active', p === 'schwab');
   onControlsChange();
 }
 
 function updatePlatformNote() {
   const note = document.getElementById('platformNote');
-  if (platform === 'vanguard') {
-    note.innerHTML = "Vanguard only allows fractional, dollar based investing on Vanguard's own funds (like VOO and VTI). For anything else, like an individual stock or a non Vanguard ETF, Vanguard requires a whole share, so leftover cash sits uninvested until you add more.";
-  } else {
-    note.innerHTML = "Brokers like Fidelity and Schwab allow fractional share investing across most stocks and ETFs, not just their own funds, so your full dollar amount typically gets put to work.";
-  }
+  const notes = {
+    vanguard: "Vanguard offers dollar based investing in its own ETFs and mutual funds. Individual stocks and ETFs from other companies need whole shares, so leftover cash can sit uninvested until you add more. Not every security qualifies.",
+    fidelity: "Fidelity offers dollar based investing in eligible U.S. stocks and ETFs, and you can buy its mutual funds by dollar amount. Eligibility can change, and the order screen will tell you if something does not qualify.",
+    schwab: "Schwab offers fractional shares in eligible U.S. stocks and ETFs. Its program began with S&P 500 stocks only (called Stock Slices) and has grown since, so its list and rules are not identical to Fidelity's. Other companies' mutual funds can carry fees at Schwab.",
+  };
+  note.innerHTML = notes[platform] + ' Fractional share availability depends on the brokerage, account type, and investment. Check your brokerage\'s current rules before placing an order.';
 }
 updatePlatformNote();
+
+// How a given brokerage handles a given investment: 'fractional', 'whole', or 'check'.
+function fracInfo(symbol, d, plat) {
+  const isMutual = d.type === 'mutual';
+  if (plat === 'vanguard') {
+    if (VANGUARD_ETFS.includes(symbol)) return { mode: 'fractional', ifEligible: false };
+    if (isMutual) return { mode: 'check', note: `${symbol} is a Fidelity fund. Vanguard may not offer it, or may charge a fee. Check before you plan around it.` };
+    return { mode: 'whole', note: `Vanguard needs whole shares of ${symbol}.` };
+  }
+  if (plat === 'fidelity') {
+    if (isMutual) return { mode: 'fractional', ifEligible: false };
+    return { mode: 'fractional', ifEligible: true };
+  }
+  if (isMutual) return { mode: 'check', note: `${symbol} is a Fidelity fund. At Schwab, mutual funds from other companies can carry a transaction fee, and dollar based buying is not guaranteed. Check first.` };
+  return { mode: 'fractional', ifEligible: true };
+}
 
 function investResultHtml(symbol, d) {
   const amountRaw = parseFloat(document.getElementById('investAmount').value);
   const amount = isNaN(amountRaw) || amountRaw <= 0 ? 0 : amountRaw;
-  const isVanguardFund = VANGUARD_FUNDS.includes(symbol);
-  const fractionalAvailable = platform === 'other' || isVanguardFund;
+  const pname = PLATFORM_NAMES[platform];
+  const info = fracInfo(symbol, d, platform);
+  const label = `<div class="invest-block-label">What ${amount ? '$' + amount.toFixed(0) : 'your money'} buys on ${pname}</div>`;
+  const priceNote = d.type === 'mutual' ? 'Based on the latest NAV. ' : 'Based on the latest price we have. ';
 
   if (amount === 0) {
-    return `<div class="invest-block"><div class="invest-block-label">What $ buys on ${platform === 'vanguard' ? 'Vanguard' : 'Fidelity / Schwab'}</div><div class="platform-note">Enter an amount above to see what it buys.</div></div>`;
+    return `<div class="invest-block">${label}<div class="platform-note">Enter an amount above to see what it buys.</div></div>`;
   }
-
-  if (fractionalAvailable) {
+  if (info.mode === 'fractional') {
     const shares = amount / d.price;
     return `
-      <div class="invest-block">
-        <div class="invest-block-label">What $${amount.toFixed(0)} buys on ${platform === 'vanguard' ? 'Vanguard' : 'Fidelity / Schwab'}</div>
+      <div class="invest-block">${label}
         <div class="invest-result">
-          <div class="invest-shares">${shares.toFixed(3)} shares</div>
-          <div class="invest-badge fractional">Fractional, full amount invested</div>
+          <div class="invest-shares">about ${shares.toFixed(3)} shares</div>
+          <div class="invest-badge fractional">${info.ifEligible ? 'Fractional, if eligible' : 'Dollar based buying'}</div>
         </div>
-      </div>
-    `;
-  } else {
-    const wholeShares = Math.floor(amount / d.price);
-    const spent = wholeShares * d.price;
-    const leftover = amount - spent;
-    if (wholeShares === 0) {
-      return `
-        <div class="invest-block">
-          <div class="invest-block-label">What $${amount.toFixed(0)} buys on Vanguard</div>
-          <div class="invest-result">
-            <div class="invest-shares">0 whole shares</div>
-            <div class="invest-badge whole">Not enough for 1 share</div>
-          </div>
-          <div class="invest-leftover">$${d.price.toFixed(2)} needed for just 1 share. Vanguard doesn't allow fractional buying on ${symbol}, so this amount stays uninvested until you add more or switch brokers.</div>
-        </div>
-      `;
-    }
-    return `
-      <div class="invest-block">
-        <div class="invest-block-label">What $${amount.toFixed(0)} buys on Vanguard</div>
-        <div class="invest-result">
-          <div class="invest-shares">${wholeShares} whole share${wholeShares > 1 ? 's' : ''}</div>
-          <div class="invest-badge whole">Whole shares only</div>
-        </div>
-        <div class="invest-leftover">Uses $${spent.toFixed(2)}, leaves $${leftover.toFixed(2)} uninvested since Vanguard doesn't allow fractional buying on ${symbol}.</div>
-      </div>
-    `;
+        <div class="invest-leftover">${priceNote}${info.ifEligible ? `${pname} sets which ${symbol}-type investments qualify, and you will see an error on the order screen if this one does not.` : `${pname} lets you buy ${symbol} by dollar amount.`} The final share count depends on the price when your order fills.</div>
+      </div>`;
   }
+  if (info.mode === 'check') {
+    return `
+    <div class="invest-block">${label}
+      <div class="invest-result">
+        <div class="invest-shares">Availability varies</div>
+        <div class="invest-badge whole">Check availability</div>
+      </div>
+      <div class="invest-leftover">${info.note} We can't tell you what ${fmtMoney(amount)} would buy here, because it depends on whether ${pname} offers it and how.</div>
+    </div>`;
+  }
+  const wholeShares = Math.floor(amount / d.price);
+  const spent = wholeShares * d.price;
+  const leftover = amount - spent;
+  const badge = 'Whole shares only';
+  const body = wholeShares === 0
+    ? `$${d.price.toFixed(2)} is needed for 1 share, so this amount would stay uninvested until you add more.`
+    : `Uses $${spent.toFixed(2)} and leaves about $${leftover.toFixed(2)} uninvested.`;
+  return `
+    <div class="invest-block">${label}
+      <div class="invest-result">
+        <div class="invest-shares">${wholeShares} whole share${wholeShares === 1 ? '' : 's'}</div>
+        <div class="invest-badge whole">${badge}</div>
+      </div>
+      <div class="invest-leftover">${info.note || ''} ${body} ${priceNote}</div>
+    </div>`;
 }
 
 function onControlsChange() {
@@ -1630,7 +2039,7 @@ function rangeBarHtml(d) {
 
 function returnsRowHtml(d) {
   if (!d.returns) {
-    return `<div class="returns-block"><div class="invest-block-label">5 year return, year by year</div><div class="platform-note">History is available for our starter list of tickers right now, more are being added.</div></div>`;
+    return `<div class="returns-block"><div class="invest-block-label">Yearly returns, last 5 calendar years</div><div class="platform-note">We only have this for the 100 tickers in our list.</div></div>`;
   }
   const years = Object.keys(d.returns);
   const maxAbs = Math.max(...years.map(y => Math.abs(d.returns[y])));
@@ -1651,31 +2060,33 @@ function returnsRowHtml(d) {
   }).join('');
   return `
     <div class="returns-block">
-      <div class="invest-block-label">5 year return, year by year</div>
+      <div class="invest-block-label">Yearly returns, last 5 calendar years</div>
       <div class="returns-row">${cols}</div>
+      <div class="platform-note" style="margin-top:8px;">Approximate calendar year returns from our own reference data, each year on its own, not an annualized average. We have not checked them against the fund company's official reports, and we have not confirmed whether they include reinvested dividends. Past results do not predict future results.</div>
     </div>
   `;
 }
 
 function renderCard(symbol, d) {
-  const isEtf = d.type === 'etf';
+  const isMutual = d.type === 'mutual';
+  const isFund = isFundType(d);
   const category = getCategory(symbol);
   const isReit = category === 'reit';
   const changeClass = d.change >= 0 ? 'up' : 'down';
   const changeSign = d.change >= 0 ? '+' : '';
 
-  const pillClass = isEtf ? 'etf' : (isReit ? 'reit' : '');
-  const pillLabel = isEtf ? 'ETF' : (isReit ? 'REIT' : 'Stock');
+  const pillClass = isFund ? 'etf' : (isReit ? 'reit' : '');
+  const pillLabel = !STATIC_SUPPLEMENT[symbol] ? 'Type unknown' : (isMutual ? 'Mutual fund' : (d.type === 'etf' ? 'ETF' : (isReit ? 'REIT' : 'Stock')));
   const saved = isSaved(symbol);
 
-  const statsLabelsHtml = isEtf ? `
-      <div class="stat"><div class="stat-label">Expense ratio<span class="info-icon" onclick="showDef('expense')">i</span></div><div class="stat-value">${d.expense || 'Not available'}</div></div>
-      <div class="stat"><div class="stat-label">Dividend yield<span class="info-icon" onclick="showDef('yield')">i</span></div><div class="stat-value">${d.yield || 'Not available'}</div></div>
-      <div class="stat"><div class="stat-label">Holdings<span class="info-icon" onclick="showDef('holdings')">i</span></div><div class="stat-value">${d.holdings || 'Not available'}</div></div>
+  const statsLabelsHtml = isFund ? `
+      <div class="stat"><div class="stat-label">Expense ratio<span class="info-icon" onclick="showDef('expense')">i</span><span class="stat-sub">yearly fee</span></div><div class="stat-value">${d.expense || 'Not available'}</div></div>
+      <div class="stat"><div class="stat-label">Dividend yield<span class="info-icon" onclick="showDef('yield')">i</span><span class="stat-sub">paid to you yearly</span></div><div class="stat-value">${d.yield || 'Not available'}</div></div>
+      <div class="stat"><div class="stat-label">Holdings<span class="info-icon" onclick="showDef('holdings')">i</span><span class="stat-sub">approx. number inside</span></div><div class="stat-value">${d.holdings || 'Not available'}</div></div>
     ` : `
-      <div class="stat"><div class="stat-label">Sector<span class="info-icon" onclick="showDef('sector')">i</span></div><div class="stat-value">${d.sector || 'Not available'}</div></div>
-      <div class="stat"><div class="stat-label">P/E ratio<span class="info-icon" onclick="showDef('pe')">i</span></div><div class="stat-value">${d.pe || 'Not available'}</div></div>
-      <div class="stat"><div class="stat-label">Dividend yield<span class="info-icon" onclick="showDef('yield')">i</span></div><div class="stat-value">${d.yield || 'Not available'}</div></div>
+      <div class="stat"><div class="stat-label">Sector<span class="info-icon" onclick="showDef('sector')">i</span><span class="stat-sub">type of business</span></div><div class="stat-value">${d.sector || 'Not available'}</div></div>
+      <div class="stat"><div class="stat-label">P/E ratio<span class="info-icon" onclick="showDef('pe')">i</span><span class="stat-sub">price vs profit</span></div><div class="stat-value">${d.pe || 'Not available'}</div></div>
+      <div class="stat"><div class="stat-label">Dividend yield<span class="info-icon" onclick="showDef('yield')">i</span><span class="stat-sub">paid to you yearly</span></div><div class="stat-value">${d.yield || 'Not available'}</div></div>
     `;
 
   return `
@@ -1686,7 +2097,7 @@ function renderCard(symbol, d) {
       </div>
       <div class="card-top-right">
         <div class="type-pill ${pillClass}">${pillLabel}</div>
-        <button class="star-btn ${saved ? 'saved' : ''}" data-symbol="${symbol}" onclick="toggleSave('${symbol}')" aria-label="Save to watchlist">${saved ? '\u2605' : '\u2606'}</button>
+        <button class="star-btn ${saved ? 'saved' : ''}" data-symbol="${symbol}" onclick="toggleSave('${symbol}')" aria-label="Save to watchlist">${saved ? '★' : '☆'}</button>
       </div>
     </div>
     <div class="price-row">
@@ -1694,10 +2105,14 @@ function renderCard(symbol, d) {
       <div class="change ${changeClass}">${changeSign}${d.change}%</div>
       ${riskBadgeHtml(d)}
     </div>
+    ${priceMetaHtml(d)}
+    ${labelHtml(symbol, d)}
     <div class="stat-grid">${statsLabelsHtml}</div>
+    ${expenseBlockHtml(symbol, d)}
+    ${insideHtml(symbol, d)}
     ${rangeBarHtml(d)}
     ${returnsRowHtml(d)}
-    <div class="selma-note"><b>What you're looking at:</b> ${d.note}</div>
+    <div class="selma-note"><b>In plain English:</b> ${d.note}</div>
     ${investResultHtml(symbol, d)}
   `;
 }
@@ -1728,36 +2143,36 @@ async function lookup() {
 }
 
 const GLOSSARY = [
-  { term: "401(k)", def: "A retirement account offered through a for profit employer, often with a company match, contributions usually come straight out of your paycheck." },
-  { term: "403(b)", def: "A retirement account similar to a 401(k), but offered by nonprofits, schools, hospitals, and other tax exempt organizations instead of for profit companies." },
-  { term: "457(b)", def: "A retirement account for state and local government employees, works similarly to a 401(k), but often has different, more flexible early withdrawal rules." },
+  { term: "401(k)", def: "A retirement savings account offered through an employer. You can contribute money from your paycheck, and some employers also contribute money." },
+  { term: "403(b)", def: "A workplace retirement savings account commonly offered by public schools and certain nonprofit organizations. It works similarly to a 401(k)." },
+  { term: "457(b)", def: "A retirement savings plan offered by certain government and tax-exempt employers. Withdrawal rules can differ depending on the type of 457(b) plan." },
   { term: "52 week range", def: "The lowest and highest price a stock or fund has traded at over the past year, useful for seeing where the current price sits in context." },
   { term: "Ask price", def: "The lowest price someone is currently willing to sell a stock for." },
-  { term: "Asset allocation", def: "How your money is divided across different types of investments, like stocks, bonds, and cash, based on your goals and timeline." },
+  { term: "Asset allocation", def: "How your investment money is divided among categories such as stocks, bonds, and cash." },
   { term: "Backdoor Roth", def: "A workaround for high earners who make too much to contribute to a Roth IRA directly, you put money into a traditional IRA first, then convert it to a Roth. A bit more paperwork, but it gets the same tax free growth for people over the income limit." },
   { term: "Bear market", def: "A period when prices are generally falling, typically defined as a drop of 20% or more from a recent high." },
   { term: "Bid price", def: "The highest price someone is currently willing to pay for a stock." },
   { term: "Blue chip stock", def: "A large, well known, financially stable company with a long track record, think the kind of name your grandmother would recognize." },
-  { term: "Bond", def: "A loan you make to a government or company, which pays you back with interest over time. Generally lower risk and lower return than stocks." },
+  { term: "Bond", def: "A loan you make to a government or company, which pays you interest over time. Bonds are generally less volatile than stocks, but they can still lose value." },
   { term: "Broker", def: "Another word for a brokerage, or sometimes the platform itself that executes your trade." },
   { term: "Brokerage", def: "The company or app you use to actually buy and sell stocks and funds, think Vanguard, Fidelity, or Schwab." },
   { term: "Bull market", def: "A period when prices are generally rising and confidence is high." },
   { term: "Capital gains", def: "The profit you make when you sell an investment for more than you paid for it." },
   { term: "Capital gains tax", def: "The tax owed on that profit, the rate depends on how long you held the investment before selling." },
-  { term: "Compound interest", def: "Earning returns not just on your original money, but on the returns it already earned, which is why starting early matters so much." },
-  { term: "Diversification", def: "Spreading your money across many different companies or funds instead of betting it all on one, so one bad company doesn't sink your whole portfolio." },
-  { term: "Dividend", def: "A cash payment some companies make to shareholders, usually every quarter, as a way of sharing profit." },
+  { term: "Compound growth", def: "When your investment earnings begin generating additional earnings over time. Investment losses can also compound." },
+  { term: "Diversification", def: "Spreading your money across different investments so you aren't relying on just one company or asset." },
+  { term: "Dividend", def: "A payment some companies or funds make to shareholders. Dividends aren't guaranteed." },
   { term: "Dividend reinvestment, or DRIP", def: "Automatically using your dividend payments to buy more shares instead of taking the cash, which speeds up growth over time." },
   { term: "Dividend yield", def: "The percentage of the current price paid back to you each year in dividends, before any price growth. 0% means it doesn't pay a dividend at all." },
   { term: "Dollar cost averaging", def: "Investing a fixed amount on a regular schedule regardless of price, so you buy more shares when prices are low and fewer when they're high.", selma: "They made this shit complicated for no reason. It simply means you invest the same amount of money every month, no matter the stock price." },
   { term: "Dow Jones", def: "An older index tracking 30 large, well established US companies, one of the most widely quoted market measures." },
   { term: "Employer match", def: "Free money your employer adds to your 401(k) when you contribute, usually up to a certain percentage of your salary. Leaving this unclaimed is leaving free money on the table." },
-  { term: "ETF", def: "Short for exchange traded fund, a basket of many stocks or bonds bundled into one thing you can buy with a single purchase, like a starter pack of companies. Examples: VOO, QQQ, SCHD." },
-  { term: "Expense ratio", def: "The yearly fee a fund charges to manage your money, taken automatically out of your returns. Lower is better, most good index funds charge under 0.20%." },
-  { term: "Fractional share", def: "Buying a partial share instead of a whole one, so your exact dollar amount gets invested even if it's less than one full share's price." },
+  { term: "ETF", def: "An exchange-traded fund is a basket of investments you can buy and sell on the stock market, similar to buying a stock. Examples: VOO, QQQ, SCHD." },
+  { term: "Expense ratio", def: "The annual operating cost of an ETF or mutual fund, shown as a percentage." },
+  { term: "Fractional share", def: "A portion of one full share of a stock or ETF." },
   { term: "Growth stock", def: "A company expected to grow faster than average, usually reinvesting profit into the business instead of paying dividends." },
   { term: "Holdings", def: "How many different companies a fund actually owns. More holdings generally means more built in diversification." },
-  { term: "Index fund", def: "A fund built to match a specific market index, like the S&P 500, instead of a person picking stocks by hand. Usually low cost and widely recommended for beginners." },
+  { term: "Index fund", def: "An investment fund designed to follow a specific market index, such as the S&P 500. Index funds can be ETFs or mutual funds." },
   { term: "Inflation", def: "The general rise in prices over time, which is why money sitting still loses purchasing power." },
   { term: "Interest rate", def: "The cost of borrowing money, set in large part by the Federal Reserve, which ripples through everything from mortgages to how stocks are priced." },
   { term: "Large cap", def: "A company with a market cap generally above $10 billion, usually well established and less volatile." },
@@ -1766,8 +2181,9 @@ const GLOSSARY = [
   { term: "Market cap", def: "The total value of a company, found by multiplying its share price by the number of shares that exist." },
   { term: "Market order", def: "An order to buy or sell immediately at the current price, whatever that happens to be.", selma: "Most of your trades will happen here. It simply means you're buying or selling the stock at the price you currently see it for." },
   { term: "Mid cap", def: "A company with a market cap roughly between $2 billion and $10 billion, a middle ground on risk and growth potential." },
-  { term: "Mutual fund", def: "Similar to an ETF, a bundle of many investments in one, but usually bought directly through the fund company instead of traded like a stock during the day." },
+  { term: "Mutual fund", def: "A collection of investments you buy through a fund company or brokerage. Mutual fund trades typically happen once per trading day at the closing price." },
   { term: "Nasdaq", def: "A stock exchange known for listing many technology companies, also the name of an index tracking its largest names." },
+  { term: "NAV", def: "Net asset value, the price of one share of a mutual fund. It is calculated once per trading day after the market closes." },
   { term: "Options trading", def: "A way to bet on which direction a stock's price will move using contracts instead of buying the stock itself. Higher risk, more complex, and not necessary for building wealth as a beginner.", selma: "Real tea, I lost money doing this, LMFAO. I gained money too, but I really lost overall. This should not be your first move when it comes to investing, long term investing should be." },
   { term: "Overlap", def: "When two or more of your investments secretly own a lot of the same underlying companies, meaning you're paying for the same exposure more than once." },
   { term: "P/E ratio", def: "Compares a company's stock price to how much profit it makes. A higher number usually means the stock is priced for a lot of future growth." },
@@ -1776,7 +2192,7 @@ const GLOSSARY = [
   { term: "Recession", def: "A period of significant economic decline, typically affecting jobs, spending, and company profits." },
   { term: "REIT", def: "Short for real estate investment trust, a way to invest in real estate, like apartment buildings or data centers, without buying property yourself. Examples: O, PLD, VICI." },
   { term: "Risk tolerance", def: "How much ups and downs in value you can handle emotionally and financially before it affects your decisions.", selma: "This is one of the most important things to know about yourself. Don't invest in a volatile stock when you know your risk tolerance is low, and you're the type to sell when the stock is at its lowest." },
-  { term: "Roth IRA", def: "A retirement account you fund with money you've already paid tax on, so withdrawals in retirement are tax free.", selma: "Friend, I got this account and you need to have one too! It's NOT optional, especially if you're within the income limits! We love tax free growth!" },
+  { term: "Roth IRA", def: "A retirement account you fund with money you've already paid tax on, so qualified withdrawals in retirement are tax free.", selma: "Friend, I got this account and you need to have one too! It's NOT optional, especially if you're within the income limits! We love tax free growth!" },
   { term: "S&P 500", def: "An index tracking 500 of the largest US companies, often used as a stand in for how the overall US stock market is doing." },
   { term: "Sector", def: "The industry a company operates in, like Technology or Healthcare. Owning several companies in the same sector means less real diversification than it looks like." },
   { term: "Small cap", def: "A company with a market cap generally under $2 billion, often earlier stage and more volatile." },
@@ -1784,9 +2200,9 @@ const GLOSSARY = [
   { term: "Stock", def: "Owning a small piece of one specific company. When you buy a stock, your money is tied to how that one business performs, not a basket of many. Examples: AAPL, MSFT, TSLA." },
   { term: "Stock split", def: "When a company divides its existing shares into more shares at a lower price each, the total value you own doesn't change." },
   { term: "TIAA", def: "A major retirement account provider that manages 403(b) and other plans, especially common in education, healthcare, and nonprofit jobs. If your employer uses TIAA, that's who's actually holding and investing your account, similar to how Fidelity or Vanguard would." },
-  { term: "Ticker symbol", def: "The short code used to look up a stock or fund, like AAPL for Apple or VOO for Vanguard's S&P 500 fund." },
+  { term: "Ticker symbol", def: "A short combination of letters that identifies a stock or fund when you search for it or place a trade. Example: AAPL for Apple." },
   { term: "Total return", def: "The full picture of what an investment earned, combining both price growth and any dividends paid along the way." },
-  { term: "Traditional IRA", def: "A retirement account funded with pre tax money, lowering your taxable income now, but you pay tax when you withdraw in retirement." },
+  { term: "Traditional IRA", def: "A retirement account that may let you deduct contributions now, so you can lower your taxable income. You generally pay tax when you withdraw in retirement." },
   { term: "TSP, or Thrift Savings Plan", def: "The retirement account offered to federal government employees and military service members, works a lot like a 401(k) with low cost fund options." },
   { term: "Value stock", def: "A company that looks cheap relative to its earnings or assets, often more established and slower growing than a growth stock." },
   { term: "Vesting", def: "The waiting period before employer contributions to your 401(k) fully belong to you if you leave the job." },
@@ -1824,7 +2240,7 @@ function toggleGlossary() {
   const panel = document.getElementById('glossaryPanel');
   const toggle = document.getElementById('glossaryToggle');
   const showing = panel.classList.toggle('show');
-  toggle.textContent = showing ? '- Hide the glossary' : '+ What do these terms mean?';
+  toggle.textContent = showing ? 'Hide the definitions' : '+ New to investing? Tap for plain English definitions';
 }
 
 function toggleCompare() {
@@ -1833,7 +2249,7 @@ function toggleCompare() {
   const helper = document.getElementById('compareHelper');
   const showing = wrap.classList.toggle('show');
   helper.classList.toggle('show', showing);
-  toggle.textContent = showing ? '- Hide compare' : '+ Compare two tickers side by side';
+  toggle.textContent = showing ? 'Hide compare' : '+ Step 2: Compare two investments side by side';
   if (!showing) {
     document.getElementById('compareGrid').classList.remove('show');
   }
@@ -1880,6 +2296,219 @@ async function addPortfolioTicker() {
   splitEvenly();
 }
 
+// ---------- Portfolio report ----------
+const COMPANY_NAMES = { AAPL:'Apple', MSFT:'Microsoft', NVDA:'Nvidia', AMZN:'Amazon', GOOGL:'Google', META:'Meta', AVGO:'Broadcom', TSLA:'Tesla', ABBV:'AbbVie', PEP:'PepsiCo', HD:'Home Depot', KO:'Coca Cola', VZ:'Verizon', PFE:'Pfizer', CSCO:'Cisco', TXN:'Texas Instruments', ROKU:'Roku', COIN:'Coinbase', RBLX:'Roblox', PATH:'UiPath', DKNG:'DraftKings', JPM:'JPMorgan', XOM:'Exxon', JNJ:'Johnson and Johnson', PG:'Procter and Gamble', V:'Visa', AMD:'AMD', GS:'Goldman Sachs', PLD:'Prologis', AMT:'American Tower', EQIX:'Equinix', PSA:'Public Storage', O:'Realty Income', WELL:'Welltower', DLR:'Digital Realty', SPG:'Simon Property', QCOM:'Qualcomm', MU:'Micron', TSM:'TSMC' };
+
+const CLASS_INFO = {
+  broad:    { label: 'Broad US funds',       color: '#2E7D5B', note: 'Hundreds or thousands of companies in one fund. This is your backbone.' },
+  intl:     { label: 'International funds',  color: '#3E7CB1', note: 'Companies outside the US, so you are not betting on one country.' },
+  bond:     { label: 'Bonds',                color: '#E8B84B', note: 'Loans to governments and companies. Steadier, slower growth.' },
+  dividend: { label: 'Dividend and value',   color: '#4FA3A5', note: 'Established companies that pay you regularly.' },
+  growth:   { label: 'Growth and tech funds',color: '#7B5EA7', note: 'Faster growing but swingier, and heavy in the same big tech names.' },
+  smallmid: { label: 'Small and mid US',     color: '#8FB8DE', note: 'Smaller companies, which move more than the giants.' },
+  reit:     { label: 'Real estate',          color: '#C98B5B', note: 'Companies that own buildings and land.' },
+  stock:    { label: 'Single stocks',        color: '#C24B42', note: 'One company each. Your biggest swings, up or down.' },
+};
+function classOf(symbol, d) {
+  if (['BND','FBND'].includes(symbol)) return 'bond';
+  if (['VXUS','SCHF'].includes(symbol)) return 'intl';
+  if (['IWM','SCHA','SCHM'].includes(symbol)) return 'smallmid';
+  if (['SCHD','VYM','VTV','SCHV','FDVV'].includes(symbol)) return 'dividend';
+  if (['QQQ','VUG','SCHG','XLK','FTEC','SOXX','SMH','ARKK'].includes(symbol)) return 'growth';
+  if (['VNQ','FREL'].includes(symbol) || getCategory(symbol) === 'reit') return 'reit';
+  if (isFundType(d)) return 'broad';
+  return 'stock';
+}
+const DONUT_SHADES = ['#1B2A4A','#2E7D5B','#E8B84B','#3E7CB1','#7B5EA7','#C24B42','#4FA3A5','#C98B5B'];
+
+function pfFmt(n) { return '$' + Math.round(n).toLocaleString(); }
+
+function donutSvg(items, total) {
+  const R = 62, C = 2 * Math.PI * R;
+  let offset = 0;
+  const arcs = items.map(it => {
+    const len = (it.amount / total) * C;
+    const seg = `<circle cx="85" cy="85" r="${R}" fill="none" stroke="${it.color}" stroke-width="26" stroke-dasharray="${len.toFixed(2)} ${(C - len).toFixed(2)}" stroke-dashoffset="${(-offset).toFixed(2)}" transform="rotate(-90 85 85)"></circle>`;
+    offset += len;
+    return seg;
+  }).join('');
+  return `<svg viewBox="0 0 170 170" role="img" aria-label="Portfolio split by holding"><circle cx="85" cy="85" r="${R}" fill="none" stroke="#EEF1F6" stroke-width="26"></circle>${arcs}</svg>`;
+}
+
+function renderReport(loaded, totalAllocated) {
+  const wrap = document.getElementById('portfolioReport');
+  const title = document.getElementById('pfDetailsTitle');
+  if (!loaded.length || totalAllocated <= 0) { wrap.innerHTML = ''; title.style.display = 'none'; return; }
+  title.style.display = 'block';
+
+  // Class totals
+  const classAmt = {};
+  loaded.forEach(l => { l.cls = classOf(l.symbol, l.d); classAmt[l.cls] = (classAmt[l.cls] || 0) + l.amount; });
+  const pct = k => ((classAmt[k] || 0) / totalAllocated) * 100;
+  const backbone = pct('broad') + pct('intl');
+  const singles = pct('stock');
+  const intl = pct('intl');
+  const growthHeavy = pct('growth');
+  const biggest = loaded.reduce((a, b) => (b.amount > a.amount ? b : a));
+  const biggestPct = (biggest.amount / totalAllocated) * 100;
+  const samePairs = findSameIndexPairs(portfolioTickers);
+
+  // Weighted fee
+  let feeNum = 0, feeAmt = 0;
+  loaded.forEach(l => { const e = parseFloat(l.d.expense); if (!isNaN(e)) { feeNum += e * l.amount; feeAmt += l.amount; } });
+  const wFee = feeAmt > 0 ? feeNum / feeAmt : null;
+
+  // Company exposure (from each fund's top holdings)
+  const exposure = {};
+  loaded.forEach(l => {
+    if (!HOLDINGS[l.symbol] && isFundType(l.d)) return; // no holdings data for this fund, skip it here
+    const h = getHoldings(l.symbol);
+    Object.keys(h).forEach(c => { exposure[c] = (exposure[c] || 0) + l.amount * (h[c] / 100); });
+  });
+  const topCos = Object.keys(exposure).map(c => ({ c, dollar: exposure[c] })).sort((a, b) => b.dollar - a.dollar).slice(0, 5);
+
+  // Observations (descriptive, not a grade)
+  const checks = [];
+  const tips = [];
+  let conc = 0;
+
+  checks.push(['info', `<b>Broad funds: ${backbone.toFixed(0)}% of your money.</b> In the course, about 70% in broad funds is shared as one example, not a rule.`]);
+  if (backbone < 30) conc += 1;
+
+  if (singles === 0) checks.push(['ok', `<b>No single stocks.</b> Nothing here depends on one company.`]);
+  else {
+    checks.push([singles > 15 ? 'warn' : 'ok', `<b>Single stocks: ${singles.toFixed(0)}%.</b> ${singles > 15 ? 'More of your money relies on individual companies, so results can swing more.' : 'The course shares about 15% in researched stocks as an example, not a rule. Your mix is your call.'}`]);
+    if (singles > 30) conc += 2; else if (singles > 15) conc += 1;
+  }
+
+  const sameP = samePairs.filter(p => p.kind === 'same');
+  const nearP = samePairs.filter(p => p.kind === 'near');
+  if (sameP.length) {
+    conc += 1;
+    const pr = sameP[0];
+    checks.push(['warn', `<b>Same index.</b> ${pr.a} and ${pr.b} track the same S&P 500 index. Buying both does not give you two different groups of companies.`]);
+  }
+  if (nearP.length) {
+    const pr = nearP[0];
+    checks.push(['warn', `<b>Very similar funds.</b> ${pr.a} and ${pr.b} follow very similar indexes (${pr.label}), so their holdings are nearly the same.`]);
+  }
+  if (!sameP.length && !nearP.length && loaded.length > 1) checks.push(['ok', `<b>No identical or near identical funds</b> among your picks.`]);
+
+  if (intl > 0) checks.push(['ok', `<b>International: ${intl.toFixed(0)}%.</b> Part of your money is outside the U.S.`]);
+  else checks.push(['info', `<b>All U.S.</b> Everything here is in U.S. companies. Funds like VXUS hold companies in other countries.`]);
+
+  if (growthHeavy > 40) { conc += growthHeavy > 70 ? 2 : 1; checks.push(['warn', `<b>Tech and growth funds: ${growthHeavy.toFixed(0)}%.</b> These funds hold many of the same big technology names, so they tend to rise and fall together.`]); }
+  if (loaded.length > 1 && biggestPct > 60 && biggest.cls !== 'broad' && biggest.cls !== 'intl') { conc += 2; checks.push(['warn', `<b>One large position.</b> ${biggest.symbol} is ${biggestPct.toFixed(0)}% of your money.`]); }
+
+  if (wFee !== null) {
+    const per10k = wFee / 100 * 10000;
+    const feeTxt = per10k < 1 ? per10k.toFixed(2) : per10k.toFixed(0);
+    checks.push(['info', `<b>Fees.</b> For the funds where we have verified fee data, you would pay about ${wFee.toFixed(3)}% a year, roughly $${feeTxt} per $10,000.`]);
+  }
+
+  // Things to think about, framed as tradeoffs
+  if (singles > 15) tips.push('A bigger share in single stocks can mean bigger swings. Some people keep that share smaller and let broad funds do more of the work.');
+  if (sameP.length || nearP.length) tips.push('When two funds hold nearly the same companies, owning both mostly doubles the same exposure instead of adding something different.');
+  if (intl === 0) tips.push('If you want exposure outside the U.S., look at what international funds hold and how they have behaved.');
+  if (growthHeavy > 40) tips.push('Growth and tech funds can move together. Looking at what else you own can show how balanced it is.');
+
+  const level = conc >= 3 ? 'red' : (conc >= 1 ? 'yellow' : 'green');
+  const levelInfo = {
+    green:  { label: 'Broadly spread', col: '#2E7D5B', line: 'Your money is spread across many companies or assets in this mix.' },
+    yellow: { label: 'Some concentration', col: '#C99A2E', line: 'Parts of this mix lean on fewer companies, one style, or one theme.' },
+    red:    { label: 'Highly concentrated', col: '#C24B42', line: 'Much of this mix relies on a few companies, a narrow theme, or the same holdings twice.' },
+  }[level];
+  const label = levelInfo.label, col = levelInfo.col, line = levelInfo.line;
+  const score = null;
+
+  // Plain English summary
+  const parts = Object.keys(classAmt).sort((a, b) => classAmt[b] - classAmt[a])
+    .map(k => `${(classAmt[k] / totalAllocated * 100).toFixed(0)}% in ${CLASS_INFO[k].label.toLowerCase()}`);
+  const partsTxt = parts.length > 1 ? parts.slice(0, -1).join(', ') + ' and ' + parts[parts.length - 1] : parts[0];
+  let companies = 0;
+  loaded.forEach(l => { companies += parseInt(String(l.d.holdings || '1').replace(/[^0-9]/g, ''), 10) || 1; });
+  const compTxt = companies >= 1000 ? `thousands of companies` : (companies > 1 ? `about ${companies} companies` : 'one company');
+  const summary = `You are putting <b>${pfFmt(totalAllocated)}</b> into <b>${loaded.length}</b> ${loaded.length === 1 ? 'holding' : 'holdings'}: ${partsTxt}. Between them you would own small pieces of ${compTxt}${samePairs.length ? ', though some are counted twice' : ''}.`;
+
+  // Donut
+  const donutItems = loaded.slice().sort((a, b) => b.amount - a.amount).map(l => ({ ...l, color: CLASS_INFO[l.cls].color }));
+  const legend = donutItems.map(it => `
+    <div class="pf-leg-row"><span class="pf-dot" style="background:${it.color}"></span><b>${it.symbol}</b><span>${CLASS_INFO[it.cls].label}</span><span class="pf-pct">${(it.amount / totalAllocated * 100).toFixed(0)}%</span></div>`).join('');
+
+  // Class bars
+  const classBars = Object.keys(classAmt).sort((a, b) => classAmt[b] - classAmt[a]).map(k => `
+    <div class="pf-class-row">
+      <div class="pf-class-head"><span>${CLASS_INFO[k].label}</span><b>${(classAmt[k] / totalAllocated * 100).toFixed(0)}% &middot; ${pfFmt(classAmt[k])}</b></div>
+      <div class="pf-bar"><i style="width:${(classAmt[k] / totalAllocated * 100).toFixed(1)}%;background:${CLASS_INFO[k].color}"></i></div>
+      <div class="pf-class-note">${CLASS_INFO[k].note}</div>
+    </div>`).join('');
+
+  // Top companies
+  const maxCo = topCos.length ? topCos[0].dollar : 1;
+  const coRows = topCos.filter(t => t.dollar > 0).map((t, i) => `
+    <div class="pf-class-row">
+      <div class="pf-class-head"><span>${COMPANY_NAMES[t.c] || t.c}</span><b>${(t.dollar / totalAllocated * 100).toFixed(1)}% &middot; ${pfFmt(t.dollar)}</b></div>
+      <div class="pf-bar"><i style="width:${(t.dollar / maxCo * 100).toFixed(1)}%;background:${DONUT_SHADES[i % DONUT_SHADES.length]}"></i></div>
+    </div>`).join('');
+
+  const checksHtml = checks.map(c => `<div class="pf-check ${c[0]}"><span class="ic">${c[0] === 'ok' ? '&#10003;' : (c[0] === 'warn' ? '!' : 'i')}</span><span>${c[1]}</span></div>`).join('');
+  const nextHtml = tips.length
+    ? `<div class="pf-next"><b>Things to think about:</b><ul style="margin:6px 0 0 18px;padding:0;">${tips.slice(0, 3).map(t => `<li>${t}</li>`).join('')}</ul></div>`
+    : `<div class="pf-next"><b>Nothing here stands out as concentrated.</b> That does not make it right for your situation. When you are ready, Module 6 walks through placing your first investment.</div>`;
+
+  wrap.innerHTML = `
+    <div class="pf-score-card">
+      <div class="pf-score-top"><div class="pf-score-label" style="color:${col};font-size:22px;">${label}</div></div>
+      <div class="pf-meter"><i style="width:${level === 'green' ? 33 : (level === 'yellow' ? 66 : 100)}%;background:${col}"></i></div>
+      <div class="pf-summary">${line} ${summary}</div>
+    </div>
+    <div class="pf-section-title">Where your money goes</div>
+    <div class="pf-viz">
+      <div class="pf-donut">${donutSvg(donutItems, totalAllocated)}<div class="pf-donut-center"><b>${pfFmt(totalAllocated)}</b><span>${loaded.length} ${loaded.length === 1 ? 'holding' : 'holdings'}</span></div></div>
+      <div class="pf-legend">${legend}</div>
+    </div>
+    <div class="pf-section-title">What you are actually investing in</div>
+    ${classBars}
+    ${coRows ? `<div class="pf-section-title">Biggest companies you would own</div>${coRows}<div class="pf-class-note">Counted from each fund's largest holdings, so the real picture is a bit wider.</div>` : ''}
+    <div class="pf-section-title">What stands out</div>
+    ${checksHtml}
+    ${nextHtml}
+    <div class="pf-fine">This summary is an educational snapshot, not financial advice, and it is not a grade. It does not know your goals, timeline, or comfort with risk. Fund holdings used for the company bars are approximate and not live.</div>`;
+}
+
+const PRESETS = {
+  backbone: { VOO: 70, VXUS: 30 },
+  tilt: { VOO: 70, VXUS: 15, NVDA: 15 },
+  trap: { VOO: 34, SPY: 33, QQQ: 33 },
+  tech: { QQQ: 25, XLK: 25, NVDA: 25, TSLA: 25 },
+};
+async function loadPreset(name) {
+  const preset = PRESETS[name];
+  if (!preset) return;
+  const totalRaw = parseFloat(document.getElementById('portfolioTotal').value);
+  const total = isNaN(totalRaw) || totalRaw <= 0 ? 300 : totalRaw;
+  try { for (const t of Object.keys(preset)) { await getTicker(t); } }
+  catch (err) { alert(err.message || "Couldn't load that sample right now, try again in a moment."); return; }
+  portfolioTickers = Object.keys(preset);
+  portfolioAmounts = {};
+  portfolioTickers.forEach(t => { portfolioAmounts[t] = total * preset[t] / 100; });
+  await renderPortfolio();
+  document.getElementById('portfolioReport').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Typing a new total keeps your split and rescales the dollars.
+function rescaleTotal() {
+  const totalRaw = parseFloat(document.getElementById('portfolioTotal').value);
+  const total = isNaN(totalRaw) || totalRaw <= 0 ? 0 : totalRaw;
+  const current = portfolioTickers.reduce((a, t) => a + (portfolioAmounts[t] || 0), 0);
+  if (current > 0 && total > 0) {
+    portfolioTickers.forEach(t => { portfolioAmounts[t] = (portfolioAmounts[t] || 0) / current * total; });
+  } else if (portfolioTickers.length) {
+    portfolioTickers.forEach(t => { portfolioAmounts[t] = total / portfolioTickers.length; });
+  }
+  renderPortfolio();
+}
+
 function removePortfolioTicker(symbol) {
   portfolioTickers = portfolioTickers.filter(t => t !== symbol);
   delete portfolioAmounts[symbol];
@@ -1920,8 +2549,9 @@ async function renderPortfolio() {
   const summaryWrap = document.getElementById('portfolioSummary');
 
   if (portfolioTickers.length === 0) {
-    tableWrap.innerHTML = `<div class="portfolio-empty">Add a couple tickers above to start building a sample portfolio.</div>`;
+    tableWrap.innerHTML = `<div class="portfolio-empty">Tap a sample mix above, or add a ticker, to see your summary, score and chart.</div>`;
     summaryWrap.innerHTML = '';
+    renderReport([], 0);
     document.getElementById('portfolioOverlap').innerHTML = '';
     return;
   }
@@ -1931,6 +2561,7 @@ async function renderPortfolio() {
   let totalAllocated = 0;
   let totalSpent = 0;
   const rowsHtml = [];
+  const loadedForReport = [];
 
   for (const symbol of portfolioTickers) {
     let d;
@@ -1943,15 +2574,18 @@ async function renderPortfolio() {
 
     const amount = portfolioAmounts[symbol] || 0;
     totalAllocated += amount;
-    const isVanguardFund = VANGUARD_FUNDS.includes(symbol);
-    const fractionalAvailable = platform === 'other' || isVanguardFund;
-
+    loadedForReport.push({ symbol, d, amount });
+    const finfo = fracInfo(symbol, d, platform);
     let sharesLabel, noteLabel, spent;
-    if (fractionalAvailable) {
+    if (finfo.mode === 'fractional') {
       const shares = amount / d.price;
       spent = amount;
       sharesLabel = `${shares.toFixed(3)}`;
-      noteLabel = 'shares';
+      noteLabel = finfo.ifEligible ? 'shares, if eligible' : 'shares';
+    } else if (finfo.mode === 'check') {
+      spent = amount;
+      sharesLabel = '?';
+      noteLabel = 'check availability';
     } else {
       const wholeShares = Math.floor(amount / d.price);
       spent = wholeShares * d.price;
@@ -1979,10 +2613,11 @@ async function renderPortfolio() {
   const uninvested = totalAllocated - totalSpent;
   summaryWrap.innerHTML = `
     <div class="portfolio-summary"><span>Total allocated</span><b>$${totalAllocated.toFixed(2)}</b></div>
-    <div class="portfolio-summary"><span>Actually invested</span><b>$${totalSpent.toFixed(2)}</b></div>
+    <div class="portfolio-summary"><span>Estimated to be invested</span><b>$${totalSpent.toFixed(2)}</b></div>
     ${uninvested > 0.01 ? `<div class="portfolio-summary"><span>Sitting uninvested</span><b style="color:var(--red);">$${uninvested.toFixed(2)}</b></div>` : ''}
   `;
 
+  renderReport(loadedForReport, totalAllocated);
   renderOverlap(totalAllocated);
 }
 
@@ -1995,10 +2630,46 @@ function renderOverlap(totalAllocated) {
   }
 
   const samePairs = findSameIndexPairs(portfolioTickers);
-  const sameIndexHtml = samePairs.length ? `
+  const names = list => list.join(', ');
+
+  // Which pairs share big companies even though they follow different indexes?
+  const sharedPairs = [];
+  for (let i = 0; i < portfolioTickers.length; i++) {
+    for (let j = i + 1; j < portfolioTickers.length; j++) {
+      const A = portfolioTickers[i], B = portfolioTickers[j];
+      if (!HOLDINGS[A] || !HOLDINGS[B]) continue;
+      if (samePairs.some(p => (p.a === A && p.b === B) || (p.a === B && p.b === A))) continue;
+      const common = Object.keys(HOLDINGS[A]).filter(c => HOLDINGS[B][c]);
+      if (common.length >= 2) sharedPairs.push({ a: A, b: B, common });
+    }
+  }
+  const sameOnly = samePairs.filter(p => p.kind === 'same');
+  const nearOnly = samePairs.filter(p => p.kind === 'near');
+  const lines = [];
+  nearOnly.forEach(p => lines.push(`<b>${p.a}</b> and <b>${p.b}</b> follow different but very similar indexes (${p.label}). Their holdings are nearly the same, so owning both adds little that is different.`));
+  const involved = new Set();
+  sharedPairs.forEach(p => { involved.add(p.a); involved.add(p.b); });
+
+  if (portfolioTickers.length >= 3 && sameOnly.length && sharedPairs.length) {
+    const pr = sameOnly[0];
+    const third = Array.from(involved).find(t => t !== pr.a && t !== pr.b);
+    if (third) {
+      lines.unshift(`Owning ${portfolioTickers.length} funds doesn't automatically mean your portfolio is well diversified. <b>${pr.a}</b> and <b>${pr.b}</b> track the same index, and <b>${third}</b> shares several major holdings with ${third === pr.a || third === pr.b ? 'them' : 'both'}.`);
+    }
+  } else {
+    sameOnly.forEach(p => lines.push(`<b>${p.a}</b> and <b>${p.b}</b> track the same S&P 500 index. Buying both does not give you two different groups of companies.`));
+    sharedPairs.slice(0, 3).forEach(p => lines.push(`<b>${p.a}</b> and <b>${p.b}</b> follow different indexes, but many large companies appear in both. You may have more exposure to the same companies than you realize.`));
+  }
+
+  const missing = portfolioTickers.filter(t => { const dd = quoteCache[t]; return dd && isFundType(dd) && !HOLDINGS[t]; });
+  const limitedNote = missing.length
+    ? `We do not have holdings data for ${names(missing)}, so this overlap estimate is limited.`
+    : `The company overlap below uses each fund's approximate top holdings, which are not live, so treat it as an estimate.`;
+
+  const sameIndexHtml = lines.length ? `
     <div class="same-index-alert">
-      <div class="same-index-title">These are basically the same fund</div>
-      ${samePairs.map(p => `<div class="same-index-line"><b>${p.a}</b> and <b>${p.b}</b> both track ${p.label}. In real life these overlap close to 100%, our holdings breakdown below only catches a partial picture, so trust this warning over that number for this pair.</div>`).join('')}
+      <div class="same-index-title">How your picks overlap</div>
+      ${lines.map(l => `<div class="overlap-explain">${l}</div>`).join('')}
     </div>
   ` : '';
 
@@ -2024,7 +2695,8 @@ function renderOverlap(totalAllocated) {
       <div class="overlap-block">
         ${sameIndexHtml}
         <div class="overlap-headline">Overlap check</div>
-        <div class="overlap-none">${samePairs.length ? 'No additional overlap found beyond what\'s flagged above.' : 'No meaningful overlap between your picks, these selections stay fairly distinct from each other.'}</div>
+        <div class="overlap-none">${lines.length ? 'No additional overlap found in the holdings we track.' : 'We did not find meaningful overlap in the holdings we track. These picks look fairly distinct from each other.'}</div>
+        <div class="limit-note">${limitedNote}</div>
       </div>
     `;
     return;
@@ -2048,9 +2720,10 @@ function renderOverlap(totalAllocated) {
   wrap.innerHTML = `
     <div class="overlap-block">
       ${sameIndexHtml}
-      <div class="overlap-headline">Overlap check, <b>${totalOverlapPct.toFixed(1)}%</b> of your portfolio is doubled up${samePairs.length ? ' from what we can see' : ''}</div>
-      <div class="overlap-sub">These companies show up in more than one of your picks, so you're paying for the same exposure twice.${samePairs.length ? ' The real number for the pair flagged above is much higher, see the warning.' : ''}</div>
+      <div class="overlap-headline">Overlap check, about <b>${totalOverlapPct.toFixed(1)}%</b> of your money sits in companies that appear more than once</div>
+      <div class="overlap-sub">These companies show up in more than one of your picks, so your exposure to them is larger than any single pick suggests.${sameOnly.length ? ' For funds that track the same index, the real overlap is close to 100%.' : ''}</div>
       ${rows}
+      <div class="limit-note">${limitedNote}</div>
     </div>
   `;
 }
@@ -2061,6 +2734,7 @@ let growthRate = 0.07;
 
 function setGrowthRate(rate) {
   growthRate = rate;
+  customRateError = false;
   document.querySelectorAll('#growthToggle button').forEach(btn => {
     btn.classList.toggle('active', parseFloat(btn.dataset.rate) === rate);
   });
@@ -2068,21 +2742,31 @@ function setGrowthRate(rate) {
   calculateProjection();
 }
 
+let customRateError = false;
 function setCustomRate(val) {
-  const num = parseFloat(val);
-  if (isNaN(num) || num < 0) return;
-  growthRate = num / 100;
+  const num = parseNum(val);
   document.querySelectorAll('#growthToggle button').forEach(btn => btn.classList.remove('active'));
+  if (isNaN(num) || num < 0 || num > 30) { customRateError = true; calculateProjection(); return; }
+  customRateError = false;
+  growthRate = num / 100;
   calculateProjection();
 }
 
+function parseNum(v) {
+  if (v == null) return NaN;
+  const t = String(v).replace(/[$,%\s]/g, '');
+  if (t === '') return NaN;
+  const n = Number(t);
+  return isFinite(n) ? n : NaN;
+}
+
 function buildProjectionChart(age, retireAge, years, current, r, monthlyRate, requiredMonthly, target, gap) {
-  const W = 600, H = 200, padL = 8, padR = 8, padT = 16, padB = 26;
+  const W = 600, H = 240, padL = 10, padR = 10, padT = 30, padB = 40;
   const plotW = W - padL - padR, plotH = H - padT - padB;
   const steps = Math.min(Math.round(years), 60) || 1;
 
   const HYSA_RATE = 0.03;
-  const hysaMonthlyRate = HYSA_RATE / 12;
+  const hysaMonthlyRate = Math.pow(1 + HYSA_RATE, 1 / 12) - 1;
   const monthlyContribution = gap > 0 ? requiredMonthly : 0;
 
   function valuesAtYear(t) {
@@ -2141,8 +2825,8 @@ function buildProjectionChart(age, retireAge, years, current, r, monthlyRate, re
     const x = xAt(t).toFixed(1);
     const atAge = Math.round(age + t);
     const trackLabel = gap > 0 ? 'Investing plan' : 'Invested';
-    markersSvg += `<circle cx="${x}" cy="${yAt(tVal).toFixed(1)}" r="4" fill="#2E7D5B" stroke="white" stroke-width="1.5" style="cursor:pointer;" onclick="showChartPoint('${trackLabel}', ${atAge}, ${Math.round(tVal)})" />`;
-    markersSvg += `<circle cx="${x}" cy="${yAt(hVal).toFixed(1)}" r="4" fill="#C24B42" stroke="white" stroke-width="1.5" style="cursor:pointer;" onclick="showChartPoint('HYSA, 3%', ${atAge}, ${Math.round(hVal)})" />`;
+    markersSvg += `<circle cx="${x}" cy="${yAt(tVal).toFixed(1)}" r="7" fill="#2E7D5B" stroke="white" stroke-width="1.5" style="cursor:pointer;" onclick="showChartPoint('${trackLabel}', ${atAge}, ${Math.round(tVal)})" />`;
+    markersSvg += `<circle cx="${x}" cy="${yAt(hVal).toFixed(1)}" r="7" fill="#C24B42" stroke="white" stroke-width="1.5" style="cursor:pointer;" onclick="showChartPoint('HYSA, 3%', ${atAge}, ${Math.round(hVal)})" />`;
   });
 
   const growingLegend = gap > 0
@@ -2161,13 +2845,13 @@ function buildProjectionChart(age, retireAge, years, current, r, monthlyRate, re
   return `
     <svg viewBox="0 0 ${W} ${H}" style="width:100%; height:auto; display:block; margin-top:14px;">
       <line x1="${padL}" y1="${targetY}" x2="${W - padR}" y2="${targetY}" stroke="#A6791F" stroke-width="1.5" stroke-dasharray="4 4" />
-      <text x="${W - padR}" y="${targetY - 6}" text-anchor="end" font-family="Space Mono, monospace" font-size="11" fill="#A6791F">Goal, ${fmtShort(target)}</text>
+      <text x="${W - padR}" y="${targetY - 8}" text-anchor="end" font-family="Space Mono, monospace" font-size="20" fill="#A6791F">Goal, ${fmtShort(target)}</text>
       ${gap > 0 ? `<path d="${currentPath}" fill="none" stroke="#98A3B8" stroke-width="2" />` : ''}
       <path d="${hysaPath}" fill="none" stroke="#C24B42" stroke-width="2" stroke-dasharray="5 3" />
       <path d="${trackPath}" fill="none" stroke="#2E7D5B" stroke-width="2.5" />
       ${markersSvg}
-      <text x="${padL}" y="${H - 6}" font-family="Space Mono, monospace" font-size="11" fill="#6E7B96">Age ${Math.round(age)}</text>
-      <text x="${W - padR}" y="${H - 6}" text-anchor="end" font-family="Space Mono, monospace" font-size="11" fill="#6E7B96">Age ${Math.round(retireAge)}</text>
+      <text x="${padL}" y="${H - 10}" font-family="Space Mono, monospace" font-size="20" fill="#6E7B96">Age ${Math.round(age)}</text>
+      <text x="${W - padR}" y="${H - 10}" text-anchor="end" font-family="Space Mono, monospace" font-size="20" fill="#6E7B96">Age ${Math.round(retireAge)}</text>
     </svg>
     ${legendHtml}
   `;
@@ -2183,28 +2867,29 @@ function showChartPoint(seriesLabel, atAge, value) {
 
 function calculateProjection() {
   const resultEl = document.getElementById('projectionResult');
+  const msg = t => { resultEl.innerHTML = `<div class="projection-sub">${t}</div>`; };
 
-  const age = parseFloat(document.getElementById('projAge').value);
-  const retireAge = parseFloat(document.getElementById('projRetireAge').value);
-  const current = parseFloat(document.getElementById('projCurrent').value);
-  const target = parseFloat(document.getElementById('projTarget').value);
+  const age = parseNum(document.getElementById('projAge').value);
+  const retireAge = parseNum(document.getElementById('projRetireAge').value);
+  const currentRaw = String(document.getElementById('projCurrent').value).trim();
+  const current = currentRaw === '' ? 0 : parseNum(currentRaw);
+  const target = parseNum(document.getElementById('projTarget').value);
 
-  if (isNaN(age) || isNaN(retireAge) || isNaN(current) || isNaN(target)) {
-    resultEl.innerHTML = `<div class="projection-sub">Fill in all four fields to see your projection.</div>`;
-    return;
-  }
+  if (customRateError) return msg('Enter a yearly return between 0% and 30% to see the estimate.');
+  if (isNaN(age) || isNaN(retireAge) || isNaN(current) || isNaN(target)) return msg('Fill in your age, retirement age, and goal using numbers only. $0 is fine for what you have invested so far.');
+  if (age < 0 || age > 110) return msg('Enter a current age between 0 and 110.');
+  if (retireAge > 120) return msg('Enter a retirement age of 120 or younger.');
+  if (retireAge <= age) return msg('Retirement age needs to be older than your current age.');
+  if (current < 0) return msg('The amount already invested can be $0 or more.');
+  if (target <= 0) return msg('Enter a retirement savings goal greater than $0.');
 
   const years = retireAge - age;
-  if (years <= 0) {
-    resultEl.innerHTML = `<div class="projection-sub">Retirement age needs to be older than your current age.</div>`;
-    return;
-  }
-
   const r = growthRate;
-  const months = years * 12;
-  const monthlyRate = r / 12;
+  const months = Math.round(years * 12);
+  // Effective annual return r, applied monthly. Contributions land at the END of each month.
+  const monthlyRate = r === 0 ? 0 : Math.pow(1 + r, 1 / 12) - 1;
 
-  const fvCurrent = current * Math.pow(1 + r, years);
+  const fvCurrent = current * Math.pow(1 + r, months / 12);
   const gap = target - fvCurrent;
 
   let requiredMonthly = 0;
@@ -2216,21 +2901,33 @@ function calculateProjection() {
 
   const fmt = n => '$' + Math.round(n).toLocaleString();
   const chartHtml = buildProjectionChart(age, retireAge, years, current, r, monthlyRate, requiredMonthly, target, gap);
+  const rateTxt = (r * 100).toFixed(1) + '%';
+
+  const warn = r >= 0.09
+    ? `<div class="projection-warn">A higher assumed return does not mean you will actually earn more. Investments that have higher possible returns also carry more risk, and real results can be much lower or negative. Treat ${rateTxt} as an illustration only.</div>`
+    : '';
+  const assume = `<div class="projection-assume"><b>What this estimate assumes</b>
+      <ul>
+        <li>A hypothetical ${rateTxt} return each year, applied monthly. Real returns go up and down.</li>
+        <li>You add the same amount at the end of every month until retirement.</li>
+        <li>Results are in future dollars. Prices rise over time, so ${fmt(target)} later will buy less than it does today.</li>
+        <li>Investment fees, taxes, and inflation are not included. Including them would lower the results.</li>
+      </ul></div>`;
 
   if (gap <= 0) {
     const surplus = Math.abs(gap);
     resultEl.innerHTML = `
       <div class="projection-years">${years} years until retirement</div>
-      <div class="projection-headline">If what you've already invested keeps growing untouched, it could reach <b>${fmt(fvCurrent)}</b> by then.</div>
-      <div class="projection-sub">That clears your ${fmt(target)} goal by about ${fmt(surplus)}, based on a ${(r * 100).toFixed(1)}% assumed yearly return. Adding anything more from here just builds extra cushion.</div>
-      ${chartHtml}
+      <div class="projection-headline">If what you've already invested grew at a hypothetical ${rateTxt} a year with nothing added, it could reach about <b>${fmt(fvCurrent)}</b>.</div>
+      <div class="projection-sub">In this example that is about ${fmt(surplus)} above your ${fmt(target)} goal. Real returns will differ, so this is an estimate, not a guarantee.</div>
+      ${chartHtml}${warn}${assume}
     `;
   } else {
     resultEl.innerHTML = `
       <div class="projection-years">${years} years until retirement</div>
-      <div class="projection-headline">What you've already invested could grow to <b class="short">${fmt(fvCurrent)}</b>, leaving a gap of <b class="short">${fmt(gap)}</b> to reach ${fmt(target)}.</div>
-      <div class="projection-sub">Investing about <b style="color: var(--brown); font-family: 'Space Mono', monospace;">${fmt(requiredMonthly)} a month</b> from now until then, at a ${(r * 100).toFixed(1)}% assumed yearly return, would close that gap.</div>
-      ${chartHtml}
+      <div class="projection-headline">At a hypothetical ${rateTxt} a year, what you've already invested could grow to about <b class="short">${fmt(fvCurrent)}</b>, leaving a gap of about <b class="short">${fmt(gap)}</b> to reach ${fmt(target)}.</div>
+      <div class="projection-sub">In this example, adding about <b style="color: var(--brown); font-family: 'Space Mono', monospace;">${fmt(requiredMonthly)} a month</b> until then would close that gap. This is an estimate, not a guarantee.</div>
+      ${chartHtml}${warn}${assume}
     `;
   }
 }
