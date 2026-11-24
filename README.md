@@ -74,3 +74,12 @@ product they receive.
 The most common issue is the API key. Netlify's function logs (under
 Functions in your site dashboard) will show the actual error if a lookup
 fails, that's the first place to check.
+
+## Your course hub links (after deploy)
+
+This same site also hosts both versions of the interactive workbook:
+
+- Workbook only (put in your Welcome lesson): `https://YOUR-SITE.netlify.app/workbook/`
+- Workbook plus Ticker Toolkit (deliver through the $20 order bump): `https://YOUR-SITE.netlify.app/full-zti7k2/`
+
+Students' answers save on their own device, and progress carries over if they move from the workbook link to the full link on the same phone or computer.

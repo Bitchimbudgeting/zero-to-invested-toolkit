@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zero to Invested Workbook and Toolkit</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Oswald:wght@500;600&family=Playfair+Display:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1B2A4A;--green:#2E7D5B;--gold:#E8B84B;--cream:#F7F3E8;--ink:#1d2433;--line:#e3dcc8;--mute:#6b7280;--red:#b4452f}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;font-size:16px;line-height:1.5}
+.ribbon{background:var(--gold);color:var(--navy);font-family:'Space Mono',monospace;font-size:12px;text-align:center;padding:7px 10px;letter-spacing:.04em;display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+.ribbon button{font-family:'Space Mono',monospace;font-size:11px;background:#fff;border:1px solid var(--navy);color:var(--navy);border-radius:8px;padding:4px 9px;cursor:pointer}
+header{background:var(--navy);color:#fff;padding:22px 18px 0;text-align:center}
+header .eyebrow{font-family:'Oswald',sans-serif;letter-spacing:.28em;color:var(--gold);font-size:13px;font-weight:500}
+header h1{font-family:'Playfair Display',serif;font-size:clamp(28px,6vw,40px);margin:4px 0 4px;font-weight:800}
+header p{margin:0 0 14px;color:#cbd5e6;font-size:14px}
+.tabs{display:flex;gap:6px;justify-content:center;overflow-x:auto;max-width:760px;margin:0 auto}
+.tab{flex:1 1 0;min-width:0;background:transparent;border:0;color:#cbd5e6;font-family:'Oswald',sans-serif;letter-spacing:.1em;font-size:14px;padding:12px 8px;cursor:pointer;border-bottom:4px solid transparent;white-space:nowrap}
+.tab[aria-selected=true]{color:#fff;border-bottom-color:var(--gold)}
+.tab .lock{font-size:12px;margin-left:4px}
+.prog{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 8px rgba(27,42,74,.07)}
+.prog-in{max-width:760px;margin:0 auto;padding:10px 16px 12px}
+.prog-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-family:'Space Mono',monospace;font-size:12px;color:var(--navy)}
+.prog-top b{font-size:15px}
+.bar{position:relative;height:14px;background:#ece6d3;border-radius:99px;margin:20px 0 6px}
+.fill{height:100%;width:0;background:linear-gradient(90deg,var(--green),#3fa078);border-radius:99px;transition:width .5s ease}
+.flag{position:absolute;top:-17px;transform:translateX(-50%);font-size:14px;line-height:1;filter:grayscale(1) opacity(.55)}
+.flag.due{filter:none;animation:bob 1s ease-in-out infinite}
+.flag.sent{filter:none}
+@keyframes bob{50%{transform:translate(-50%,-3px)}}
+.legend{font-size:12px;color:var(--mute)}
+.remind{display:none;margin-top:8px;background:#fff6dc;border:2px solid var(--gold);border-radius:12px;padding:9px 12px;font-size:14px;color:var(--navy);align-items:center;gap:10px;justify-content:space-between}
+.remind.show{display:flex}
+.remind button{flex:none}
+main{max-width:760px;margin:0 auto;padding:18px 16px 60px}
+.pills{display:flex;gap:8px;overflow-x:auto;padding:2px 0 14px;margin:0 -4px}
+.pill{flex:none;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:99px;padding:7px 13px;font-family:'Oswald',sans-serif;letter-spacing:.06em;font-size:13px;cursor:pointer;position:relative}
+.pill[aria-current=true]{background:var(--navy);color:#fff}
+.pill.done{border-color:var(--green)}
+.pill.done::after{content:"\2713";position:absolute;top:-7px;right:-4px;background:var(--green);color:#fff;border-radius:50%;width:18px;height:18px;font-size:11px;display:grid;place-items:center}
+.mhead{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin:2px 0 12px}
+.mhead h2{font-family:'Playfair Display',serif;color:var(--navy);margin:0;font-size:26px;line-height:1.15}
+.mhead .mp{font-family:'Space Mono',monospace;font-size:12px;color:var(--green);white-space:nowrap}
+.flow{display:flex;gap:6px;flex-wrap:wrap;font-family:'Oswald',sans-serif;letter-spacing:.07em;font-size:11px;color:var(--mute);margin-bottom:14px}
+.flow span{background:#fff;border:1px solid var(--line);border-radius:6px;padding:2px 8px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px;box-shadow:0 1px 0 rgba(27,42,74,.04)}
+.card h3{font-family:'Oswald',sans-serif;letter-spacing:.08em;color:var(--navy);margin:0 0 6px;font-size:17px;font-weight:600;text-transform:uppercase}
+.card .pg{font-family:'Space Mono',monospace;font-size:11px;color:var(--mute);float:right}
+.card p{margin:0 0 10px;color:#3b4457;font-size:15px}
+.sub{font-family:'Oswald',sans-serif;letter-spacing:.08em;color:var(--green);font-size:13px;margin:14px 0 6px;text-transform:uppercase}
+.cb{display:flex;gap:11px;align-items:flex-start;padding:9px 6px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cb:hover{background:#faf7ee}
+.cb input{position:absolute;opacity:0}
+.box{flex:none;width:24px;height:24px;border:2px solid var(--navy);border-radius:7px;display:grid;place-items:center;background:#fff;transition:.15s;margin-top:1px}
+.cb input:checked+.box{background:var(--green);border-color:var(--green)}
+.cb input:checked+.box::after{content:"\2713";color:#fff;font-size:15px;font-weight:700}
+.cb input:focus-visible+.box{outline:3px solid var(--gold)}
+.cb .t{font-size:15px}
+.cb input:checked~.t{color:#4b5563}
+.tagproof{display:inline-block;font-family:'Space Mono',monospace;font-size:10px;background:var(--gold);color:var(--navy);border-radius:5px;padding:1px 6px;margin-left:6px;vertical-align:middle;letter-spacing:.04em}
+.fld{margin:10px 0}
+.fld label{display:block;font-size:13px;color:var(--navy);font-weight:700;margin-bottom:4px}
+.fld input[type=text],.fld input[type=date],.fld textarea,.money input{width:100%;border:0;border-bottom:2px solid var(--line);background:#fcfaf3;border-radius:8px 8px 0 0;padding:10px;font:inherit;color:var(--ink)}
+.fld input:focus,.fld textarea:focus{outline:none;border-bottom-color:var(--green);background:#fff}
+.fld textarea{min-height:64px;resize:vertical}
+.money{position:relative}.money span{position:absolute;left:10px;top:10px;color:var(--mute)}.money input,.fld .money input[type=text],.money input[type=text]{padding-left:26px}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{border:2px solid var(--line);background:#fff;border-radius:99px;padding:6px 13px;font:inherit;font-size:14px;cursor:pointer;color:var(--navy)}
+.chip[aria-pressed=true]{background:var(--navy);border-color:var(--navy);color:#fff}
+.says{background:var(--navy);color:#fff;border-radius:12px;padding:12px 14px;margin-top:12px;font-size:15px}
+.says b{font-family:'Oswald',sans-serif;letter-spacing:.14em;color:var(--gold);font-size:12px;display:block;margin-bottom:2px;font-weight:500}
+.note{background:#f1ede0;border-radius:10px;padding:10px 12px;font-size:13px;color:#4b5563;margin:10px 0}
+.proof{border:2px dashed var(--gold);background:#fffaf0;border-radius:14px;padding:14px;margin-top:14px}
+.proof h4{margin:0 0 4px;font-family:'Oswald',sans-serif;letter-spacing:.08em;color:var(--navy);font-size:15px;font-weight:600}
+.proof p{font-size:14px;margin:0 0 10px}
+.proof .st{font-family:'Space Mono',monospace;font-size:12px;margin-top:8px}
+.st.ok{color:var(--green)}.st.due{color:var(--red)}
+.btn{font-family:'Oswald',sans-serif;letter-spacing:.1em;font-size:14px;border:0;border-radius:10px;padding:11px 18px;cursor:pointer;background:var(--green);color:#fff}
+.btn.gold{background:var(--gold);color:var(--navy)}
+.btn.ghost{background:#fff;color:var(--navy);border:2px solid var(--navy)}
+.btn.sm{padding:7px 12px;font-size:12px}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:6px}
+.mc{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.mc:last-child{border:0}
+.mc .n{flex:none;width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:'Oswald',sans-serif}
+.mc.done .n{background:var(--green)}
+.mc .b{flex:1;min-width:0}
+.mc .mini{height:8px;background:#ece6d3;border-radius:99px;margin-top:5px;overflow:hidden}
+.mc .mini i{display:block;height:100%;background:var(--green)}
+.mc .pc{font-family:'Space Mono',monospace;font-size:13px;color:var(--navy)}
+.prow{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+.prow:last-child{border:0}
+.badge{font-family:'Space Mono',monospace;font-size:11px;border-radius:99px;padding:3px 10px;white-space:nowrap}
+.badge.sent{background:#dff1e8;color:var(--green)}.badge.due{background:#fde7e1;color:var(--red)}.badge.wait{background:#eee;color:var(--mute)}
+.locked{text-align:center;padding:30px 18px}
+.locked .ic{font-size:40px}
+.locked h3{font-size:22px}
+.fake{opacity:.55;filter:blur(1.5px);pointer-events:none;margin:14px auto;max-width:420px;text-align:left}
+.fake div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:13px}
+.tkwrap{border:2px solid var(--navy);border-radius:16px;overflow:hidden;background:#fff}
+.tkbar{background:var(--navy);color:#fff;font-family:'Oswald',sans-serif;letter-spacing:.1em;font-size:13px;padding:8px 14px;display:flex;justify-content:space-between;gap:10px}
+.tkbar span:last-child{color:var(--gold)}
+.tkwrap iframe{display:block;width:100%;height:78vh;min-height:560px;border:0}
+.ov{position:fixed;inset:0;background:rgba(15,23,42,.6);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
+.ov.show{display:flex}
+.modal{background:#fff;border-radius:20px;max-width:440px;width:100%;padding:24px 22px;border-top:8px solid var(--gold);animation:pop .25s ease;max-height:92vh;overflow:auto}
+@keyframes pop{from{transform:scale(.92);opacity:0}}
+.modal .em{font-size:34px}
+.modal h3{font-family:'Playfair Display',serif;color:var(--navy);font-size:24px;margin:4px 0 8px;line-height:1.2}
+.mail{display:flex;gap:8px;align-items:center;background:var(--cream);border:2px solid var(--navy);border-radius:12px;padding:10px 12px;margin:12px 0;font-family:'Space Mono',monospace;font-size:14px;word-break:break-all;justify-content:space-between}
+.steps{margin:8px 0 12px;padding-left:20px;font-size:14px}
+.steps li{margin-bottom:4px}
+.mbtns{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.safe{font-size:12px;color:var(--red);background:#fdf0ec;border-radius:8px;padding:8px 10px}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(80px);background:var(--navy);color:#fff;padding:10px 18px;border-radius:99px;font-size:14px;transition:.3s;z-index:60;opacity:0}
+.toast.show{transform:translateX(-50%);opacity:1}
+.done-card{text-align:center;background:linear-gradient(135deg,var(--navy),#27406e);color:#fff;border-radius:16px;padding:22px;margin-bottom:14px}
+.done-card h3{color:var(--gold);font-family:'Playfair Display',serif;text-transform:none;font-size:24px;letter-spacing:0}
+.done-card p{color:#dbe3f1}
+@media(max-width:480px){.card{padding:14px}.mhead h2{font-size:22px}.tab{font-size:12px;letter-spacing:.04em;padding:11px 4px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">ZERO TO INVESTED</div>
+  <h1>Your Investing Hub</h1>
+  <p>Learn it. Do it. Automate it.</p>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-tab="wb">WORKBOOK</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="pr">MY PROGRESS</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="tk" id="tkTab">TICKER TOOLKIT</button>
+  </div>
+</header>
+
+<div class="prog" id="prog">
+  <div class="prog-in">
+    <div class="prog-top"><span>YOUR PROGRESS</span><span><b id="pct">0%</b> complete</span></div>
+    <div class="bar" id="bar"><div class="fill" id="fill"></div></div>
+    <div class="legend">&#128236; flags mark steps where you email me proof</div>
+    <div class="remind" id="remind">
+      <span id="remindTxt"></span>
+      <button class="btn gold sm" id="remindBtn">EMAIL PROOF</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <section id="tab-wb"></section>
+  <section id="tab-pr" hidden></section>
+  <section id="tab-tk" hidden></section>
+</main>
+
+<div class="ov" id="ov" role="dialog" aria-modal="true" aria-labelledby="mt">
+  <div class="modal">
+    <div class="em">&#128236;</div>
+    <h3 id="mt">Email me your proof, bestie!</h3>
+    <p id="mb" style="margin:0 0 4px;font-size:15px"></p>
+    <div class="mail"><span>0toinvested@gmail.com</span><button class="btn ghost sm" id="copyMail">COPY</button></div>
+    <ol class="steps" id="msteps"></ol>
+    <div class="safe">Cover or crop out your full account number. Never send passwords or verification codes.</div>
+    <div class="mbtns">
+      <a class="btn gold" id="mailto" style="text-align:center;text-decoration:none">OPEN MY EMAIL APP</a>
+      <button class="btn" id="sentBtn">I EMAILED IT</button>
+      <button class="btn ghost" id="laterBtn">REMIND ME LATER</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script type="text/x-tk" id="tkdoc"></script>
+
+<script>
+const MODE='full';
+const EMAIL='0toinvested@gmail.com';
+const PROOFS={
+ p1:{flag:'Roth IRA opened',short:'Roth IRA opened',what:'You opened or located your Roth IRA. Nice work, that is a real milestone.',shot:'a screenshot of your account home page with the account number hidden',subject:'Proof: Roth IRA opened'},
+ p2:{flag:'Account funded',short:'Available to trade balance',what:'You connected your bank and found your available to trade balance.',shot:'a screenshot showing your available to trade balance, or your pending transfer',subject:'Proof: Account funded'},
+ p3:{flag:'First investment',short:'First investment or practice order',what:'You reached your first investment. This is the big one.',shot:'a screenshot of your order confirmation or order history (a practice preview counts too)',subject:'Proof: First investment'},
+ p4:{flag:'Automation set',short:'Recurring investment set up',what:'You set up your recurring investment. That is the habit.',shot:'a screenshot of your recurring investment screen',subject:'Proof: Automation set up'}
+};
+const cb=(t,p)=>({k:'cb',t,p}), tx=(l)=>({k:'tx',l}), ar=(l)=>({k:'ar',l}), mo=(l)=>({k:'mo',l}), dt=(l)=>({k:'dt',l}),
+ ch=(l,o)=>({k:'ch',l,o}), says=(t)=>({k:'says',t}), note=(t)=>({k:'note',t}), sub=(t)=>({k:'sub',t}), proof=(pid)=>({k:'proof',pid});
+const YNN=['Yes','No','Not sure'];
+const MODS=[
+{n:'1',name:'Mindset and Money',pages:[
+ {h:'What is really stopping you?',pg:4,i:[note('Before we discuss investments, be real with yourself. Check what has held you back.'),
+  cb('I don’t know where to start.'),cb('I don’t think I earn enough.'),cb('I’m afraid of losing money.'),cb('Stocks and ETFs confuse me.'),cb('I have debt or other obligations.'),cb('I keep putting it off.'),cb('I thought investing was only for wealthy people.'),tx('Other'),
+  sub('Bestie, be for real'),tx('What is one thing you’re ready to do differently?'),says('You do not have to know everything to begin learning.')]},
+ {h:'Your money, your starting point',pg:5,i:[note('Choose the LOWEST amount you can repeat without neglecting bills, debt priorities, or savings.'),
+  mo('Monthly take home income'),mo('Monthly essential expenses'),mo('Money available after obligations'),
+  sub('My lowest consistent amount'),ch('Pick one',['$5','$10','$25','$50','$100','Other']),ch('I can consistently invest this every',['Week','Paycheck','Month']),tx('One optional spending change that could help'),says('Build the muscle first. Build the amount later.')]},
+ {h:'My investor commitment',pg:6,i:[tx('I want to invest because'),tx('My long term goal is'),tx('My lowest sustainable amount and frequency'),tx('My next action and date')]},
+ {h:'Module 1 accountability',acc:1,i:[cb('I identified what held me back.'),cb('I reviewed my starting point.'),cb('I chose an affordable, repeatable amount.'),cb('I wrote my commitment.'),dt('Completed on')]}
+]},
+{n:'2',name:'The Order of Your Money',pages:[
+ {h:'Set your foundation',pg:7,i:[note('Step 1: make sure your current bills are covered. Your emergency fund goal is ONE month of expenses or income, whichever is higher. Example: $3,000 expenses and $4,000 income means a $4,000 emergency fund.'),
+  mo('My monthly expenses'),mo('My monthly income'),mo('My emergency fund goal (the higher number)'),mo('Saved so far'),cb('My current bills are covered.'),says('There is no prize for investing money you will need for an emergency next week.')]},
+ {h:'Your priority money map',pg:8,i:[note('The order: 1. Set the foundation. 2. Deal with high interest debt. 3. Check your job retirement plan. 4. HSA, if you qualify. 5. Roth IRA. Once your Roth IRA is maxed, go back and max your job plan, then a taxable brokerage.'),
+  ch('I have high interest debt',['Yes','No']),tx('My split between debt and investing (Selma uses 70% debt, 30% Roth IRA)'),ch('My job offers a 401(k), 403(b), or similar plan',YNN),ch('I checked what my job plan is invested in',['Yes','No','N/A']),tx('What my job plan is invested in'),tx('How my job plan did over the past year (example: +8%)'),ch('I am eligible for an HSA',YNN),ch('I already have a Roth IRA',['Yes','No']),tx('My ONE next step'),says('You can go up to the max. You do not have to. Start with what you have.')]},
+ {h:'2027 limits and deadlines',pg:9,i:[note('JOB PLAN, 401(k) or 403(b): up to $25,500. Age 50+: up to $34,000 total. Ages 60 to 63: up to $37,250 total. Deadline: December 31, through your paycheck.'),
+  note('ROTH IRA: up to $7,500. Age 50+: up to $8,600. Separate accounts, separate limits. Deadline: tax day the following April. From January 1 to tax day, you pick which year your money counts for.'),
+  cb('I know my job plan limit and deadline.'),cb('I know my Roth IRA limit and deadline.'),cb('When I add money between January 1 and tax day, I will pick the right year.')]},
+ {h:'Can you contribute to a Roth IRA? (2027)',pg:10,i:[note('For a FULL contribution, your 2027 MAGI must be BELOW $158,000 (single or head of household) or $250,000 (married filing jointly). Partial contributions: $158,000 to $173,000 single, $250,000 to $260,000 married filing jointly. Married couples each open their own Roth IRA.'),
+  cb('My MAGI is below the full contribution threshold for my filing status.'),cb('My MAGI is at or above that threshold; I will verify my eligibility BEFORE contributing.'),cb('I checked that I have eligible compensation and have not exceeded my total IRA limit.'),says('If you are not sure you qualify, check before you add money.')]},
+ {h:'Module 2 accountability',acc:1,i:[cb('I know my emergency fund goal and how much I have saved.'),cb('I mapped where I am on the priority money map.'),cb('I know my 2027 limits and deadlines.'),cb('I checked my Roth IRA income eligibility.'),cb('I identified my next step.'),tx('My next step'),ar('Notes and questions to revisit'),dt('Completed on')]}
+]},
+{n:'3',name:'Open and Fund',pages:[
+ {h:'Choose your brokerage',pg:12,i:[note('BROKERAGE is the company (Vanguard, Fidelity, Charles Schwab). ROTH IRA is the account. Your INVESTMENTS go inside the account. This course demonstrates Fidelity and Vanguard. You do NOT need multiple Roth IRAs.'),ch('I choose',['Fidelity','Vanguard','Other']),cb('The account I plan to open: Roth IRA (if eligible)'),cb('I watched the walkthrough for my chosen platform.'),tx('Why this platform works for me')]},
+ {h:'Open your Roth IRA',pg:13,i:[note('Follow the official app or website and the course walkthrough. Do not share personal identifiers in your workbook.'),
+  cb('I opened my Roth IRA (or confirmed I already have one).','p1'),cb('I completed any required verification.'),cb('I turned on available account security protections.'),tx('Brokerage'),dt('Date opened'),tx('Where my uninvested cash sits (if shown)'),proof('p1')]},
+ {h:'Connect your bank and add money',pg:14,i:[note('If your Roth IRA already has money available to trade, you do not need to add another $25 for this lesson.'),
+  cb('I linked my bank (or confirmed it was already linked).'),cb('I checked the transfer screen and destination account.'),cb('If affordable and eligible, I deposited $25 or another sustainable amount.'),cb('I located my AVAILABLE TO TRADE balance.','p2'),mo('Amount deposited (if applicable)'),ch('Transfer status',['Pending','Available','Needs attention']),says('FUNDING IS NOT INVESTING. Your cash can sit in the account until you BUY an investment.'),proof('p2')]},
+ {h:'Module 3 accountability',acc:1,i:[cb('I chose a brokerage and opened or located my Roth IRA.'),cb('I connected my bank.'),cb('I funded my account if financially appropriate, or recorded when I can safely do so.'),cb('I found where to see money available to trade.'),cb('I understand the difference between cash and investments.'),tx('The next action I will take'),dt('Completed on')]}
+]},
+{n:'4',name:'Funds and Tickers',pages:[
+ {h:'Stocks, ETFs, mutual funds',pg:16,i:[note('STOCK: ownership in one company. ETF: ownership in many companies, bought and sold all day. MUTUAL FUND: similar to an ETF, but trades once a day at the end of day price. INDEX FUND: designed to follow a market index. TICKER: the short code you use to look it up. DIVIDEND: cash back for owning shares.'),
+  sub('Module 4A homework'),tx('In one sentence, how is owning one stock different from owning a broad market ETF?'),tx('In your own words, what is the difference between an ETF and a mutual fund?'),tx('Look up one ticker in your app. Write the ticker and its full name.'),tx('In your own words, what is a dividend?'),says('You do not have to become a stock picker.')]},
+ {h:'Tickers and investment overlap',pg:17,i:[note('A ticker is the short symbol used to find an investment: VOO, VTI, FXAIX, FSKAX, FZROX, SNAP. More tickers does not always mean more diversification.'),
+  sub('Compare two tickers'),tx('Ticker 1'),tx('Ticker 2'),ch('Do they own some of the same companies?',YNN),tx('Name one company both own, if any')]},
+ {h:'Build your backbone',pg:18,i:[note('A backbone is the diversified core of your long term portfolio. You can start by researching ONE suitable broad market fund.'),
+  tx('One potential core fund and ticker'),tx('What it broadly owns or tracks'),tx('Why I am considering it'),
+  sub('How do you react to risk?'),ch('If the value dropped 15%, I would probably',['Sell immediately','Feel nervous but review my plan','Stay invested if it still fits','Not sure yet']),note('Your answer is information about your comfort with risk, not a score.')]},
+ {h:'Module 4 accountability',acc:1,i:[cb('I understand stocks vs. diversified funds in plain English.'),cb('I can find an investment by ticker.'),cb('I compared two tickers for overlap.'),cb('I identified ONE potential backbone investment to research further.'),tx('What I want to research next'),dt('Completed on')]}
+]},
+{n:'5',name:'Research It',pages:[
+ {h:'My 10 minute investment check',pg:20,i:[note('Use the brokerage app or fund provider’s website. The optional Ticker Toolkit is a shortcut, not a requirement.'),
+  tx('Fund name and ticker'),ch('Type',['Stock','ETF','Mutual fund']),tx('What does it own or track?'),tx('Current share price (if shown)'),tx('What happened over the last five years?'),tx('Expense ratio, if applicable'),tx('One risk I should understand')]},
+ {h:'SNAP vs. VOO: what did you notice?',pg:21,i:[note('This illustrates concentration risk, not a promise that any ETF will outperform a stock.'),tx('What was different about the two charts?'),tx('What is the risk of relying on just one company?'),
+  sub('My research decision'),ch('Pick one',['I understand this well enough to consider it','I need more research','It does not fit my goals']),tx('My reason')]},
+ {h:'Module 5 accountability',acc:1,i:[cb('I looked up a real ticker and verified the name.'),cb('I checked the five year history and what the fund holds.'),cb('I checked its fees, if applicable, and one important risk.'),cb('I completed the SNAP vs. VOO reflection.'),cb('I made my own research decision instead of copying someone online.'),dt('Completed on')]}
+]},
+{n:'6',name:'First Investment',pages:[
+ {h:'Before you click buy',pg:23,i:[note('Find the balance labeled “available to trade,” “available to invest,” or similar.'),mo('My available to trade amount'),mo('The amount I plan to invest'),tx('Ticker I plan to purchase'),
+  cb('I am in the correct account.'),cb('I checked the ticker and investment name.'),cb('The purchase amount fits my budget.'),cb('I understand the order type and reviewed any fees.'),cb('I checked the full order preview before submitting.')]},
+ {h:'My first investment',pg:24,i:[note('If you cannot invest safely, complete the order preview and record “Practice.”'),tx('Brokerage and account type'),tx('Investment name and ticker'),mo('Amount'),dt('Order date'),ch('Status',['Practice','Submitted','Pending','Filled','Canceled']),
+  cb('I reviewed the order details.'),cb('I checked order history rather than submitting twice.'),cb('I know where my holdings appear once an order fills.','p3'),says('Submitted is not the same as filled. Verify the order status.'),proof('p3')]},
+ {h:'Module 6 accountability',acc:1,i:[cb('I found my available to trade balance.'),cb('I reviewed an ETF or mutual fund order.'),cb('I purchased an investment or completed a practice preview.'),cb('I checked the order status and know where holdings appear.'),tx('One thing that was easier than I expected'),dt('Completed on')]}
+]},
+{n:'7',name:'Automate It',pages:[
+ {h:'Build the muscle: automate it',pg:26,i:[note('Start with the LOWEST amount you can consistently afford. Automating a cash transfer is NOT always the same as automating an investment PURCHASE.'),tx('My investment ticker'),mo('My lowest recurring amount'),ch('Frequency',['Weekly','Every two weeks','Twice monthly','Monthly']),tx('Funding source (do not write account numbers)'),dt('First scheduled date'),says('Build the muscle first. Build the amount later.')]},
+ {h:'Set up and verify your automation',pg:27,i:[cb('I selected the right account and investment.'),cb('I entered an amount I can sustain.'),cb('I chose the schedule and funding source.'),cb('I confirmed whether the instruction BUYS investments or only transfers cash.'),cb('I know how to change, pause, or cancel the instruction.'),cb('I will verify that the first scheduled purchase actually executes.','p4'),dt('First purchase verification date'),tx('What I will check after that date'),proof('p4')]},
+ {h:'My consistency plan',pg:28,i:[note('You can review the account once or twice a month and respond promptly to important alerts.'),dt('My monthly money date'),cb('Did the money transfer successfully?'),cb('Did the intended investment actually get purchased?'),cb('Does the amount still fit my budget?'),cb('Do I have any important account alerts?'),tx('When I may review increasing the amount')]},
+ {h:'Module 7 accountability',acc:1,i:[cb('I created or practiced an automatic investment.'),cb('I know how to verify, change, or pause it.'),cb('I chose my recurring review date.'),dt('Completed on')]}
+]},
+{n:'★',name:'Finish Strong',fin:1,pages:[
+ {h:'Look what you accomplished!',pg:30,i:[cb('I identified a sustainable investing amount.'),cb('I learned how a Roth IRA works.'),cb('I opened or located an account and connected my bank.'),cb('I learned to research an investment.'),cb('I completed an investment order or safe practice preview.'),cb('I set up or practiced recurring investments.'),cb('I know how to check whether purchases execute.'),tx('My proudest accomplishment'),tx('My next investing goal'),dt('Completion date')]},
+ {h:'My investor commitment',pg:33,i:[note('When I started investing in 2019, I opened my Roth IRA with $65. I didn’t know everything. I started.'),tx('My first investment or practice milestone'),dt('The date I took my first step'),mo('The amount I can invest consistently'),ar('My commitment for the next 12 months')]}
+]}
+];
+
+let S={v:{},sent:{},due:{}};
+const KEY=(MODE==='workbook'||MODE==='full')?'z2i_hub_v1':'z2i_mock_'+MODE;
+const UPGRADE_URL='';
+const TK_URL='/tk-zti7k2/';
+try{const r=localStorage.getItem(KEY);if(r)S=JSON.parse(r)}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+let cur=0, curProof=null;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+
+const ALLCB=[];
+MODS.forEach((m,mi)=>m.pages.forEach((p,pi)=>p.i.forEach((it,ii)=>{
+  it.id=`m${mi}p${pi}i${ii}`;
+  if(it.k==='cb')ALLCB.push({id:it.id,mod:mi,proof:it.p||null});
+})));
+const TOTAL=ALLCB.length;
+
+function itemHTML(it){
+  const v=S.v[it.id];
+  switch(it.k){
+  case 'cb':return `<label class="cb"><input type="checkbox" data-cb="${it.id}" ${v?'checked':''}><span class="box"></span><span class="t">${esc(it.t)}${it.p?'<span class="tagproof">PROOF STEP</span>':''}</span></label>`;
+  case 'tx':return `<div class="fld"><label>${esc(it.l)}</label><input type="text" data-f="${it.id}" value="${esc(v||'')}"></div>`;
+  case 'ar':return `<div class="fld"><label>${esc(it.l)}</label><textarea data-f="${it.id}">${esc(v||'')}</textarea></div>`;
+  case 'mo':return `<div class="fld"><label>${esc(it.l)}</label><div class="money"><span>$</span><input type="text" inputmode="decimal" data-f="${it.id}" value="${esc(v||'')}"></div></div>`;
+  case 'dt':return `<div class="fld"><label>${esc(it.l)}</label><input type="date" data-f="${it.id}" value="${esc(v||'')}"></div>`;
+  case 'ch':return `<div class="fld"><label>${esc(it.l)}</label><div class="chips">${it.o.map(o=>`<button type="button" class="chip" data-ch="${it.id}" data-val="${esc(o)}" aria-pressed="${v===o}">${esc(o)}</button>`).join('')}</div></div>`;
+  case 'says':return `<div class="says"><b>SELMA SAYS</b>${esc(it.t)}</div>`;
+  case 'note':return `<div class="note">${esc(it.t)}</div>`;
+  case 'sub':return `<div class="sub">${esc(it.t)}</div>`;
+  case 'proof':{const P=PROOFS[it.pid];const sent=S.sent[it.pid],due=S.due[it.pid];
+    return `<div class="proof" data-pbox="${it.pid}"><h4>&#128236; PROOF CHECKPOINT</h4><p>Email me ${esc(P.shot)} at <b>${EMAIL}</b> so I can celebrate with you.</p>
+    <button class="btn gold sm" data-open="${it.pid}">HOW TO EMAIL PROOF</button>
+    <div class="st ${sent?'ok':due?'due':''}" data-pst="${it.pid}">${sent?'Proof emailed. Thank you!':due?'Waiting on your email':'Not sent yet'}</div></div>`;}
+  }
+}
+function modPct(mi){const l=ALLCB.filter(c=>c.mod===mi);if(!l.length)return 100;return Math.round(100*l.filter(c=>S.v[c.id]).length/l.length)}
+function renderWB(){
+  const m=MODS[cur];
+  let h=`<div class="pills">${MODS.map((x,i)=>`<button class="pill ${modPct(i)===100?'done':''}" data-mod="${i}" ${i===cur?'aria-current="true"':''}>${x.fin?'FINISH':'MODULE '+x.n}</button>`).join('')}</div>`;
+  h+=`<div class="mhead"><h2>${m.fin?'':'Module '+m.n+': '}${m.name}</h2><span class="mp" id="mp">${modPct(cur)}%</span></div>`;
+  h+=`<div class="flow"><span>LEARN IT</span><span>MAKE IT PERSONAL</span><span>NOW GO DO IT</span><span>ACCOUNTABILITY CHECK</span></div>`;
+  m.pages.forEach(p=>{h+=`<div class="card">${p.pg?`<span class="pg">PAGE ${p.pg}</span>`:''}<h3>${esc(p.h)}</h3>${p.i.map(itemHTML).join('')}</div>`});
+  if(m.fin)h+=`<div class="done-card" id="doneCard" hidden><h3>You did it, bestie!</h3><p>You started at $0 and took real steps. Your workbook is complete.</p></div>`;
+  h+=`<div class="nav"><button class="btn ghost" id="prev" ${cur===0?'disabled style="opacity:.4"':''}>BACK</button><button class="btn" id="next" ${cur===MODS.length-1?'disabled style="opacity:.4"':''}>NEXT MODULE</button></div>`;
+  $('tab-wb').innerHTML=h;
+  updateDone();
+}
+function updateDone(){const d=$('doneCard');if(d)d.hidden=!(pctAll()===100)}
+function pctAll(){return Math.round(100*ALLCB.filter(c=>S.v[c.id]).length/TOTAL)}
+function renderBar(){
+  const p=pctAll();$('pct').textContent=p+'%';$('fill').style.width=p+'%';
+  $('bar').querySelectorAll('.flag').forEach(f=>f.remove());
+  Object.keys(PROOFS).forEach(id=>{
+    const idx=ALLCB.findIndex(c=>c.proof===id);const pos=100*(idx+1)/TOTAL;
+    const f=document.createElement('span');f.className='flag'+(S.sent[id]?' sent':S.due[id]?' due':'');f.style.left=Math.min(pos,97)+'%';f.textContent='\u{1F6A9}';f.title=PROOFS[id].flag;$('bar').appendChild(f);
+  });
+  const due=Object.keys(S.due).filter(k=>S.due[k]&&!S.sent[k]);
+  const r=$('remind');
+  if(due.length){r.classList.add('show');$('remindTxt').innerHTML=`<b>Proof due:</b> ${PROOFS[due[0]].short}. Email it to <b>${EMAIL}</b>`+(due.length>1?` (+${due.length-1} more)`:'');$('remindBtn').dataset.open=due[0]}
+  else r.classList.remove('show');
+  const mp=$('mp');if(mp)mp.textContent=modPct(cur)+'%';
+  updateDone();
+}
+function renderProgress(){
+  let h=`<div class="card"><h3>Module by module</h3>`;
+  MODS.forEach((m,i)=>{const p=modPct(i);h+=`<div class="mc ${p===100?'done':''}"><div class="n">${m.n}</div><div class="b"><b>${m.fin?'Finish Strong':'Module '+m.n+': '+m.name}</b><div class="mini"><i style="width:${p}%"></i></div></div><div class="pc">${p}%</div></div>`});
+  h+=`</div><div class="card"><h3>Proof emails</h3><p>These four steps are where I ask you to email me. Practice previews count.</p>`;
+  Object.keys(PROOFS).forEach(id=>{const sent=S.sent[id],due=S.due[id];
+    h+=`<div class="prow"><span>${PROOFS[id].short}</span>${sent?'<span class="badge sent">EMAILED</span>':due?`<button class="btn gold sm" data-open="${id}">EMAIL NOW</button>`:'<span class="badge wait">NOT YET</span>'}</div>`});
+  h+=`</div><div class="card"><h3>Save your answers</h3><p>Your answers stay on this device. Use the button below to copy a backup so you never lose them.</p><button class="btn ghost" id="backup">COPY MY ANSWERS</button></div>`;
+  $('tab-pr').innerHTML=h;
+}
+let tkLoaded=false;
+function renderTK(){
+  if(MODE==='bundle'||MODE==='full'){
+    $('tab-tk').innerHTML=`<div class="tkwrap"><div class="tkbar"><span>TICKER TOOLKIT</span><span>INCLUDED IN YOUR UPGRADE</span></div><iframe id="tkframe" title="Ticker Toolkit"></iframe></div>`;
+    return;
+  }
+  $('tab-tk').innerHTML=`<div class="card locked"><div class="ic">&#128274;</div><h3>Ticker Toolkit</h3>
+  <p>Look up any ticker in plain English, see what it owns, check overlap, and try sample portfolios.</p>
+  <div class="fake"><div><span>VOO</span><span>S&amp;P 500 ETF</span></div><div><span>VGT</span><span>Tech ETF</span></div><div><span>VT</span><span>Whole world ETF</span></div></div>
+  <p style="font-weight:700;color:var(--navy)">Available to students who purchase the $20 toolkit upgrade.</p>
+  <button class="btn gold" id="upg">ADD THE TOOLKIT FOR $20</button>
+  <p style="font-size:13px;color:var(--mute);margin-top:12px">You can finish the whole course without it. The toolkit is a shortcut, never a requirement.</p></div>`;
+}
+function loadTK(){
+  if((MODE!=='bundle'&&MODE!=='full')||tkLoaded)return;
+  const f=$('tkframe');if(!f)return;
+  if(MODE==='full'){f.src=TK_URL;tkLoaded=true;return}
+  f.srcdoc=$('tkdoc').textContent.replace(/<\\\/script/g,'</script');
+  tkLoaded=true;
+}
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button,a,input');if(!t)return;
+  if(t.dataset.tab){document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b===t));['wb','pr','tk'].forEach(k=>$('tab-'+k).hidden=k!==t.dataset.tab);if(t.dataset.tab==='pr')renderProgress();if(t.dataset.tab==='tk')loadTK();window.scrollTo(0,0)}
+  if(t.dataset.mod!==undefined){cur=+t.dataset.mod;renderWB();window.scrollTo(0,0)}
+  if(t.id==='prev'&&cur>0){cur--;renderWB();window.scrollTo(0,0)}
+  if(t.id==='next'&&cur<MODS.length-1){cur++;renderWB();window.scrollTo(0,0)}
+  if(t.dataset.ch){S.v[t.dataset.ch]=S.v[t.dataset.ch]===t.dataset.val?'':t.dataset.val;save();t.parentNode.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c.dataset.val===S.v[t.dataset.ch]))}
+  if(t.dataset.open)openProof(t.dataset.open);
+  if(t.id==='upg'){if(MODE==='workbook'){if(UPGRADE_URL)window.open(UPGRADE_URL,'_blank');else toast('The toolkit upgrade link is coming soon')}else toast('In the real hub this goes to your Stan Store upgrade link')}
+  if(t.id==='backup'){const txt='Zero to Invested answers\n'+JSON.stringify(S.v,null,1);try{navigator.clipboard.writeText(txt).then(()=>toast('Copied your answers'),()=>toast('Copy blocked in this preview'))}catch(x){toast('Copy blocked in this preview')}}
+});
+document.addEventListener('change',e=>{
+  const c=e.target.dataset.cb;if(!c)return;
+  S.v[c]=e.target.checked;const meta=ALLCB.find(x=>x.id===c);
+  if(e.target.checked&&meta.proof&&!S.sent[meta.proof]){S.due[meta.proof]=true;save();setPst(meta.proof);renderBar();openProof(meta.proof)}
+  else{save();renderBar()}
+  const pill=document.querySelector(`.pill[data-mod="${meta.mod}"]`);if(pill)pill.classList.toggle('done',modPct(meta.mod)===100);
+});
+document.addEventListener('input',e=>{const f=e.target.dataset.f;if(f){S.v[f]=e.target.value;save()}});
+function setPst(id){const el=document.querySelector(`[data-pst="${id}"]`);if(!el)return;const sent=S.sent[id],due=S.due[id];el.className='st '+(sent?'ok':due?'due':'');el.textContent=sent?'Proof emailed. Thank you!':due?'Waiting on your email':'Not sent yet'}
+
+function openProof(id){
+  curProof=id;const P=PROOFS[id];
+  $('mb').textContent=P.what;
+  $('msteps').innerHTML=`<li>Take ${esc(P.shot)}.</li><li>Email it to the address above.</li><li>Use this subject line: <b>${esc(P.subject)}</b></li>`;
+  $('mailto').href=`mailto:${EMAIL}?subject=${encodeURIComponent(P.subject)}`;
+  $('ov').classList.add('show');
+}
+function closeM(){$('ov').classList.remove('show')}
+$('laterBtn').onclick=()=>{S.due[curProof]=true;save();setPst(curProof);renderBar();closeM();toast('No problem. The reminder will stay on your progress bar.')};
+$('sentBtn').onclick=()=>{S.sent[curProof]=true;S.due[curProof]=false;save();setPst(curProof);renderBar();closeM();if(!$('tab-pr').hidden)renderProgress();toast('Proof emailed. Thank you!')};
+$('copyMail').onclick=()=>{try{navigator.clipboard.writeText(EMAIL).then(()=>toast('Email address copied'),()=>toast('Copy blocked in this preview'))}catch(e){toast('Copy blocked in this preview')}};
+$('ov').addEventListener('click',e=>{if(e.target===$('ov'))closeM()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM()});
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),2600)}
+
+if($('resetBtn'))$('resetBtn').onclick=()=>{S={v:{},sent:{},due:{}};save();cur=0;renderWB();renderBar();if(!$('tab-pr').hidden)renderProgress()};
+if($('demoBtn'))$('demoBtn').onclick=()=>{S={v:{},sent:{p1:true},due:{p2:true}};const n=Math.round(TOTAL*.45);ALLCB.slice(0,n).forEach(c=>S.v[c.id]=true);save();cur=2;renderWB();renderBar();if(!$('tab-pr').hidden)renderProgress()};
+
+if(MODE!=='bundle'&&MODE!=='full'){const tt=$('tkTab');tt.innerHTML='TICKER TOOLKIT <span class="lock">&#128274;</span>'}
+renderWB();renderTK();renderBar();
+</script>
+</body>
+</html>
