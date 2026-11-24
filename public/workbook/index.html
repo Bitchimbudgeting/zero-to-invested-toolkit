@@ -82,7 +82,9 @@ main{max-width:760px;margin:0 auto;padding:18px 16px 60px}
 .btn.ghost{background:#fff;color:var(--navy);border:2px solid var(--navy)}
 .btn.sm{padding:7px 12px;font-size:12px}
 .nav{display:flex;justify-content:space-between;gap:10px;margin-top:6px}
-.mc{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.mc{display:flex;gap:12px;align-items:center;padding:12px 4px;border:0;border-bottom:1px solid var(--line);background:none;width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer;border-radius:10px}
+.mc:hover,.mc:active{background:#faf6ea}
+.mc .go{font-size:20px;margin-left:4px;color:var(--gold)}
 .mc:last-child{border:0}
 .mc .n{flex:none;width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:'Oswald',sans-serif}
 .mc.done .n{background:var(--green)}
@@ -257,6 +259,7 @@ const TK_URL='/tk-zti7k2/';
 try{const r=localStorage.getItem(KEY);if(r)S=JSON.parse(r)}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
 let cur=0, curProof=null;
+try{const c=+localStorage.getItem('z2i_hub_cur');if(c>0&&c<MODS.length)cur=c}catch(e){}
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
 
@@ -295,8 +298,11 @@ function renderWB(){
   if(m.fin)h+=`<div class="done-card" id="doneCard" hidden><h3>You did it, bestie!</h3><p>You started at $0 and took real steps. Your workbook is complete.</p></div>`;
   h+=`<div class="nav"><button class="btn ghost" id="prev" ${cur===0?'disabled style="opacity:.4"':''}>BACK</button><button class="btn" id="next" ${cur===MODS.length-1?'disabled style="opacity:.4"':''}>NEXT MODULE</button></div>`;
   $('tab-wb').innerHTML=h;
+  const ap=document.querySelector('.pill[aria-current]');if(ap){const r=ap.parentNode;r.scrollLeft=ap.offsetLeft-r.offsetLeft-(r.clientWidth-ap.offsetWidth)/2}
+  try{localStorage.setItem('z2i_hub_cur',cur)}catch(e){}
   updateDone();
 }
+function toMod(){const el=$('tab-wb'),pr=$('prog');const off=(pr?pr.offsetHeight:0)+10;const y=el.getBoundingClientRect().top+scrollY-off;window.scrollTo({top:Math.max(0,y),behavior:'instant'})}
 function updateDone(){const d=$('doneCard');if(d)d.hidden=!(pctAll()===100)}
 function pctAll(){return Math.round(100*ALLCB.filter(c=>S.v[c.id]).length/TOTAL)}
 function renderBar(){
@@ -314,8 +320,8 @@ function renderBar(){
   updateDone();
 }
 function renderProgress(){
-  let h=`<div class="card"><h3>Module by module</h3>`;
-  MODS.forEach((m,i)=>{const p=modPct(i);h+=`<div class="mc ${p===100?'done':''}"><div class="n">${m.n}</div><div class="b"><b>${m.fin?'Finish Strong':'Module '+m.n+': '+m.name}</b><div class="mini"><i style="width:${p}%"></i></div></div><div class="pc">${p}%</div></div>`});
+  let h=`<div class="card"><h3>Module by module</h3><p style="margin:-4px 0 10px;font-size:14px">Tap a module to jump to it in your workbook.</p>`;
+  MODS.forEach((m,i)=>{const p=modPct(i);h+=`<button class="mc ${p===100?'done':''}" data-goto="${i}" aria-label="Open ${m.fin?'Finish Strong':'Module '+m.n} in the workbook"><div class="n">${m.n}</div><div class="b"><b>${m.fin?'Finish Strong':'Module '+m.n+': '+m.name}</b><div class="mini"><i style="width:${p}%"></i></div></div><div class="pc">${p}% <span class="go">&rsaquo;</span></div></button>`});
   h+=`</div><div class="card"><h3>Proof emails</h3><p>These four steps are where I ask you to email me. Practice previews count.</p>`;
   Object.keys(PROOFS).forEach(id=>{const sent=S.sent[id],due=S.due[id];
     h+=`<div class="prow"><span>${PROOFS[id].short}</span>${sent?'<span class="badge sent">EMAILED</span>':due?`<button class="btn gold sm" data-open="${id}">EMAIL NOW</button>`:'<span class="badge wait">NOT YET</span>'}</div>`});
@@ -346,9 +352,10 @@ function loadTK(){
 document.addEventListener('click',e=>{
   const t=e.target.closest('button,a,input');if(!t)return;
   if(t.dataset.tab){document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b===t));['wb','pr','tk'].forEach(k=>$('tab-'+k).hidden=k!==t.dataset.tab);if(t.dataset.tab==='pr')renderProgress();if(t.dataset.tab==='tk')loadTK();window.scrollTo(0,0)}
-  if(t.dataset.mod!==undefined){cur=+t.dataset.mod;renderWB();window.scrollTo(0,0)}
-  if(t.id==='prev'&&cur>0){cur--;renderWB();window.scrollTo(0,0)}
-  if(t.id==='next'&&cur<MODS.length-1){cur++;renderWB();window.scrollTo(0,0)}
+  if(t.dataset.mod!==undefined){cur=+t.dataset.mod;renderWB();toMod()}
+  if(t.dataset.goto!==undefined){cur=+t.dataset.goto;document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab==='wb'));['wb','pr','tk'].forEach(k=>$('tab-'+k).hidden=k!=='wb');renderWB();toMod()}
+  if(t.id==='prev'&&cur>0){cur--;renderWB();toMod()}
+  if(t.id==='next'&&cur<MODS.length-1){cur++;renderWB();toMod()}
   if(t.dataset.ch){S.v[t.dataset.ch]=S.v[t.dataset.ch]===t.dataset.val?'':t.dataset.val;save();t.parentNode.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c.dataset.val===S.v[t.dataset.ch]))}
   if(t.dataset.open)openProof(t.dataset.open);
   if(t.id==='upg'){if(MODE==='workbook'){if(UPGRADE_URL)window.open(UPGRADE_URL,'_blank');else toast('The toolkit upgrade link is coming soon')}else toast('In the real hub this goes to your Stan Store upgrade link')}
