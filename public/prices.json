@@ -1,986 +1,986 @@
 {
- "updatedAt": "2026-11-24T04:14:28.498Z",
+ "updatedAt": "2026-11-25T05:12:56.436Z",
  "quotes": {
   "AAPL": {
    "name": "Apple Inc.",
-   "price": 349.079987,
-   "change": 1.90331,
+   "price": 354.070007,
+   "change": 1.42948,
    "low52": 243.42,
    "high52": 360.82999,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "MSFT": {
    "name": "Microsoft Corporation Common Stock",
-   "price": 492.5,
-   "change": 1.64699,
+   "price": 496.13,
+   "change": 0.73705683,
    "low52": 349.20001,
    "high52": 559.15002,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "TSLA": {
    "name": "Tesla, Inc.",
-   "price": 385.45999,
-   "change": 11.46261,
+   "price": 384.67999,
+   "change": -0.20235531,
    "low52": 297.38,
    "high52": 498.82999,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "GOOGL": {
    "name": "Alphabet Inc. Class A Common Stock",
-   "price": 282.10001,
-   "change": 6.33646,
+   "price": 279.049988,
+   "change": -1.081183,
    "low52": 264.22,
    "high52": 408.60999,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "VOO": {
    "name": "Vanguard S&P 500 ETF",
-   "price": 663.90997,
-   "change": 4.46392,
+   "price": 660.71002,
+   "change": -0.48198571,
    "low52": 578.46002,
    "high52": 718.46997,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "SPY": {
    "name": "State Street SPDR S&P 500 ETF Trust",
-   "price": 722.28998,
-   "change": 4.70854,
+   "price": 718.78003,
+   "change": -0.48594731,
    "low52": 629.28003,
    "high52": 781.62,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "QQQ": {
    "name": "Invesco QQQ Trust, Series 1",
-   "price": 651.030029,
-   "change": 6.99811,
+   "price": 638.099976,
+   "change": -1.98609,
    "low52": 555.59998,
    "high52": 762.85999,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "VTI": {
    "name": "Vanguard Total Stock Market ETF",
-   "price": 355.26999,
-   "change": 4.48503,
+   "price": 353.84,
+   "change": -0.40250872,
    "low52": 310.39999,
    "high52": 385.12,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "SCHD": {
    "name": "Schwab U.S. Dividend Equity ETF",
-   "price": 34.39,
-   "change": 1.32587,
+   "price": 34.89,
+   "change": 1.45391,
    "low52": 26.94,
    "high52": 36.38,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "ARKK": {
    "name": "ARK Innovation ETF",
-   "price": 69.36,
-   "change": 8.0037361,
+   "price": 67.46,
+   "change": -2.73933,
    "low52": 62.945,
    "high52": 94.82,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "VYM": {
    "name": "Vanguard High Dividend Yield ETF",
-   "price": 156.86,
-   "change": 1.9432,
+   "price": 157.32001,
+   "change": 0.29325941,
    "low52": 140.17999,
    "high52": 167.61,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "VUG": {
    "name": "Vanguard Morningstar Growth ETF",
-   "price": 80.85,
-   "change": 6.81728,
+   "price": 79.77,
+   "change": -1.33581,
    "low52": 69.63333,
    "high52": 93,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "VTV": {
    "name": "Vanguard Morningstar Value ETF",
-   "price": 218.87,
-   "change": 2.17066,
+   "price": 220.10001,
+   "change": 0.56198246,
    "low52": 184.63,
    "high52": 231.99001,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "BND": {
    "name": "Vanguard Total Bond Market ETF",
    "price": 71.36,
-   "change": 0.042056328,
+   "change": 0,
    "low52": 69.65,
    "high52": 75.23,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "VXUS": {
    "name": "Vanguard Total International Stock ETF",
-   "price": 78.25,
-   "change": 3.80738,
+   "price": 77.94,
+   "change": -0.39616301,
    "low52": 72.77,
    "high52": 88.62,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "IVV": {
    "name": "iShares Core S&P 500 ETF",
-   "price": 725.48999,
-   "change": 4.58116,
+   "price": 721.97998,
+   "change": -0.48381229,
    "low52": 632.14001,
    "high52": 785.030029,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "XLK": {
    "name": "State Street Technology Select Sector SPDR ETF",
-   "price": 162.38,
-   "change": 8.97256,
+   "price": 157.089996,
+   "change": -3.2578,
    "low52": 126.68,
    "high52": 203.25,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "DIA": {
    "name": "State Street SPDR Dow Jones Industrial Average ETF Trust",
-   "price": 495.79999,
-   "change": 3.059782,
+   "price": 499.73999,
+   "change": 0.79467578,
    "low52": 450.44,
    "high52": 546.75,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "IWM": {
    "name": "iShares Russell 2000 ETF",
-   "price": 265.73999,
-   "change": 3.55793,
+   "price": 267.14001,
+   "change": 0.52683994,
    "low52": 235.48,
    "high52": 305.17999,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "VNQ": {
    "name": "Vanguard Real Estate ETF",
-   "price": 93.67,
-   "change": 1.19922,
+   "price": 94.78,
+   "change": 1.18501,
    "low52": 86.84,
    "high52": 101.8,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "AMZN": {
    "name": "Amazon.com Inc.",
-   "price": 255.39,
-   "change": 3.47216,
+   "price": 252.28999,
+   "change": -1.21383,
    "low52": 196,
    "high52": 287.20001,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "META": {
    "name": "Meta Platforms Inc. Class A Common Stock",
-   "price": 597.59998,
-   "change": 6.55444,
+   "price": 589.82001,
+   "change": -1.30187,
    "low52": 520.26001,
    "high52": 779.82001,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "NVDA": {
    "name": "NVIDIA Corporation",
-   "price": 165.050003,
-   "change": 31.48252,
+   "price": 155.38,
+   "change": -5.85883,
    "low52": 124.5,
    "high52": 243.37,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "NFLX": {
    "name": "Netflix Inc.",
-   "price": 58.099998,
-   "change": 2.41495,
+   "price": 58.87,
+   "change": 1.3253,
    "low52": 56.56,
    "high52": 109.73,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "DIS": {
    "name": "The Walt Disney Company",
-   "price": 120.27,
-   "change": 1.941,
+   "price": 122.51,
+   "change": 1.86248,
    "low52": 92.19,
    "high52": 123.37,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "KO": {
    "name": "The Coca-Cola Company",
-   "price": 95.88,
-   "change": -1.14445,
+   "price": 97.62,
+   "change": 1.81477,
    "low52": 67.27,
    "high52": 100.56,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "PEP": {
    "name": "PepsiCo, Inc.",
-   "price": 140.21001,
-   "change": -0.23479905,
+   "price": 142.67999,
+   "change": 1.76163,
    "low52": 123.47,
    "high52": 171.48,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "JNJ": {
    "name": "Johnson & Johnson",
-   "price": 270.049988,
-   "change": -0.15529021,
+   "price": 276.45999,
+   "change": 2.37364,
    "low52": 199.91,
    "high52": 290.25,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "PG": {
    "name": "The Procter & Gamble Company",
-   "price": 169.60001,
-   "change": 0.13580386,
+   "price": 172.47,
+   "change": 1.69221,
    "low52": 137.62,
    "high52": 173.59,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "V": {
    "name": "Visa Inc. Class A",
-   "price": 409.39999,
-   "change": 1.87374,
+   "price": 416.78,
+   "change": 1.80264,
    "low52": 293.89001,
    "high52": 442.23001,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "MA": {
    "name": "Mastercard Inc. Class A Common Stock",
-   "price": 635.47998,
-   "change": 1.5809,
+   "price": 647.44,
+   "change": 1.88205,
    "low52": 464.51999,
    "high52": 681.98999,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "JPM": {
    "name": "JPMorgan Chase & Co.",
-   "price": 316.66,
-   "change": 1.97405,
+   "price": 317.10001,
+   "change": 0.13895106,
    "low52": 279.10001,
    "high52": 366.5,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "BAC": {
    "name": "Bank of America Corporation",
-   "price": 48.14,
-   "change": 2.33843,
+   "price": 48.56,
+   "change": 0.87245947,
    "low52": 46.12,
    "high52": 65.23,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "WMT": {
    "name": "Walmart Inc.",
-   "price": 129.58,
-   "change": 1.27394,
+   "price": 132.31,
+   "change": 2.1068,
    "low52": 102.15,
    "high52": 135.16,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "HD": {
    "name": "The Home Depot, Inc.",
-   "price": 346.059998,
-   "change": 2.070549,
+   "price": 353.69,
+   "change": 2.20482,
    "low52": 277.14999,
    "high52": 397.63,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "COST": {
    "name": "Costco Wholesale Corp",
-   "price": 1097.91003,
-   "change": -0.38470173,
+   "price": 1091.70996,
+   "change": -0.56471596,
    "low52": 844.059998,
    "high52": 1123.67004,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "NKE": {
    "name": "Nike, Inc. Class B Common Stock",
-   "price": 33.76,
-   "change": 2.55164,
+   "price": 35.75,
+   "change": 5.89456,
    "low52": 31.97,
    "high52": 69.14,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "SBUX": {
    "name": "Starbucks Corp.",
-   "price": 106.36,
-   "change": 3.13197,
+   "price": 106.38,
+   "change": 0.018800905,
    "low52": 81.97,
    "high52": 111.5,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "MCD": {
    "name": "McDonald's Corporation",
-   "price": 276.38,
-   "change": 1.14918,
+   "price": 280.70001,
+   "change": 1.56307,
    "low52": 229.2,
    "high52": 341.75,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "ADBE": {
    "name": "Adobe Inc.",
-   "price": 223.98,
-   "change": 2.87997,
+   "price": 232.080002,
+   "change": 3.6164,
    "low52": 190.12,
    "high52": 362.70999,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "CRM": {
    "name": "Salesforce, Inc.",
-   "price": 185.46001,
-   "change": 2.67967,
+   "price": 193.25999,
+   "change": 4.20575,
    "low52": 146.32001,
    "high52": 269.10999,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "PYPL": {
    "name": "PayPal Holdings, Inc.",
-   "price": 55.24,
-   "change": 3.65922,
+   "price": 56.17,
+   "change": 1.68356,
    "low52": 38.46,
    "high52": 63.93,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "INTC": {
    "name": "Intel Corporation",
-   "price": 59.66,
-   "change": 16.34166,
+   "price": 54.8,
+   "change": -8.14616,
    "low52": 34.68,
    "high52": 142.35001,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "AMD": {
    "name": "Advanced Micro Devices Inc.",
-   "price": 453.45999,
-   "change": 6.84983,
+   "price": 413.26999,
+   "change": -8.86297,
    "low52": 188.22,
    "high52": 658.52002,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "BA": {
    "name": "The Boeing Company",
-   "price": 162.39,
-   "change": 4.16961,
+   "price": 163.59,
+   "change": 0.73895988,
    "low52": 155.56,
    "high52": 254.35001,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "XOM": {
    "name": "ExxonMobil Holdings Corporation",
-   "price": 156.89999,
-   "change": -1.93138,
+   "price": 158.23,
+   "change": 0.84767488,
    "low52": 114.19,
    "high52": 188.5,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "CVX": {
    "name": "Chevron Corporation",
-   "price": 206.17,
-   "change": -1.055813,
+   "price": 208.73,
+   "change": 1.24169,
    "low52": 146.49001,
    "high52": 236.48,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "PFE": {
    "name": "Pfizer Inc.",
-   "price": 27.4,
-   "change": 0,
+   "price": 28.46,
+   "change": 3.86861,
    "low52": 23.62,
    "high52": 31.44,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "ABBV": {
    "name": "AbbVie Inc.",
-   "price": 288.45001,
-   "change": 0.78616349,
+   "price": 300.28,
+   "change": 4.10123,
    "low52": 190.75,
    "high52": 302.92999,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "VZ": {
    "name": "Verizon Communications Inc.",
-   "price": 46.45,
-   "change": -0.064541264,
+   "price": 47.16,
+   "change": 1.52852,
    "low52": 10.6,
    "high52": 51.68,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "O": {
    "name": "Realty Income Corp.",
-   "price": 58.59,
-   "change": 0.96502048,
+   "price": 59.55,
+   "change": 1.6385,
    "low52": 53.15,
    "high52": 67.94,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "PLD": {
    "name": "Prologis, Inc.",
-   "price": 125.14,
-   "change": 2.1551,
+   "price": 127.32,
+   "change": 1.74205,
    "low52": 122.18,
    "high52": 153.35001,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "AMT": {
    "name": "American Tower Corporation",
-   "price": 179.31,
-   "change": -2.66001,
+   "price": 182.83,
+   "change": 1.96308,
    "low52": 160.059998,
    "high52": 202.5,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "SPG": {
    "name": "Simon Property Group Inc.",
-   "price": 227.070007,
-   "change": 1.21239,
+   "price": 229.83,
+   "change": 1.21548,
    "low52": 177.88,
    "high52": 238.5,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "EQIX": {
    "name": "Equinix, Inc.",
-   "price": 999.40002,
-   "change": 3.22035,
+   "price": 982.77002,
+   "change": -1.664,
    "low52": 720.62,
    "high52": 1128.68005,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "PSA": {
    "name": "Public Storage",
-   "price": 330.48001,
-   "change": 1.55491,
+   "price": 331.92001,
+   "change": 0.43573057,
    "low52": 256.54001,
    "high52": 345.89001,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "WELL": {
    "name": "Welltower Inc.",
-   "price": 240.92999,
-   "change": 0.24548404,
+   "price": 245.14,
+   "change": 1.7474,
    "low52": 181.47,
    "high52": 255.2,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "DLR": {
    "name": "Digital Realty Trust Inc.",
-   "price": 167.41,
-   "change": 3.046902,
+   "price": 165.32001,
+   "change": -1.24843,
    "low52": 146.23,
    "high52": 208.14,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "VICI": {
    "name": "VICI Properties Inc.",
-   "price": 24.16,
-   "change": -0.16529303,
+   "price": 24.77,
+   "change": 2.52484,
    "low52": 22.425,
    "high52": 30.485,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "FXAIX": {
    "name": "Fidelity 500 Index Fund",
-   "price": 251.8,
-   "change": 4.72467,
+   "price": 250.57001,
+   "change": -0.48848122,
    "low52": 220.95,
    "high52": 271.69,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "FZROX": {
    "name": "Fidelity ZERO Total Market Index Fund",
-   "price": 25.26,
-   "change": 4.68297,
+   "price": 25.14,
+   "change": -0.4750627,
    "low52": 22.040001,
    "high52": 27.27,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "FSKAX": {
    "name": "Fidelity Total Market Index Fund",
-   "price": 199.22,
-   "change": 4.64885,
+   "price": 198.33,
+   "change": -0.44674199,
    "low52": 174.2,
    "high52": 215.28999,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "FTEC": {
    "name": "Fidelity MSCI Information Technology Index ETF",
-   "price": 253.97,
-   "change": 8.88317,
+   "price": 246.42999,
+   "change": -2.96886,
    "low52": 198.17,
    "high52": 311.82999,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "FDVV": {
    "name": "Fidelity High Dividend ETF",
-   "price": 60.11,
-   "change": 3.17542,
+   "price": 60.22,
+   "change": 0.18299885,
    "low52": 53.77,
    "high52": 64.535,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "FREL": {
    "name": "Fidelity MSCI Real Estate Index ETF",
-   "price": 28.44,
-   "change": 1.17396,
+   "price": 28.805,
+   "change": 1.2834,
    "low52": 26.37,
    "high52": 30.92,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "FBND": {
    "name": "Fidelity Total Bond ETF",
    "price": 44.17,
-   "change": 0.0679628,
+   "change": 0,
    "low52": 43.11,
    "high52": 46.78,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "SCHB": {
    "name": "Schwab U.S. Broad Market ETF",
-   "price": 27.78,
-   "change": 4.43609,
+   "price": 27.66,
+   "change": -0.43196845,
    "low52": 24.28,
    "high52": 30.15,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "SCHX": {
    "name": "Schwab U.S. Large-Cap ETF",
-   "price": 28.42,
-   "change": 4.87085,
+   "price": 28.27,
+   "change": -0.52779598,
    "low52": 24.81,
    "high52": 30.79,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "SCHG": {
    "name": "Schwab U.S. Large-Cap Growth ETF",
-   "price": 32.52,
-   "change": 6.51818,
+   "price": 32.09,
+   "change": -1.32226,
    "low52": 27.96,
    "high52": 37.099998,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "SCHV": {
    "name": "Schwab U.S. Large-Cap Value ETF",
-   "price": 33.43,
-   "change": 2.38897,
+   "price": 33.57,
+   "change": 0.41878369,
    "low52": 28.61,
    "high52": 35.49,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "SCHF": {
    "name": "Schwab International Equity ETF",
-   "price": 25.54,
-   "change": 3.40081,
+   "price": 25.47,
+   "change": -0.27408614,
    "low52": 23.22,
    "high52": 28.69,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "SCHA": {
    "name": "Schwab U.S. Small-Cap ETF",
-   "price": 31.56,
-   "change": 3.44149,
+   "price": 31.67,
+   "change": 0.3485444,
    "low52": 27.24,
    "high52": 36.2,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "SCHM": {
    "name": "Schwab U.S. Mid-Cap ETF",
-   "price": 33.83,
-   "change": 3.39242,
+   "price": 33.84,
+   "change": 0.029554599,
    "low52": 28.92,
    "high52": 36.92,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "SOXX": {
    "name": "iShares Semiconductor ETF",
-   "price": 140.22,
-   "change": 13.63047,
+   "price": 128.62,
+   "change": -8.27272,
    "low52": 90.92,
    "high52": 218.64999,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "SMH": {
    "name": "VanEck Semiconductor ETF",
-   "price": 460.17999,
-   "change": 15.027745,
+   "price": 426.75,
+   "change": -7.26455,
    "low52": 327.35001,
    "high52": 671.83002,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "UNH": {
    "name": "UnitedHealth Group Inc.",
-   "price": 336.079987,
-   "change": -1.10932,
+   "price": 341.88,
+   "change": 1.72579,
    "low52": 255.97,
    "high52": 461.62,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "LLY": {
    "name": "Eli Lilly and Company",
-   "price": 1364.59998,
-   "change": 1.29833,
+   "price": 1407.58997,
+   "change": 3.15037,
    "low52": 850.51001,
    "high52": 1475.25,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "TSM": {
    "name": "Taiwan Semiconductor Manufacturing Company Ltd. ADR",
-   "price": 363.60001,
-   "change": 14.08491,
+   "price": 349.20001,
+   "change": -3.96039,
    "low52": 273.079987,
    "high52": 487.47,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "ORCL": {
    "name": "Oracle Corporation",
-   "price": 113.68,
-   "change": 12.34311,
+   "price": 109.5,
+   "change": -3.67699,
    "low52": 100.25,
    "high52": 250.25,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "IBM": {
    "name": "International Business Machines Corporation",
-   "price": 233,
-   "change": 3.81394,
+   "price": 235.62,
+   "change": 1.12446,
    "low52": 199.19,
    "high52": 332.45999,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "GE": {
    "name": "General Electric Company",
-   "price": 321.26001,
-   "change": 3.75945,
+   "price": 318.029999,
+   "change": -1.0054196,
    "low52": 268.91,
    "high52": 388.84,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "CAT": {
    "name": "Caterpillar Inc.",
-   "price": 547.039978,
-   "change": 7.16818,
+   "price": 540.63,
+   "change": -1.17176,
    "low52": 508.10999,
    "high52": 1073.45996,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "DE": {
    "name": "Deere & Company",
-   "price": 633.030029,
-   "change": 3.90316,
+   "price": 613.76001,
+   "change": -3.044092,
    "low52": 455.91,
    "high52": 721.21997,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "LOW": {
    "name": "Lowe's Companies, Inc.",
-   "price": 226.14,
-   "change": 2.39993,
+   "price": 231.039993,
+   "change": 2.1668,
    "low52": 178.45,
    "high52": 293.059998,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "TGT": {
    "name": "Target Corp.",
-   "price": 168.19,
-   "change": 1.42314,
+   "price": 176.059998,
+   "change": 4.67923,
    "low52": 84.52,
-   "high52": 171.91,
+   "high52": 176.73,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "CMG": {
    "name": "Chipotle Mexican Grill, Inc.",
-   "price": 36.25,
-   "change": 1.96906,
+   "price": 37.049999,
+   "change": 2.20689,
    "low52": 27.31,
    "high52": 41.42,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "UBER": {
    "name": "Uber Technologies Inc.",
-   "price": 64.07,
-   "change": 0.94532608,
+   "price": 64.7,
+   "change": 0.98329523,
    "low52": 63.29,
    "high52": 92.78,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "SHOP": {
    "name": "Shopify Inc.",
-   "price": 134.3,
-   "change": 8.55157,
+   "price": 132.31,
+   "change": -1.48176,
    "low52": 94,
    "high52": 180.88,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "SQ": {
    "name": "Block, Inc.",
-   "price": 73.24,
-   "change": 5.13924,
+   "price": 74.15,
+   "change": 1.2425,
    "low52": 48.21,
    "high52": 89.395,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "SNOW": {
    "name": "Snowflake Inc. Common Stock",
-   "price": 271.26999,
-   "change": 6.45553,
+   "price": 271.089996,
+   "change": -0.066351857,
    "low52": 118.3,
    "high52": 384.56,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "PLTR": {
    "name": "Palantir Technologies Inc. Class A Common Stock",
-   "price": 159.36,
-   "change": 11.06,
+   "price": 161.17999,
+   "change": 1.14206,
    "low52": 106.37,
    "high52": 212.94,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "RIVN": {
    "name": "Rivian Automotive, Inc. Class A",
-   "price": 11.22,
-   "change": 8.61569,
+   "price": 11.35,
+   "change": 1.15865,
    "low52": 10.284,
    "high52": 22.69,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "F": {
    "name": "Ford Motor Co.",
-   "price": 11.65,
-   "change": 4.29722,
+   "price": 11.95,
+   "change": 2.57511,
    "low52": 11.05,
    "high52": 17.78,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "GM": {
    "name": "General Motors Co.",
-   "price": 81.64,
-   "change": 3.72253,
+   "price": 82.32,
+   "change": 0.83292542,
    "low52": 70.25,
    "high52": 93.7,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "TMUS": {
    "name": "T-Mobile US Inc.",
-   "price": 166.36,
-   "change": 0.45893386,
+   "price": 167.3,
+   "change": 0.56504114,
    "low52": 143.75,
    "high52": 224.75,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "QCOM": {
    "name": "QUALCOMM Incorporated",
-   "price": 165.38,
-   "change": 10.29745,
+   "price": 164.96001,
+   "change": -0.25395946,
    "low52": 121.99,
    "high52": 259.92001,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "TXN": {
    "name": "Texas Instruments Inc.",
-   "price": 291.19,
-   "change": 10.40379,
+   "price": 258.44,
+   "change": -11.24695,
    "low52": 158.69,
    "high52": 334.029999,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "MU": {
    "name": "Micron Technology Inc.",
-   "price": 707.70001,
-   "change": 19.039209,
+   "price": 629.78998,
+   "change": -11.0089067,
    "low52": 212.36,
    "high52": 1255,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "BRK.B": {
    "name": "Berkshire Hathaway Inc. Class B",
-   "price": 572.35999,
-   "change": 0.41403252,
+   "price": 577.21002,
+   "change": 0.84737521,
    "low52": 464.01001,
    "high52": 596.91998,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "VT": {
    "name": "Vanguard Total World Stock ETF",
-   "price": 148.21001,
-   "change": 4.31447,
+   "price": 147.56,
+   "change": -0.43857306,
    "low52": 133.64999,
    "high52": 162.71001,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "VEA": {
    "name": "Vanguard FTSE Developed Markets ETF",
-   "price": 65.58,
-   "change": 3.080797,
+   "price": 65.53,
+   "change": -0.076247408,
    "low52": 59.56,
    "high52": 74.040001,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "VWO": {
    "name": "Vanguard FTSE Emerging Markets ETF",
-   "price": 53.55,
-   "change": 5.78823,
+   "price": 52.87,
+   "change": -1.26984,
    "low52": 50.5,
    "high52": 61.54,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "AGG": {
    "name": "iShares Core U.S. Aggregate Bond ETF",
-   "price": 96.24,
-   "change": 0.093599934,
+   "price": 96.18,
+   "change": -0.062341604,
    "low52": 93.84,
    "high52": 101.46,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "SPYM": {
    "name": "State Street SPDR Portfolio S&P 500 ETF",
-   "price": 85.040001,
-   "change": 4.63886,
+   "price": 84.61,
+   "change": -0.50564476,
    "low52": 74.059998,
    "high52": 92,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "VIG": {
    "name": "Vanguard Dividend Appreciation ETF",
-   "price": 240.82001,
-   "change": 2.17659,
+   "price": 242.11,
+   "change": 0.53566699,
    "low52": 210.0099945,
    "high52": 253.75,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "VGT": {
    "name": "Vanguard Information Technology ETF",
-   "price": 106.41,
-   "change": 8.98198,
+   "price": 103.32,
+   "change": -2.90387,
    "low52": 83.089996,
    "high52": 130.66,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "FTIHX": {
    "name": "Fidelity Total International Index Fund",
-   "price": 18.040001,
-   "change": 3.49972,
+   "price": 18,
+   "change": -0.22173455,
    "low52": 16.87,
    "high52": 20.4,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "JEPQ": {
    "name": "JPMorgan Nasdaq Equity Premium Income ETF",
-   "price": 54.029999,
-   "change": 6.27458,
+   "price": 53.060001,
+   "change": -1.79529,
    "low52": 50.525,
    "high52": 61.72,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   },
   "QQQM": {
    "name": "Invesco NASDAQ 100 ETF",
-   "price": 267.97,
-   "change": 6.66322,
+   "price": 262.78,
+   "change": -1.93678,
    "low52": 228.75,
    "high52": 314.11499,
    "currency": "USD",
-   "asOf": "2026-11-23"
+   "asOf": "2026-11-24"
   }
  }
 }
