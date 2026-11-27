@@ -373,10 +373,12 @@
     gap: 12px;
     margin-bottom: 16px;
   }
-  .compare-wrap.show { display: flex; }
+  .compare-wrap.show { display: flex; flex-wrap: wrap; }
   .compare-wrap input {
-    flex: 1;
+    flex: 1 1 0;
+    min-width: 0;
   }
+  .compare-wrap .go { flex: 0 0 100%; width: 100%; }
 
   .compare-grid {
     display: none;
@@ -1291,7 +1293,8 @@
     .projection-grid { grid-template-columns: 1fr 1fr; }
     .pf-hero, .pf-body { padding-left: 16px; padding-right: 16px; }
     .portfolio-row { flex-wrap: wrap; row-gap: 6px; }
-    .wrap { padding-left: 16px; padding-right: 16px; }
+    .wrap { padding-left: 0; padding-right: 0; }
+    body { padding-left: 12px; padding-right: 12px; }
   }
 </style>
 </head>
