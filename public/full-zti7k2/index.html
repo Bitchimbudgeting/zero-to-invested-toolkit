@@ -24,6 +24,31 @@ header p{margin:0 0 14px;color:#cbd5e6;font-size:14px}
 .prog-in{max-width:760px;margin:0 auto;padding:10px 16px 12px}
 .prog-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-family:'Space Mono',monospace;font-size:12px;color:var(--navy)}
 .prog-top b{font-size:15px}
+.plan{background:var(--navy);color:#fff;border-radius:20px;padding:20px 18px 16px;margin:0 0 16px;box-shadow:0 10px 24px rgba(27,42,74,.18)}
+.plan .ph{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--gold)}
+.plan h2{font-family:'Playfair Display',Georgia,serif;font-size:27px;margin:4px 0 2px;line-height:1.15}
+.plan .why{font-size:14px;opacity:.85;margin:0 0 14px}
+.plan .hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.plan .stat{background:rgba(255,255,255,.08);border:1px solid rgba(232,184,75,.35);border-radius:14px;padding:10px 12px}
+.plan .stat .k{font-family:'Oswald',sans-serif;letter-spacing:.08em;font-size:11px;color:var(--gold);text-transform:uppercase}
+.plan .stat .v{font-size:20px;font-weight:700;line-height:1.2;margin-top:2px}
+.plan .stat .s{font-size:12px;opacity:.8}
+.plan .stat.big{grid-column:1/-1;background:var(--gold);color:var(--navy);border:0}
+.plan .stat.big .k{color:var(--navy)}
+.plan .stat.big .v{font-size:24px}
+.plan .sec{background:#fff;color:var(--ink);border-radius:14px;padding:12px 14px;margin-top:10px}
+.plan .sec h4{font-family:'Oswald',sans-serif;letter-spacing:.08em;font-size:13px;color:var(--green);margin:0 0 6px;text-transform:uppercase}
+.plan .row{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:5px 0;border-top:1px dashed var(--line)}
+.plan .row:first-of-type{border-top:0}
+.plan .row span:first-child{color:var(--mute)}
+.plan .row span:last-child{text-align:right;font-weight:600}
+.plan .empty{color:var(--red);font-weight:500;font-style:italic}
+.plan .quote{font-style:italic;font-size:14px;margin:0}
+.plan .acts{display:flex;gap:8px;margin-top:14px}
+.plan .acts .btn{flex:1}
+@media print{body.printplan *{visibility:hidden!important}body.printplan #plan,body.printplan #plan *{visibility:visible!important}body.printplan #plan{position:absolute;left:0;top:0;width:100%;box-shadow:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}body.printplan #plan .acts{display:none}}
+.mkt{background:#fff6dc;border:2px solid var(--gold);border-radius:12px;padding:10px 12px;margin:0 0 12px;font-size:13.5px;line-height:1.45;color:var(--navy)}
+.mkt b{font-family:'Oswald',sans-serif;letter-spacing:.06em;margin-right:4px}
 .bar{position:relative;height:14px;background:#ece6d3;border-radius:99px;margin:20px 0 6px}
 .fill{height:100%;width:0;background:linear-gradient(90deg,var(--green),#3fa078);border-radius:99px;transition:width .5s ease}
 .flag{position:absolute;top:-17px;transform:translateX(-50%);font-size:14px;line-height:1;filter:grayscale(1) opacity(.55)}
@@ -182,13 +207,13 @@ const PROOFS={
  p3:{flag:'First investment',short:'First investment or practice order',what:'You reached your first investment. This is the big one.',shot:'a screenshot of your order confirmation or order history (a practice preview counts too)',subject:'Proof: First investment'},
  p4:{flag:'Automation set',short:'Recurring investment set up',what:'You set up your recurring investment. That is the habit.',shot:'a screenshot of your recurring investment screen',subject:'Proof: Automation set up'}
 };
-const cb=(t,p)=>({k:'cb',t,p}), tx=(l)=>({k:'tx',l}), ar=(l)=>({k:'ar',l}), mo=(l)=>({k:'mo',l}), dt=(l)=>({k:'dt',l}),
+const cb=(t,p)=>({k:'cb',t,p}), ocb=(t)=>({k:'cb',t,opt:1}), tx=(l)=>({k:'tx',l}), ar=(l)=>({k:'ar',l}), mo=(l)=>({k:'mo',l}), dt=(l)=>({k:'dt',l}),
  ch=(l,o)=>({k:'ch',l,o}), says=(t)=>({k:'says',t}), note=(t)=>({k:'note',t}), sub=(t)=>({k:'sub',t}), proof=(pid)=>({k:'proof',pid});
 const YNN=['Yes','No','Not sure'];
 const MODS=[
 {n:'1',name:'Mindset and Money',pages:[
- {h:'What is really stopping you?',pg:4,i:[note('Before we discuss investments, be real with yourself. Check what has held you back.'),
-  cb('I don’t know where to start.'),cb('I don’t think I earn enough.'),cb('I’m afraid of losing money.'),cb('Stocks and ETFs confuse me.'),cb('I have debt or other obligations.'),cb('I keep putting it off.'),cb('I thought investing was only for wealthy people.'),tx('Other'),
+ {h:'What is really stopping you?',pg:4,i:[note('Before we discuss investments, be real with yourself. Check anything that has held you back. Only check what applies to you.'),
+  ocb('I don’t know where to start.'),ocb('I don’t think I earn enough.'),ocb('I’m afraid of losing money.'),ocb('Stocks and ETFs confuse me.'),ocb('I have debt or other obligations.'),ocb('I keep putting it off.'),ocb('I thought investing was only for wealthy people.'),tx('Other'),
   sub('Bestie, be for real'),tx('What is one thing you’re ready to do differently?'),says('You do not have to know everything to begin learning.')]},
  {h:'Your money, your starting point',pg:5,i:[note('Choose the LOWEST amount you can repeat without neglecting bills, debt priorities, or savings.'),
   mo('Monthly take home income'),mo('Monthly essential expenses'),mo('Money available after obligations'),
@@ -202,10 +227,10 @@ const MODS=[
  {h:'Your priority money map',pg:8,i:[note('The order: 1. Set the foundation. 2. Deal with high interest debt. 3. Check your job retirement plan. 4. HSA, if you qualify. 5. Roth IRA. Once your Roth IRA is maxed, go back and max your job plan, then a taxable brokerage.'),
   ch('I have high interest debt',['Yes','No']),tx('My split between debt and investing (Selma uses 70% debt, 30% Roth IRA)'),ch('My job offers a 401(k), 403(b), or similar plan',YNN),ch('I checked what my job plan is invested in',['Yes','No','N/A']),tx('What my job plan is invested in'),tx('How my job plan did over the past year (example: +8%)'),ch('I am eligible for an HSA',YNN),ch('I already have a Roth IRA',['Yes','No']),tx('My ONE next step'),says('You can go up to the max. You do not have to. Start with what you have.')]},
  {h:'2027 limits and deadlines',pg:9,i:[note('JOB PLAN, 401(k) or 403(b): up to $25,500. Age 50+: up to $34,000 total. Ages 60 to 63: up to $37,250 total. Deadline: December 31, through your paycheck.'),
-  note('ROTH IRA: up to $7,500. Age 50+: up to $8,600. Separate accounts, separate limits. Deadline: tax day the following April. From January 1 to tax day, you pick which year your money counts for.'),
+  note('ROTH IRA: up to $7,500. Age 50+: up to $8,600. Your job plan and your Roth IRA are separate accounts with separate limits, so you can contribute to both. If you have more than one Roth IRA, the $7,500 limit is shared across all of them combined. Deadline: tax day the following April. From January 1 to tax day, you pick which year your money counts for.'),
   cb('I know my job plan limit and deadline.'),cb('I know my Roth IRA limit and deadline.'),cb('When I add money between January 1 and tax day, I will pick the right year.')]},
- {h:'Can you contribute to a Roth IRA? (2027)',pg:10,i:[note('For a FULL contribution, your 2027 MAGI must be BELOW $158,000 (single or head of household) or $250,000 (married filing jointly). Partial contributions: $158,000 to $173,000 single, $250,000 to $260,000 married filing jointly. Married couples each open their own Roth IRA.'),
-  cb('My MAGI is below the full contribution threshold for my filing status.'),cb('My MAGI is at or above that threshold; I will verify my eligibility BEFORE contributing.'),cb('I checked that I have eligible compensation and have not exceeded my total IRA limit.'),says('If you are not sure you qualify, check before you add money.')]},
+ {h:'Can you contribute to a Roth IRA? (2027)',pg:10,i:[note('SINGLE: if you make under $158,000 a year, you can put in the full amount. MARRIED: if you and your spouse make under $250,000 a year together, you can each put in the full amount. Make a little more than that? Single $158,000 to $173,000, or married $250,000 to $260,000, means you can put in a smaller amount. Make more than that? You cannot add money to a Roth IRA directly, so talk to a tax professional. Married couples each open their own Roth IRA. (The IRS calls this income number MAGI. For most people it is close to the income on their tax return.)'),
+  ocb('I make under the limit for my situation (single or married).'),ocb('I make more than the limit, so I will check before I put money in.'),cb('I checked that I have eligible compensation and have not exceeded my total IRA limit.'),says('If you are not sure you qualify, check before you add money.')]},
  {h:'Module 2 accountability',acc:1,i:[cb('I know my emergency fund goal and how much I have saved.'),cb('I mapped where I am on the priority money map.'),cb('I know my 2027 limits and deadlines.'),cb('I checked my Roth IRA income eligibility.'),cb('I identified my next step.'),tx('My next step'),ar('Notes and questions to revisit'),dt('Completed on')]}
 ]},
 {n:'3',name:'Open and Fund',pages:[
@@ -217,7 +242,7 @@ const MODS=[
  {h:'Module 3 accountability',acc:1,i:[cb('I chose a brokerage and opened or located my Roth IRA.'),cb('I connected my bank.'),cb('I funded my account if financially appropriate, or recorded when I can safely do so.'),cb('I found where to see money available to trade.'),cb('I understand the difference between cash and investments.'),tx('The next action I will take'),dt('Completed on')]}
 ]},
 {n:'4',name:'Funds and Tickers',pages:[
- {h:'Stocks, ETFs, mutual funds',pg:16,i:[note('STOCK: ownership in one company. ETF: ownership in many companies, bought and sold all day. MUTUAL FUND: similar to an ETF, but trades once a day at the end of day price. INDEX FUND: designed to follow a market index. TICKER: the short code you use to look it up. DIVIDEND: cash back for owning shares.'),
+ {h:'Stocks, ETFs, mutual funds',pg:16,i:[note('STOCK: ownership in one company. ETF: ownership in many companies, bought and sold all day. MUTUAL FUND: similar to an ETF, but it trades only once a day, at the end of day price. TRADING DAYS: the market is only open Monday to Friday, 9:30 AM to 4:00 PM Eastern, 8:30 AM to 3:00 PM Central, 6:30 AM to 1:00 PM Pacific. You can place an order any day, but it only goes through on a trading day. An order placed on Saturday or Sunday goes through on Monday. INDEX FUND: designed to follow a market index. TICKER: the short code you use to look it up. DIVIDEND: cash back for owning shares.'),
   sub('Module 4A homework'),tx('In one sentence, how is owning one stock different from owning a broad market ETF?'),tx('In your own words, what is the difference between an ETF and a mutual fund?'),tx('Look up one ticker in your app. Write the ticker and its full name.'),tx('In your own words, what is a dividend?'),says('You do not have to become a stock picker.')]},
  {h:'Tickers and investment overlap',pg:17,i:[note('A ticker is the short symbol used to find an investment: VOO, VTI, FXAIX, FSKAX, FZROX, SNAP. More tickers does not always mean more diversification.'),
   sub('Compare two tickers'),tx('Ticker 1'),tx('Ticker 2'),ch('Do they own some of the same companies?',YNN),tx('Name one company both own, if any')]},
@@ -230,24 +255,24 @@ const MODS=[
  {h:'My 10 minute investment check',pg:20,i:[note('Use the brokerage app or fund provider’s website. The optional Ticker Toolkit is a shortcut, not a requirement.'),
   tx('Fund name and ticker'),ch('Type',['Stock','ETF','Mutual fund']),tx('What does it own or track?'),tx('Current share price (if shown)'),tx('What happened over the last five years?'),tx('Expense ratio, if applicable'),tx('One risk I should understand')]},
  {h:'SNAP vs. VOO: what did you notice?',pg:21,i:[note('This illustrates concentration risk, not a promise that any ETF will outperform a stock.'),tx('What was different about the two charts?'),tx('What is the risk of relying on just one company?'),
-  sub('My research decision'),ch('Pick one',['I understand this well enough to consider it','I need more research','It does not fit my goals']),tx('My reason')]},
+  sub('My research decision'),ch('Think about the investment you researched on the last page. Would you consider adding it to your portfolio? Pick one',['I understand this well enough to consider it','I need more research','It does not fit my goals']),tx('My reason')]},
  {h:'Module 5 accountability',acc:1,i:[cb('I looked up a real ticker and verified the name.'),cb('I checked the five year history and what the fund holds.'),cb('I checked its fees, if applicable, and one important risk.'),cb('I completed the SNAP vs. VOO reflection.'),cb('I made my own research decision instead of copying someone online.'),dt('Completed on')]}
 ]},
 {n:'6',name:'First Investment',pages:[
  {h:'Before you click buy',pg:23,i:[note('Find the balance labeled “available to trade,” “available to invest,” or similar.'),mo('My available to trade amount'),mo('The amount I plan to invest'),tx('Ticker I plan to purchase'),
   cb('I am in the correct account.'),cb('I checked the ticker and investment name.'),cb('The purchase amount fits my budget.'),cb('I understand the order type and reviewed any fees.'),cb('I checked the full order preview before submitting.')]},
- {h:'My first investment',pg:24,i:[note('If you cannot invest safely, complete the order preview and record “Practice.”'),tx('Brokerage and account type'),tx('Investment name and ticker'),mo('Amount'),dt('Order date'),ch('Status',['Practice','Submitted','Pending','Filled','Canceled']),
+ {h:'My first investment',pg:24,i:[note('If you cannot invest safely, complete the order preview and record “Practice.” Trades only go through Monday to Friday, 9:30 AM to 4:00 PM Eastern, 8:30 AM to 3:00 PM Central, 6:30 AM to 1:00 PM Pacific. If you place your order on a weekend or holiday, it will not go through until the next trading day, so your status will show Pending until then.'),tx('Brokerage and account type'),tx('Investment name and ticker'),mo('Amount'),dt('Order date'),ch('Status',['Practice','Submitted','Pending','Filled','Canceled']),
   cb('I reviewed the order details.'),cb('I checked order history rather than submitting twice.'),cb('I know where my holdings appear once an order fills.','p3'),says('Submitted is not the same as filled. Verify the order status.'),proof('p3')]},
  {h:'Module 6 accountability',acc:1,i:[cb('I found my available to trade balance.'),cb('I reviewed an ETF or mutual fund order.'),cb('I purchased an investment or completed a practice preview.'),cb('I checked the order status and know where holdings appear.'),tx('One thing that was easier than I expected'),dt('Completed on')]}
 ]},
 {n:'7',name:'Automate It',pages:[
- {h:'Build the muscle: automate it',pg:26,i:[note('Start with the LOWEST amount you can consistently afford. Automating a cash transfer is NOT always the same as automating an investment PURCHASE.'),tx('My investment ticker'),mo('My lowest recurring amount'),ch('Frequency',['Weekly','Every two weeks','Twice monthly','Monthly']),tx('Funding source (do not write account numbers)'),dt('First scheduled date'),says('Build the muscle first. Build the amount later.')]},
+ {h:'Build the muscle: automate it',pg:26,i:[note('Start with the LOWEST amount you can consistently afford. Automating a cash transfer is NOT always the same as automating an investment PURCHASE. Automatic purchases only go through on trading days, Monday to Friday, 9:30 AM to 4:00 PM Eastern, 8:30 AM to 3:00 PM Central, 6:30 AM to 1:00 PM Pacific. If your scheduled day lands on a weekend or holiday, it goes through on the next trading day.'),tx('My investment ticker'),mo('My lowest recurring amount'),ch('Frequency',['Weekly','Every two weeks','Twice monthly','Monthly']),tx('Funding source (do not write account numbers)'),dt('First scheduled date'),says('Build the muscle first. Build the amount later.')]},
  {h:'Set up and verify your automation',pg:27,i:[cb('I selected the right account and investment.'),cb('I entered an amount I can sustain.'),cb('I chose the schedule and funding source.'),cb('I confirmed whether the instruction BUYS investments or only transfers cash.'),cb('I know how to change, pause, or cancel the instruction.'),cb('I will verify that the first scheduled purchase actually executes.','p4'),dt('First purchase verification date'),tx('What I will check after that date'),proof('p4')]},
  {h:'My consistency plan',pg:28,i:[note('You can review the account once or twice a month and respond promptly to important alerts.'),dt('My monthly money date'),cb('Did the money transfer successfully?'),cb('Did the intended investment actually get purchased?'),cb('Does the amount still fit my budget?'),cb('Do I have any important account alerts?'),tx('When I may review increasing the amount')]},
  {h:'Module 7 accountability',acc:1,i:[cb('I created or practiced an automatic investment.'),cb('I know how to verify, change, or pause it.'),cb('I chose my recurring review date.'),dt('Completed on')]}
 ]},
 {n:'★',name:'Finish Strong',fin:1,pages:[
- {h:'Look what you accomplished!',pg:30,i:[cb('I identified a sustainable investing amount.'),cb('I learned how a Roth IRA works.'),cb('I opened or located an account and connected my bank.'),cb('I learned to research an investment.'),cb('I completed an investment order or safe practice preview.'),cb('I set up or practiced recurring investments.'),cb('I know how to check whether purchases execute.'),tx('My proudest accomplishment'),tx('My next investing goal'),dt('Completion date')]},
+ {h:'Look what you accomplished!',pg:30,i:[cb('I identified a sustainable investing amount.'),cb('I learned how a Roth IRA works.'),cb('I opened or located an account and connected my bank.'),cb('I learned to research an investment.'),cb('I completed an investment order or safe practice preview.'),cb('I set up or practiced recurring investments.'),cb('I know how to check whether purchases execute.'),tx('My proudest accomplishment'),tx('My next investing goal'),dt('Target date to reach this goal')]},
  {h:'My investor commitment',pg:33,i:[note('When I started investing in 2019, I opened my Roth IRA with $65. I didn’t know everything. I started.'),tx('My first investment or practice milestone'),dt('The date I took my first step'),mo('The amount I can invest consistently'),ar('My commitment for the next 12 months')]}
 ]}
 ];
@@ -266,7 +291,7 @@ const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'
 const ALLCB=[];
 MODS.forEach((m,mi)=>m.pages.forEach((p,pi)=>p.i.forEach((it,ii)=>{
   it.id=`m${mi}p${pi}i${ii}`;
-  if(it.k==='cb')ALLCB.push({id:it.id,mod:mi,proof:it.p||null});
+  if(it.k==='cb'&&!it.opt)ALLCB.push({id:it.id,mod:mi,proof:it.p||null});
 })));
 const TOTAL=ALLCB.length;
 
@@ -293,10 +318,12 @@ function renderWB(){
   const m=MODS[cur];
   let h=`<div class="pills">${MODS.map((x,i)=>`<button class="pill ${modPct(i)===100?'done':''}" data-mod="${i}" ${i===cur?'aria-current="true"':''}>${x.fin?'FINISH':'MODULE '+x.n}</button>`).join('')}</div>`;
   h+=`<div class="mhead"><h2>${m.fin?'':'Module '+m.n+': '}${m.name}</h2><span class="mp" id="mp">${modPct(cur)}%</span></div>`;
+  h+=`<div class="mkt"><b>MARKET HOURS</b> ${'Monday to Friday, 9:30 AM to 4:00 PM Eastern, 8:30 AM to 3:00 PM Central, 6:30 AM to 1:00 PM Pacific'}. Trades only go through on those days. An order placed on a weekend or holiday waits and goes through on the next trading day.</div>`;
   h+=`<div class="flow"><span>LEARN IT</span><span>MAKE IT PERSONAL</span><span>NOW GO DO IT</span><span>ACCOUNTABILITY CHECK</span></div>`;
   m.pages.forEach(p=>{h+=`<div class="card">${p.pg?`<span class="pg">PAGE ${p.pg}</span>`:''}<h3>${esc(p.h)}</h3>${p.i.map(itemHTML).join('')}</div>`});
-  if(m.fin)h+=`<div class="done-card" id="doneCard" hidden><h3>You did it, bestie!</h3><p>You started at $0 and took real steps. Your workbook is complete.</p></div>`;
-  h+=`<div class="nav"><button class="btn ghost" id="prev" ${cur===0?'disabled style="opacity:.4"':''}>BACK</button><button class="btn" id="next" ${cur===MODS.length-1?'disabled style="opacity:.4"':''}>NEXT MODULE</button></div>`;
+  if(m.fin)h+=`<div class="done-card" id="doneCard" hidden><h3>You did it, bestie!</h3><p>You started at $0 and took real steps. Your workbook is complete, and your answers are saved on this device.</p><button class="btn gold" id="seePlan" style="margin-top:10px">SEE MY PLAN</button></div>`;
+  const last=cur===MODS.length-1;
+  h+=`<div class="nav"><button class="btn ghost" id="prev" ${cur===0?'disabled style="opacity:.4"':''}>BACK</button>${last?'<button class="btn" id="finish">FINISH</button>':'<button class="btn" id="next">NEXT MODULE</button>'}</div><p class="savenote" style="text-align:center;font-size:13px;opacity:.75;margin:10px 0 0">Your answers save automatically on this device.</p>`;
   $('tab-wb').innerHTML=h;
   const ap=document.querySelector('.pill[aria-current]');if(ap){const r=ap.parentNode;r.scrollLeft=ap.offsetLeft-r.offsetLeft-(r.clientWidth-ap.offsetWidth)/2}
   try{localStorage.setItem('z2i_hub_cur',cur)}catch(e){}
@@ -304,6 +331,75 @@ function renderWB(){
 }
 function toMod(){const el=$('tab-wb'),pr=$('prog');const off=(pr?pr.offsetHeight:0)+10;const y=el.getBoundingClientRect().top+scrollY-off;window.scrollTo({top:Math.max(0,y),behavior:'instant'})}
 function updateDone(){const d=$('doneCard');if(d)d.hidden=!(pctAll()===100)}
+function planHTML(){
+  const g=id=>{const v=S.v[id];return v===undefined||v===null||v===''?'':String(v)};
+  const E='<span class="empty">not filled in yet</span>';
+  const money=x=>{const n=parseFloat(String(x).replace(/[^0-9.]/g,''));return isNaN(n)?x:n.toLocaleString(undefined,{maximumFractionDigits:2})};
+  const val=(x,pre='')=>x?esc(pre==='$'?'$'+money(x):pre+x):E;
+  const fmtD=d=>{if(!d)return '';const [y,m,dd]=d.split('-');return m&&dd?`${+m}/${+dd}/${y}`:d};
+  const brok=g('m2p0i1')==='Other'?(g('m2p1i4')||'Other'):(g('m2p0i1')||g('m2p1i4'));
+  const core=g('m3p2i1')||g('m6p0i1');
+  const amt=g('m6p0i2')||g('m7p1i3');const freq=g('m6p0i3');
+  const per={'Weekly':52,'Every two weeks':26,'Twice monthly':24,'Monthly':12}[freq];
+  const yr=amt&&per?Math.round(parseFloat(String(amt).replace(/[^0-9.]/g,''))*per):0;
+  const capNote=yr>7500?' (over the $7,500 Roth IRA limit, so check your plan)':'';
+  const sent=Object.keys(PROOFS).filter(k=>S.sent[k]).length;
+  return `<div class="plan" id="plan">
+  <div class="ph">MY ZERO TO INVESTED PLAN</div>
+  <h2>Here is your plan, bestie</h2>
+  <p class="why">${g('m0p2i0')?'I invest because '+esc(g('m0p2i0')):'Everything you wrote in your workbook, in one place.'}</p>
+  <div class="hero">
+    <div class="stat big"><div class="k">My automatic investment</div><div class="v">${amt?esc('$'+money(amt)):'$__'} ${freq?esc(freq.toLowerCase()):'(pick a frequency)'}</div><div class="s">${core?'into '+esc(core):''}${yr?` &middot; about $${yr.toLocaleString()} a year${capNote}`:''}</div></div>
+    <div class="stat"><div class="k">Brokerage</div><div class="v">${brok?esc(brok):'__'}</div><div class="s">Roth IRA</div></div>
+    <div class="stat"><div class="k">Core position</div><div class="v">${core?esc(core):'__'}</div><div class="s">my backbone</div></div>
+  </div>
+  <div class="sec"><h4>My account</h4>
+    <div class="row"><span>Brokerage</span><span>${val(brok)}</span></div>
+    <div class="row"><span>Date opened</span><span>${val(fmtD(g('m2p1i5')))}</span></div>
+    <div class="row"><span>Uninvested cash sits in</span><span>${val(g('m2p1i6'))}</span></div>
+  </div>
+  <div class="sec"><h4>My core position</h4>
+    <div class="row"><span>Fund</span><span>${val(core)}</span></div>
+    <div class="row"><span>What it tracks</span><span>${val(g('m3p2i2'))}</span></div>
+    <div class="row"><span>Why I picked it</span><span>${val(g('m3p2i3'))}</span></div>
+  </div>
+  <div class="sec"><h4>My first investment</h4>
+    <div class="row"><span>Bought</span><span>${val(g('m5p1i2'))}</span></div>
+    <div class="row"><span>Amount</span><span>${val(g('m5p1i3'),'$')}</span></div>
+    <div class="row"><span>Date and status</span><span>${g('m5p1i4')||g('m5p1i5')?esc([fmtD(g('m5p1i4')),g('m5p1i5')].filter(Boolean).join(' · ')):E}</span></div>
+  </div>
+  <div class="sec"><h4>My automation</h4>
+    <div class="row"><span>Investing in</span><span>${val(g('m6p0i1')||core)}</span></div>
+    <div class="row"><span>Amount and frequency</span><span>${amt||freq?esc([amt?'$'+amt:'',freq].filter(Boolean).join(' · ')):E}</span></div>
+    <div class="row"><span>Funded from</span><span>${val(g('m6p0i4'))}</span></div>
+    <div class="row"><span>First scheduled date</span><span>${val(fmtD(g('m6p0i5')))}</span></div>
+    <div class="row"><span>My monthly money date</span><span>${val(fmtD(g('m6p2i1')))}</span></div>
+  </div>
+  <div class="sec"><h4>My safety net</h4>
+    <div class="row"><span>Emergency fund goal</span><span>${val(g('m1p0i3'),'$')}</span></div>
+    <div class="row"><span>Saved so far</span><span>${val(g('m1p0i4'),'$')}</span></div>
+  </div>
+  <div class="sec"><h4>What is next</h4>
+    <div class="row"><span>Next investing goal</span><span>${val(g('m7p0i8'))}</span></div>
+    <div class="row"><span>Target date</span><span>${val(fmtD(g('m7p0i9')))}</span></div>
+    <div class="row"><span>Proofs emailed</span><span>${sent} of ${Object.keys(PROOFS).length}</span></div>
+  </div>
+  ${g('m7p1i4')?`<div class="sec"><h4>My 12 month commitment</h4><p class="quote">“${esc(g('m7p1i4'))}”</p></div>`:''}
+  <div class="acts"><button class="btn gold" data-backup="1">COPY MY ANSWERS</button><button class="btn ghost" id="printPlan" style="background:#fff">SAVE AS PDF</button></div>
+</div>`;
+}
+function answersText(){
+  const L=['ZERO TO INVESTED: MY ANSWERS',''];
+  MODS.forEach(m=>{L.push('==== '+(m.fin?'FINISH STRONG':'MODULE '+m.n+': '+m.name.toUpperCase())+' ====');
+    m.pages.forEach(pg=>{L.push('','-- '+pg.h+(pg.pg?' (page '+pg.pg+')':'')+' --');
+      pg.i.forEach(it=>{const v=S.v[it.id];
+        if(it.k==='cb')L.push((v?'[x] ':'[ ] ')+it.t);
+        else if(it.k==='sub')L.push(it.t.toUpperCase()+':');
+        else if(['tx','ar','dt','ch'].includes(it.k))L.push(it.l+': '+(v?v:'(blank)'));
+        else if(it.k==='mo')L.push(it.l+': '+(v?'$'+v:'(blank)'));
+      });});L.push('');});
+  return L.join('\n');
+}
 function pctAll(){return Math.round(100*ALLCB.filter(c=>S.v[c.id]).length/TOTAL)}
 function renderBar(){
   const p=pctAll();$('pct').textContent=p+'%';$('fill').style.width=p+'%';
@@ -320,7 +416,7 @@ function renderBar(){
   updateDone();
 }
 function renderProgress(){
-  let h=`<div class="card"><h3>Module by module</h3><p style="margin:-4px 0 10px;font-size:14px">Tap a module to jump to it in your workbook.</p>`;
+  let h=planHTML()+`<div class="card"><h3>Module by module</h3><p style="margin:-4px 0 10px;font-size:14px">Tap a module to jump to it in your workbook.</p>`;
   MODS.forEach((m,i)=>{const p=modPct(i);h+=`<button class="mc ${p===100?'done':''}" data-goto="${i}" aria-label="Open ${m.fin?'Finish Strong':'Module '+m.n} in the workbook"><div class="n">${m.n}</div><div class="b"><b>${m.fin?'Finish Strong':'Module '+m.n+': '+m.name}</b><div class="mini"><i style="width:${p}%"></i></div></div><div class="pc">${p}% <span class="go">&rsaquo;</span></div></button>`});
   h+=`</div><div class="card"><h3>Proof emails</h3><p>These four steps are where I ask you to email me. Practice previews count.</p>`;
   Object.keys(PROOFS).forEach(id=>{const sent=S.sent[id],due=S.due[id];
@@ -359,14 +455,17 @@ document.addEventListener('click',e=>{
   if(t.dataset.ch){S.v[t.dataset.ch]=S.v[t.dataset.ch]===t.dataset.val?'':t.dataset.val;save();t.parentNode.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c.dataset.val===S.v[t.dataset.ch]))}
   if(t.dataset.open)openProof(t.dataset.open);
   if(t.id==='upg'){if(MODE==='workbook'){if(UPGRADE_URL)window.open(UPGRADE_URL,'_blank');else toast('The toolkit upgrade link is coming soon')}else toast('In the real hub this goes to your Stan Store upgrade link')}
-  if(t.id==='backup'){const txt='Zero to Invested answers\n'+JSON.stringify(S.v,null,1);try{navigator.clipboard.writeText(txt).then(()=>toast('Copied your answers'),()=>toast('Copy blocked in this preview'))}catch(x){toast('Copy blocked in this preview')}}
+  if(t.id==='seePlan'){document.querySelector('.tab[data-tab="pr"]').click();setTimeout(()=>{const pl=$('plan');if(pl)pl.scrollIntoView({behavior:'smooth',block:'start'})},60)}
+  if(t.id==='printPlan'){document.body.classList.add('printplan');setTimeout(()=>{window.print();setTimeout(()=>document.body.classList.remove('printplan'),500)},50)}
+  if(t.id==='finish'){const p=pctAll();if(p===100){updateDone();const d=$('doneCard');if(d){d.hidden=false;d.scrollIntoView({behavior:'smooth',block:'center'})}toast('Workbook complete! Tap SEE MY PLAN for your full summary.')}else{const open=MODS.map((m,i)=>({m,i,p:modPct(i)})).filter(x=>x.p<100);const f=open[0];toast(`You are at ${p}%. Still open: `+open.map(x=>x.m.fin?'Finish Strong':'Module '+x.m.n).join(', ')+'. Taking you there now.');if(f&&f.i!==cur){cur=f.i;renderWB();renderBar();toMod()}}}
+  if(t.id==='backup'||t.dataset.backup){const txt=answersText();try{navigator.clipboard.writeText(txt).then(()=>toast('Copied your answers'),()=>toast('Copy blocked in this preview'))}catch(x){toast('Copy blocked in this preview')}}
 });
 document.addEventListener('change',e=>{
   const c=e.target.dataset.cb;if(!c)return;
   S.v[c]=e.target.checked;const meta=ALLCB.find(x=>x.id===c);
-  if(e.target.checked&&meta.proof&&!S.sent[meta.proof]){S.due[meta.proof]=true;save();setPst(meta.proof);renderBar();openProof(meta.proof)}
+  if(e.target.checked&&meta&&meta.proof&&!S.sent[meta.proof]){S.due[meta.proof]=true;save();setPst(meta.proof);renderBar();openProof(meta.proof)}
   else{save();renderBar()}
-  const pill=document.querySelector(`.pill[data-mod="${meta.mod}"]`);if(pill)pill.classList.toggle('done',modPct(meta.mod)===100);
+  if(meta){const pill=document.querySelector(`.pill[data-mod="${meta.mod}"]`);if(pill)pill.classList.toggle('done',modPct(meta.mod)===100)}
 });
 document.addEventListener('input',e=>{const f=e.target.dataset.f;if(f){S.v[f]=e.target.value;save()}});
 function setPst(id){const el=document.querySelector(`[data-pst="${id}"]`);if(!el)return;const sent=S.sent[id],due=S.due[id];el.className='st '+(sent?'ok':due?'due':'');el.textContent=sent?'Proof emailed. Thank you!':due?'Waiting on your email':'Not sent yet'}
@@ -384,7 +483,7 @@ $('sentBtn').onclick=()=>{S.sent[curProof]=true;S.due[curProof]=false;save();set
 $('copyMail').onclick=()=>{try{navigator.clipboard.writeText(EMAIL).then(()=>toast('Email address copied'),()=>toast('Copy blocked in this preview'))}catch(e){toast('Copy blocked in this preview')}};
 $('ov').addEventListener('click',e=>{if(e.target===$('ov'))closeM()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM()});
-function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),2600)}
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),Math.max(2600,m.length*55))}
 
 if($('resetBtn'))$('resetBtn').onclick=()=>{S={v:{},sent:{},due:{}};save();cur=0;renderWB();renderBar();if(!$('tab-pr').hidden)renderProgress()};
 if($('demoBtn'))$('demoBtn').onclick=()=>{S={v:{},sent:{p1:true},due:{p2:true}};const n=Math.round(TOTAL*.45);ALLCB.slice(0,n).forEach(c=>S.v[c.id]=true);save();cur=2;renderWB();renderBar();if(!$('tab-pr').hidden)renderProgress()};
