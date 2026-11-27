@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-26T04:31:14.690Z",
+ "updatedAt": "2026-11-27T04:40:06.714Z",
  "quotes": {
   "AAPL": {
    "name": "Apple Inc.",
@@ -543,12 +543,12 @@
   },
   "FZROX": {
    "name": "Fidelity ZERO Total Market Index Fund",
-   "price": 25.14,
-   "change": -0.4750627,
+   "price": 25.11,
+   "change": -0.11932689,
    "low52": 22.040001,
    "high52": 27.27,
    "currency": "USD",
-   "asOf": "2026-11-24"
+   "asOf": "2026-11-25"
   },
   "FSKAX": {
    "name": "Fidelity Total Market Index Fund",
@@ -957,12 +957,12 @@
   },
   "FTIHX": {
    "name": "Fidelity Total International Index Fund",
-   "price": 18,
-   "change": -0.22173455,
+   "price": 18.02,
+   "change": 0.11111365,
    "low52": 16.87,
    "high52": 20.4,
    "currency": "USD",
-   "asOf": "2026-11-24"
+   "asOf": "2026-11-25"
   },
   "JEPQ": {
    "name": "JPMorgan Nasdaq Equity Premium Income ETF",
